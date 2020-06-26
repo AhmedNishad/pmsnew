@@ -1,0 +1,528 @@
+/*-------------------------------
+
+Typography
+
+-------------------------------*/
+/***** fonts import *****/
+@import url('https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|Muli:200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap&subset=cyrillic,cyrillic-ext,latin-ext,vietnamese');
+$pf: 'Muli', sans-serif;
+$sf: 'Montserrat', sans-serif;
+/***** text *****/
+body {
+  color: rgba(80,80,110 ,.6);
+  font-family: $sf;
+  font-weight: 400;
+  font-size: 14px;
+  background-color: rgba(248,248,251,1);
+}
+/***** heading *****/
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: $dark;
+  font-family: $pf;
+  font-weight: 900;
+  display: block;
+}
+
+h1 {
+  font-size: 82px;
+}
+
+h2 {
+  font-size: 68px;
+}
+
+h3 {
+  font-size: 48px;
+}
+
+h4 {
+  font-size: 36px;
+}
+
+h5 {
+  font-size: 24px;
+}
+
+h6 {
+  font-size: 16px;
+}
+@media screen and (max-width: 768px) {
+  h1 {
+    font-size: 68px;
+  }
+
+  .h2 {
+    font-size: 48px;
+  }
+
+  .h3 {
+    font-size: 36px;
+  }
+
+  .h4 {
+    font-size: 30px;
+  }
+}
+/***** text sup classes *****/
+.sw-white {
+  color: $white;
+}
+
+.sw-dark {
+  color: $dark;
+}
+
+.sw-opas {
+  opacity: 0.6;
+}
+
+p {
+  margin-bottom: 0;
+}
+
+.sw-thin {
+  font-weight: 200;
+}
+
+.sw-uppercase {
+  text-transform: uppercase;
+}
+
+.sw-t-shadow {
+  text-shadow: 0 8px 24px $dark-light;
+}
+/***** suptitle *****/
+.sw-section-suptitle {
+  position: relative;
+  padding-left: 20px;
+
+  &:before {
+    position: absolute;
+    content: '';
+    width: 4px;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background-color: $color-2;
+  }
+}
+@media screen and (max-width: 768px) {
+  .sw-section-suptitle {
+    &.sw-suptitle-mobile {
+      padding-top: 30px;
+      padding-left: 0;
+      text-align: center;
+
+      &:before {
+        width: 100px;
+        height: 4px;
+        left: 50%;
+        margin-left: -50px;
+      }
+    }
+  }
+}
+/***** background text *****/
+.sw-bt {
+  position: absolute;
+  transform: scale(1.6);
+  z-index: 0;
+  font-weight: bold;
+  opacity: 0.015;
+  width: 100%;
+  text-shadow: $dark .04em 0 0, $dark 0 .04em 0, $dark -.04em 0 0, $dark 0 -.04em 0;
+  top: 10px;
+  left: 70%;
+}
+/***** Stylized list *****/
+.sw-list {
+  padding: 0;
+  position: relative;
+
+  &:before {
+    content: '';
+    width: 2px;
+    height: 90%;
+    position: absolute;
+    top: 0;
+    left: 14px;
+    background-color: $dark-light;
+  }
+
+  & li {
+    list-style-type: none;
+    display: flex;
+    margin-bottom: 15px;
+    color: $dark;
+
+    & .sw-list-mark {
+      top: -4px;
+      line-height: 25px;
+      position: relative;
+      margin-right: 10px;
+      transform: translateY(-3px);
+      height: 30px;
+      min-width: 30px;
+      max-width: 30px;
+      background-color: $color-1;
+      border-radius: 50%;
+      border: solid 3px $white;
+      text-align: center;
+      color: $white;
+      box-shadow: 0 8px 24px 0 $dark-light;
+      font-weight: 600;
+      font-family: $sf;
+    }
+  }
+}
+/***** slider hint *****/
+.sw-slider-hint {
+  font-size: 12px;
+}
+/*-------------------------------
+
+Defaults
+
+-------------------------------*/
+/***** quote defaults *****/
+blockquote {
+  background-color: $color-1;
+  color: $white;
+  font-style: italic;
+  border-radius: 3px;
+  padding: 20px 40px 25px 75px;
+  font-family: $pf;
+  font-size: 16px;
+  position: relative;
+  box-shadow: 0 8px 24px 0 $dark-light;
+
+  &:after,
+  &:before {
+    position: absolute;
+    font-size: 36px;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f10d";
+    color: $white-s-light;
+  }
+
+  &:before {
+    top: 12px;
+    left: 20px;
+  }
+
+  &:after {
+    bottom: 12px;
+    right: 20px;
+    font-size: 18px;
+    content: "\f10e";
+  }
+}
+@media screen and (max-width: 768px) {
+  blockquote {
+    padding: 20px 30px 25px;
+  }
+}
+/***** button defaults *****/
+button {
+  display: inline-block;
+  border-radius: 3px;
+  text-transform: uppercase;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: $tr-sm;
+  font-family: $sf;
+  box-shadow: $shadow-1;
+  background-color: $color-1;
+  transition: $tr-sm;
+  color: $white;
+
+  &:hover {
+    background-color: $color-1-h;
+  }
+}
+/***** link defaults *****/
+a,
+a:hover {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+/***** forms defaults *****/
+input,
+select,
+textarea {
+  padding: 10px 20px;
+  width: 100%;
+  height: 50px;
+  margin-bottom: 15px;
+  border: none;
+  border-radius: 2px;
+  background-color: $white;
+  box-shadow: $shadow-1;
+  outline: inherit;
+  font-family: $sf;
+  font-weight: 300;
+  color: rgba(80,80,110 ,.6);
+  font-size: 14px;
+  position: relative;
+  transition: $tr-sm;
+}
+
+textarea {
+  height: 150px;
+  margin-bottom: 0;
+}
+
+form {
+  & input {
+    &:focus {
+      background-color: #fff;
+      outline: inherit;
+    }
+  }
+}
+
+.sw-group-input {
+  position: relative;
+
+  & input {
+    border-radius: 3px;
+    box-shadow: $shadow-1;
+  }
+
+  & button {
+    margin-top: 0;
+    font-size: 12px;
+    padding: 0 20px;
+    height: 50px;
+    line-height: 50px;
+    position: absolute;
+    right: -5px;
+    top: 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    box-shadow: none;
+
+    &:hover {
+      transform: none;
+    }
+  }
+}
+/***** selection *****/
+::selection {
+  color: yellow;
+  background: #000;
+}
+/***** placeholder *****/
+::-webkit-input-placeholder {
+  color: $dark;
+  opacity: 0.5;
+}
+
+::-moz-placeholder {
+  color: $dark;
+  opacity: 0.5;
+}
+
+:-ms-input-placeholder {
+  color: $dark;
+  opacity: 0.5;
+}
+
+:-moz-placeholder {
+  color: $dark;
+  opacity: 0.5;
+}
+/***** wrappers *****/
+.sw-page-wrapper {
+  background-color: rgba(248,248,251,1);
+  opacity: 0;
+  width: 100%;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.container {
+  position: relative;
+}
+
+.sw-over-frame {
+  position: relative;
+  overflow: hidden;
+  background-color: $white;
+  box-shadow: $shadow-1;
+  width: calc(100% - 30px);
+  border-radius: 2px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  transition: $tr-sm;
+  background-size: cover;
+  background-position: center;
+
+  &.sw-active {
+    transform: translateY(-10px);
+  }
+}
+
+.sw-up {
+  margin-top: -40px;
+}
+
+.sw-down {
+  margin-bottom: -40px;
+  z-index: 9;
+}
+/***** flexbox sup classes *****/
+.sw-d-flex {
+  display: flex;
+  justify-content: space-between;
+}
+
+.sw-as-center {
+  align-self: center;
+}
+
+.sw-as-end {
+  align-self: flex-end;
+}
+/***** logo *****/
+.sw-logo {
+  display: block;
+
+  & img {
+    width: 130px;
+    margin-bottom: 0;
+  }
+}
+/***** space *****/
+.p-130-0 {
+  padding-top: 130px;
+  padding-bottom: 0;
+}
+
+.p-130-90 {
+  padding-top: 130px;
+  padding-bottom: 90px;
+}
+
+.p-130-60 {
+  padding-top: 130px;
+  padding-bottom: 60px;
+}
+
+.p-130-30 {
+  padding-top: 130px;
+  padding-bottom: 30px;
+}
+
+.p-90-90 {
+  padding-top: 90px;
+  padding-bottom: 90px;
+}
+
+.p-60-60 {
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+.p-30-30 {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.p-30-0 {
+  padding-top: 30px;
+  padding-bottom: 0;
+}
+
+.p-60-0 {
+  padding-top: 60px;
+  padding-bottom: 0;
+}
+
+.p-0-90 {
+  padding-top: 0;
+  padding-bottom: 90px;
+}
+
+.p-90-30 {
+  padding-top: 90px;
+  padding-bottom: 30px;
+}
+
+.p-60-30 {
+  padding-top: 60px;
+  padding-bottom: 30px;
+}
+
+.p-0-30 {
+  padding-top: 0;
+  padding-bottom: 30px;
+}
+
+.p-30-60 {
+  padding-top: 30px;
+  padding-bottom: 60px;
+}
+
+.p-0-60 {
+  padding-top: 0;
+  padding-bottom: 60px;
+}
+
+.mb-10 {
+  margin-bottom: 10px;
+}
+
+.mb-15 {
+  margin-bottom: 15px;
+}
+
+.mb-20 {
+  margin-bottom: 20px;
+}
+
+.mb-30 {
+  margin-bottom: 30px;
+}
+
+.mb-45 {
+  margin-bottom: 45px;
+}
+
+.mb-60 {
+  margin-bottom: 60px;
+}
+
+.mt-30 {
+  margin-top: 30px;
+}
+
+.mt-15 {
+  margin-top: 15px;
+}
+/***** colors *****/
+.color-p-1 {
+  color: $color-1;
+}
+
+.color-p-2 {
+  color: $color-2;
+}
+
+.bg-color-p-1 {
+  background-color: $color-1;
+}
+
+.bg-color-p-2 {
+  background-color: $color-2;
+}

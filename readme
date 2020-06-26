@@ -1,0 +1,49 @@
+Will be using EJS to keep the templates as conscise, dynamic and consistent as possible
+Have templates for Blog, Courses and Course Schedule
+
+Will be able to implement admin
+
+Aggregate all the course details into very thorough base class and make sure there are enough screens that enable a 
+clear updation of each course
+
+Schedule should reflect the current structure in accordance to what we have 
+
+Use a nosql store for all the course details
+
+Course Page
+ -Banner at top with compelling message and quick buy
+ -What you will learn (Objectives)
+ -Program Overview (Duration/ Cost/ PDUS)
+ -Course Contents
+ -Other details (Exam Fees, Eligibility Requirements, Exam Format, Steps in obtaining..., External Links)
+ -Trainer
+ -Endorsements/ Testimonials
+ -Purchase
+ -FAQ
+ -Branding/ Message  
+
+ C- Banner (Quick buy scrolls down to book Online/ in Person)
+ C- Intro 
+ C- Objectives
+ C- Course Contents
+ C- Learning Methodology
+ C- PDUS (Straight Table)
+ C- Testimonials
+ C- Book Online/ In Person
+ C- FAQs
+ C- Sidebar (Details like duration, course fee,Target Audience)
+
+    To Do
+ Fix course menu showing on hover (Done)
+ Intergrate payment page
+ Fix Links Navbar (Done)
+ ADd Social Media
+ Add images (Done)
+ View Reservations Page (Done)
+ View Queries Page (Done) 
+ Admin Navigation (Done)
+ Figure out Admin URLs (done)
+ All Courses (Done)
+Blogs (Done)
+Course Schedule (Done)
+Ten steps to becoming PMP

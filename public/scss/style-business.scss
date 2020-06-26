@@ -1,0 +1,85 @@
+/* -------------------------------------------
+
+Name: 		Studway
+Version:  1.0
+Author:		Nazar Miller (millerDigitalDesign)
+Portfolio:  https://themeforest.net/user/millerdigitaldesign/portfolio?ref=MillerDigitalDesign
+
+p.s. I am available for Freelance hire (UI design, web development). mail: miller.themes@gmail.com
+
+------------------------------------------- */
+
+/*--------------------------------------------
+
+1. Typography
+      - fonts import
+      - text
+      - heading
+      - text sup classes
+      - suptitle
+      - background text
+      - stylized list
+2. Defaults
+      - quote defaults
+      - button defaults
+      - link defaults
+      - forms defaults
+      - selection
+      - placeholder
+      - wrappers
+      - flexbox sup classes
+      - logo
+      - space
+      - colors
+3. Menu
+4. Banner
+5. Cards
+      - card common
+      - horizontal card
+      - face cards
+      - badges
+6. Buttons
+      - buttons styles
+      - buttons hover animations
+7. Common content
+      - preloader
+      - breadcrumbs
+      - pagination
+      - expirience animation
+8. Sections
+      - introductory word
+      - icon box
+      - video
+      - counter up
+      - testimonials
+      - brands
+      - teachers
+      - contact
+9. Blog
+      - post frame
+      - post badges
+10. Widgets
+      - widgets common
+      - recent comments widget
+      - calendar widget
+      - search widget
+      - rss widget
+      - tag cloud widget
+      - recent posts custom widget
+11. Footer {
+      - instagram
+      - footer body
+      - popups
+
+--------------------------------------------*/
+
+@import 'variables-1';
+@import 'common-1';
+@import 'menu';
+@import 'banners';
+@import 'cards';
+@import 'buttons';
+@import 'pages';
+@import 'blog';
+@import 'widgets';
+@import 'footer';

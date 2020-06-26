@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+  <%- include("../partials/head", {title: "Welcome to PMS"}) %>
+
+</head>
+
+<body>
+
+  <!-- preloader -->
+  <svg class="sw-loading" style="position: fixed;top: calc(50% - 30px);left: calc(50% - 30px);" width="35" height="35" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" version="1.1">
+    <path d="M 150,0 a 150,150 0 0,1 106.066,256.066 l -35.355,-35.355 a -100,-100 0 0,0 -70.711,-170.711 z" fill="#D8D8D8">
+      <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 150 150" to="360 150 150" begin="0s" dur=".5s" fill="freeze" repeatCount="indefinite"></animateTransform>
+    </path>
+  </svg>
+  <!-- preloader end -->
+
+  <!-- page wrapper -->
+  <div class="sw-page-wrapper animsition">
+
+    <!-- menu -->
+    <%- include("../partials/header") %>
+    <!-- menu end -->
+
+    <!-- banner -->
+    <div class="sw-banner sw-banner-sm">
+        <img src="/public/img/KnowledgeCenter/sigiriya.jpeg" alt="banner" class="sw-banner-image">
+        <!-- overlay -->
+        <div class="sw-overlay sw-overlay-left-1">
+          <div class="container sw-d-flex">
+            <!-- main title frame -->
+            <div class="sw-main-title sw-main-title-left sw-animation-opas sw-top-header-fix">
+              <!-- title -->
+              <h1 class="sw-white">Sigiriya (The Lion's Rock)</h1>
+              <!-- suptitle -->
+              <!-- button -->
+              <!-- <a href="#sw-book-popup-1" class="sw-btn sw-lg-btn sw-solid-btn sw-color-1-btn" data-lity>Book a session</a> -->
+              <!-- button -->
+              <!-- <a href="contact-business.html" class="sw-btn sw-lg-btn sw-solid-btn sw-color-2-btn">Ask a question</a> -->
+            </div>
+            <!-- main title frame end -->
+          </div>
+        </div>
+        <!-- overlay end -->
+      </div>
+      <!-- banner end -->
+  
+      <main id="sw-content">
+  
+        <div class="sw-over-frame sw-up">
+  
+          <div class="container">
+  
+            <!-- breadcrumbs -->
+            <ul class="sw-breadcrumb p-30-30">
+              <li><a href="/blog">Blog</a></li>
+              <li><a href="#sw-content">Sigiriya</a></li>
+            </ul>
+            <!-- breadcrumbs end -->
+  
+          </div>
+        </div>
+        
+        <div class="container">
+          <div class="row p-60-0">
+  
+            <div class="col-lg-12">
+  
+              <div class="sw-bt sw-bt-right">
+                <svg width="100%">
+                  <text x="0" y="140px" font-size="150px" stroke="#3e3e41" stroke-width="4" fill="transparent">
+                    <!-- section title -->
+                    The Lions Rock
+                  </text>
+                </svg>
+              </div>
+  
+            </div>
+  
+           
+            <div class="col-lg-12">
+  
+              <div class="sw-about-text">
+                <p>Sigiriya is an ancient rock fortress and palace ruin situated in the central Matale District of Sri Lanka. This was built by King Kasyapa, a son of King Dhatusena, by a palace consort. As legend goes, King Dhatusena was overthrown and walled in, alive by Kasyapa in 473 AD. Mogallana, Dhatusena's son by the true queen fled to India, vowing revenge. Kasyapa fearing an invasion built this impregnable fortress at Sigiriya. It is one of the 7 world heritage sites in Sri Lanka and is one of its most popular tourist destinations.</p>
+                <br>
+                 <p> Sri Lankan architectural tradition is well displayed at Sigiriya, the best preserved city center in Asia from the first millennium, with its combination of buildings and gardens with their trees, pathways, water gardens, the fusion of symmetrical and asymmetrical elements, use of varying levels and of axial and radial planning. The Complex consists of the central rock, rising 200 meters above the surrounding plain, and the two rectangular precincts on the east (90 hectares) and the west (40 hectares), surrounded by two moats and three ramparts.</p>
+                <br>
+                <p>Sigiriya is considered one of the most important urban planning sites of the first millennium, and the site plan is considered very elaborate and imaginative. The plan combined concepts of symmetry and asymmetry to intentionally interlock the man-made geometrical and natural forms of the surroundings. On the west side of the rock lies a park for the royals, laid out on a symmetrical plan; the park contains water retaining structures, including sophisticated surface/subsurface hydraulic systems, some of which are working even today. The south contains a man made reservoir, these were extensively used from previous capital of the dry zone of Sri Lanka. Five gates were placed at entrances. The more elaborate western gate is thought to be reserved for the royals.</p>
+                </div>
+                <br><br>
+            </div>
+  
+          </div>
+        </div>
+
+
+
+      <!-- footer -->
+      <footer class="sw-footer sw-footer-type-1">
+        <%- include("../partials/footer") %>
+      </footer>
+      <!-- footer end -->
+
+      
+
+    </main>
+
+  </div>
+  <!-- page wrapper end -->
+
+  <%- include("../partials/scripts") %>
+
+</body>
+
+</html>

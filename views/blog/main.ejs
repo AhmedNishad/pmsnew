@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+  <%- include("../partials/head", {title: "Welcome to PMS"}) %>
+
+</head>
+
+<body>
+
+  <!-- preloader -->
+  <svg class="sw-loading" style="position: fixed;top: calc(50% - 30px);left: calc(50% - 30px);" width="35" height="35" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" version="1.1">
+    <path d="M 150,0 a 150,150 0 0,1 106.066,256.066 l -35.355,-35.355 a -100,-100 0 0,0 -70.711,-170.711 z" fill="#D8D8D8">
+      <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 150 150" to="360 150 150" begin="0s" dur=".5s" fill="freeze" repeatCount="indefinite"></animateTransform>
+    </path>
+  </svg>
+  <!-- preloader end -->
+
+  <!-- page wrapper -->
+  <div class="sw-page-wrapper animsition">
+
+    <!-- menu -->
+    <%- include("../partials/header") %>
+    <!-- menu end -->
+
+    <!-- banner -->
+    <div class="sw-banner sw-banner-sm">
+        <img src="/public/img/business/banner1.jpeg" alt="banner" class="sw-banner-image">
+        <!-- overlay -->
+        <div class="sw-overlay sw-overlay-left-1">
+          <div class="container sw-d-flex">
+            <!-- main title frame -->
+            <div class="sw-main-title sw-main-title-left sw-animation-opas sw-top-header-fix">
+              <!-- title -->
+              <h1 class="sw-white">Blog</h1>
+              <!-- suptitle -->              
+            </div>
+            <!-- main title frame end -->
+          </div>
+        </div>
+        <!-- overlay end -->
+      </div>
+      <!-- banner end -->
+  
+      <main id="sw-content">
+  
+        
+  
+        <div class="container">
+          <div class="row p-60-0">
+  
+            <div class="col-lg-12">
+  
+              <div class="sw-bt sw-bt-right">
+                <svg width="100%">
+                  <text x="0" y="140px" font-size="150px" stroke="#3e3e41" stroke-width="4" fill="transparent">
+                    <!-- section title -->
+                    Blog
+                  </text>
+                </svg>
+              </div>
+  
+            </div>
+  
+            <div class="col-lg-12">
+  
+              <div class="row">
+  
+                <div class="col-lg-12 sw-as-center mb-60">
+  
+                  <!-- title -->
+                  <h4 class="sw-h sw-h-lvl-4 mb-30">Latest publications</h4>
+                  <!-- suptitle -->
+                  <!-- <div class="sw-section-suptitle">You’ve always been beautiful. Now you are just deciding <br>to be helthier, fitter, faster and stronger</div> -->
+  
+                </div>
+  
+              </div>
+  
+            </div>
+  
+            <div class="col-lg-12">
+  
+              <div class="row">
+  
+                <div class="col-lg-6">
+  
+                  <!-- card -->
+                  <div class="sw-card sw-card-2">
+                    <!-- img frame -->
+                    <a href="/blog/sigiriya" class="sw-img">
+                      <img src="/public/img/KnowledgeCenter/sigiriya.jpeg" alt="thumb">
+                    </a>
+                    <!-- img frame end -->
+                    <!-- description -->
+                    <div class="sw-card-description">
+                      <!-- title -->
+                      <a href="/blog/sigiriya" class="mb-10">
+                        <h5>Sigiriya (The Lion's Rock)</h5>
+                      </a>
+                      <!-- short description -->
+                      <div class="mb-10">Sigiriya is an ancient rock fortress and palace ruin situated in the central Matale District of Sri Lanka....</div>
+                      <!-- author -->
+                      <img src="/public/img/business/faces/face-1.jpg" alt="Viktoria Freeman" class="sw-author">
+                    </div>
+                    <!-- description end -->
+                    <!-- badge -->
+                    <div class="sw-card-badge bg-color-p-2">31 sept, 19:00</div>
+                  </div>
+                  <!-- card end -->
+  
+                </div>
+  
+                <div class="col-lg-6">
+  
+                  <!-- card -->
+                  <div class="sw-card sw-card-2">
+                    <!-- img frame -->
+                    <a href="/blog/essential-tool" class="sw-img">
+                      <img src="/public/img/KnowledgeCenter/essential-title.jpeg" alt="thumb">
+                    </a>
+                    <!-- img frame end -->
+                    <!-- description -->
+                    <div class="sw-card-description">
+                      <!-- title -->
+                      <a href="/blog/essential-tool" class="mb-10">
+                        <h5>Why Project Management is an essential tool</h5>
+                      </a>
+                      <!-- short description -->
+                      <div class="mb-10">Rapidly changing business environment and technology, demand organizations to adapt very fast, therefore there is a demand for organizations to be very flexible in order to accommodate change</div>
+                      <!-- author -->
+                      <img src="/public/img/health/faces/face-1.jpg" alt="Viktoria Freeman" class="sw-author">
+                    </div>
+                    <!-- description end -->
+                    <!-- badge -->
+                    <div class="sw-card-badge bg-color-p-2">29 sept, 19:00</div>
+                  </div>
+                  <!-- card end -->
+  
+                </div>
+  
+                
+  
+                
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <div class="container">
+          <div class="row p-60-30">
+  
+            <div class="col-lg-12">
+  
+              <div class="sw-bt sw-bt-right">
+                <svg width="100%">
+                  <text x="0" y="140px" font-size="150px" stroke="#3e3e41" stroke-width="4" fill="transparent">
+                    <!-- section title -->
+                    Popular
+                  </text>
+                </svg>
+              </div>
+  
+            </div>
+  
+            
+  
+          </div>
+        </div>
+
+
+
+      <!-- footer -->
+      <footer class="sw-footer sw-footer-type-1">
+        <%- include("../partials/footer") %>
+      </footer>
+      <!-- footer end -->
+
+      
+
+    </main>
+
+  </div>
+  <!-- page wrapper end -->
+
+  <%- include("../partials/scripts") %>
+
+</body>
+
+</html>

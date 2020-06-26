@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+  <%- include("../partials/head", {title: "Welcome to PMS"}) %>
+
+</head>
+
+<body>
+
+  <!-- preloader -->
+  <svg class="sw-loading" style="position: fixed;top: calc(50% - 30px);left: calc(50% - 30px);" width="35" height="35" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" version="1.1">
+    <path d="M 150,0 a 150,150 0 0,1 106.066,256.066 l -35.355,-35.355 a -100,-100 0 0,0 -70.711,-170.711 z" fill="#D8D8D8">
+      <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 150 150" to="360 150 150" begin="0s" dur=".5s" fill="freeze" repeatCount="indefinite"></animateTransform>
+    </path>
+  </svg>
+  <!-- preloader end -->
+
+  <!-- page wrapper -->
+  <div class="sw-page-wrapper animsition">
+
+    <!-- menu -->
+    <%- include("../partials/header") %>
+    <!-- menu end -->
+
+    
+    <!-- banner -->
+    <div class="sw-banner">
+        <img src="/public/img/business/banners/classroom.jpeg" alt="banner" class="sw-banner-image">
+        <!-- overlay -->
+        <div class="sw-overlay sw-overlay-left-1">
+          <div class="container sw-d-flex">
+            <!-- main title frame -->
+            <div class="sw-main-title sw-main-title-left sw-animation-opas sw-top-header-fix">
+              <!-- title -->
+              <h2 class="sw-white">Register Now!</h1>
+              
+              <!-- suptitle -->
+              <div class="sw-section-suptitle sw-t-shadow sw-opas sw-white mb-20">PMS  has produced more than 1000 PMI® certificants since 2006.</div>
+              <!-- button -->
+             <!--  <a href="#sw-book-popup-1" class="sw-btn sw-lg-btn sw-solid-btn sw-color-1-btn" data-lity>View Certifications</a> -->
+              <!-- button -->
+              <!-- <a href="contact-business.html" class="sw-btn sw-lg-btn sw-solid-btn sw-color-2-btn">Ask a question</a> -->
+            </div>
+            <!-- main title frame end -->
+          </div>
+        </div>
+        <!-- overlay end -->
+        <!-- scroll hint -->
+        <a href="#sw-content" class="sw-scroll-hint">
+          <!-- arrow -->
+          <i class="fas fa-chevron-down"></i>
+        </a>
+        <!-- scroll hint -->
+      </div>
+      <!-- banner end -->
+  
+      <main id="sw-content">
+  
+        <% if(message != ""){ %>
+            <div class="jumbotron jumbotron-fluid">
+                <div class="container">
+                    <h3><%= message %></h3>
+                </div>
+            </div>
+        <% } %>
+  
+         
+  
+
+      <!-- footer -->
+      <footer class="sw-footer sw-footer-type-1">
+        <%- include("../partials/footer") %>
+      </footer>
+      <!-- footer end -->
+
+      
+
+    </main>
+
+  </div>
+  <!-- page wrapper end -->
+
+
+  <%- include("../partials/scripts") %>
+
+</body>
+
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+  <%- include("../partials/head", {title: "Welcome to PMS"}) %>
+
+</head>
+
+<body>
+
+  <!-- preloader -->
+  <svg class="sw-loading" style="position: fixed;top: calc(50% - 30px);left: calc(50% - 30px);" width="35" height="35" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" version="1.1">
+    <path d="M 150,0 a 150,150 0 0,1 106.066,256.066 l -35.355,-35.355 a -100,-100 0 0,0 -70.711,-170.711 z" fill="#D8D8D8">
+      <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 150 150" to="360 150 150" begin="0s" dur=".5s" fill="freeze" repeatCount="indefinite"></animateTransform>
+    </path>
+  </svg>
+  <!-- preloader end -->
+
+  <!-- page wrapper -->
+  <div class="sw-page-wrapper animsition">
+
+    <!-- menu -->
+    <%- include("../partials/header") %>
+    <!-- menu end -->
+
+    
+    <!-- banner -->
+    <div class="sw-banner sw-banner-sm">
+        <img src="img/business/banner3.jpeg" alt="banner" class="sw-banner-image">
+        <!-- overlay -->
+        <div class="sw-overlay sw-overlay-left-1">
+          <div class="container sw-d-flex">
+            <!-- main title frame -->
+            <div class="sw-main-title sw-main-title-left sw-animation-opas sw-top-header-fix">
+              <!-- title -->
+              <h1 class="sw-white">Course Schedule</h1>
+              <!-- suptitle -->
+              <!-- button -->
+              <!-- <a href="#sw-book-popup-1" class="sw-btn sw-lg-btn sw-solid-btn sw-color-1-btn" data-lity>Book a session</a> -->
+              <!-- button -->
+              <!-- <a href="contact-business.html" class="sw-btn sw-lg-btn sw-solid-btn sw-color-2-btn">Ask a question</a> -->
+            </div>
+            <!-- main title frame end -->
+          </div>
+        </div>
+        <!-- overlay end -->
+      </div>
+      <!-- banner end -->
+  
+      <main id="sw-content">
+  
+        <div class="sw-over-frame sw-up">
+  
+          <div class="container">
+  
+            <!-- breadcrumbs -->
+            <ul class="sw-breadcrumb p-30-30">
+              <li><a href="/courses">Courses</a></li>
+              <li><a href="#sw-content">Course Schedule</a></li>
+            </ul>
+            <!-- breadcrumbs end -->
+  
+          </div>
+        </div>
+        
+        <div class="container">
+          <div class="row p-60-0">
+  
+            <div class="col-lg-6">
+  
+              <div>
+                <!-- title -->
+                <h4 class="mb-60">Bring PMS to your Company</h4>
+              </div>
+  
+            </div>
+  
+           
+            <div class="col-lg-12">
+  
+              <div class="sw-about-text">
+                  <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th style="width: 300px;" scope="col">Programme</th>
+                          <th scope="col">Scheduled Dates</th>
+                          <th scope="col">Details</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                          <%
+                            let filtered = courses.filter(c => c.courseDates.filter(d => d.timeFrom == "").length == 0)
+                            for(let i = 0; i < filtered.length; i++){
+                                let course = filtered[i]
+                                %>
+                                <tr style="font-size: 1.0rem;">
+                                    <td scope="row"><a href="/courses/<%= course.moniker %>"><%= course.title %></></td>
+                                    <td>
+                                        <%
+                                            let filteredCourseDates = course.courseDates.filter(date => date.date > new Date())
+                                            for(let j = 0; j < filteredCourseDates.length; j++){
+                                                let date = filteredCourseDates[j];
+                                                %>
+                                                    <p><%= date.date.toDateString() %> from <%= date.timeFrom %> to <%= date.timeTo %></p>
+                                                <%
+                                            }
+                                        %>
+                                        </td>
+                                    <td><%- course.otherDetails[0].text %></td>
+                                </tr>
+                                <%
+                            } 
+                            %>
+                        
+                        
+                      </tbody>
+                    </table>
+                    <br><br>
+          </div>
+            </div>
+  
+          </div>
+        </div>
+  
+  
+
+      <!-- footer -->
+      <footer class="sw-footer sw-footer-type-1">
+        <%- include("../partials/footer") %>
+      </footer>
+      <!-- footer end -->
+
+      
+
+    </main>
+
+  </div>
+  <!-- page wrapper end -->
+
+  <%- include("../partials/scripts") %>
+
+</body>
+
+</html>

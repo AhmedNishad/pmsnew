@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include("../partials/head", {title: "Create Course"}) %>
+</head>
+<body>
+  <a href="../" class="button button-secondary">Back</a>
+    <% if(course){ %>
+
+        <!-- <form action="../<%= course.moniker %>/delete" method="post">
+            <button class="btn btn-danger">Delete</button>
+        </form> -->
+
+        
+
+    <div class="container">
+        <div class="row offset-md-2">
+            <form style="width: 100%;" action="" method="post">
+              <div class="form-group">
+                <label value="" class="control-label col-sm-4" for="name">Course Title</label>
+                <div class="col-sm-8">
+                    <input value="<%= course.title %>" class="form-control" type="text" placeholder="title" name="title" />
+                </div>
+              </div>
+              <!-- Ideally dropdown or searchable text field -->
+              <div class="form-group">
+                <label class="control-label col-sm-4" for="course">SEO Name</label>
+                <div class="col-sm-8">          
+                    <input value="<%= course.moniker %>" class="form-control" type="text" placeholder="SEO Friendly Name" name="moniker" />
+                </div>
+              </div>
+              
+              <div class="form-group">
+                  <label class="control-label col-sm-4" for="bcd">Course Type</label>
+                  <div class="col-sm-8">          
+                    <select class="form-control" name="type">
+                        <option <%= course.type == "projectManagement" ? "selected" : "" %> value="projectManagement">Project Management</option>
+                        <option <%= course.type == "agile" ? "selected" : "" %> value="agile">Agile</option>
+                        <option <%= course.type == "communityProjects" ? "selected" : "" %> value="communityProjects">Community Projects</option>
+                        <option <%= course.type == "softSkills" ? "selected" : "" %> value="softSkills">Soft Skills</option>
+                        <option <%= course.type == "businessManagement" ? "selected" : "" %> value="businessManagement">Business Management</option>
+                    </select>          
+                </div>
+                </div>
+        
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for="qualifications">Introduction</label>
+                    <div class="col-sm-8">          
+                      <textarea class="form-control" name="introduction[body]" cols="30" rows="10"><%= course.introduction.body %></textarea>
+                      <button class="btn btn-primary add">Add Highlight</button>
+                      <div>
+                        <%
+                        for ( var i = 0; i < course.introduction.highlights.length; i++ )
+                        {
+                            var highlight = course.introduction.highlights[i]
+                                %><div>
+                                <textarea class="form-control" name="introduction[highlights][]" cols="30" rows="10"><%= highlight %></textarea>
+                                <button class="btn btn-danger remove">Remove</button>
+                                </div><%
+                        }
+                        %>
+                        
+                      </div>
+                    </div>
+                    <hr>
+                  </div>
+        
+                <div class="form-group">
+                  <label class="control-label col-sm-4" for="org">Duration</label>
+                  <div class="col-sm-8">          
+                    <input value="<%= course.duration %>" class="form-control" type="text" placeholder="Duration" name="duration" />          
+                </div>
+                </div>
+        
+                <div class="form-group">
+                  <label class="control-label col-sm-4" for="designation">Course Fee</label>
+                  <div class="col-sm-8">          
+                    <input value="<%= course.courseFee %>" class="form-control" type="text" placeholder="Course Fee" name="courseFee" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-sm-4" for="designation">Price</label>
+                  <div class="col-sm-8">          
+                    <input class="form-control" value="course.price" type="number" placeholder="Amount" name="price" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-sm-4" for="telephone">Course Number</label>
+                  <div class="col-sm-8">          
+                    <input value="<%= course.courseNumber %>" class="form-control" type="text" placeholder="Course Number" name="courseNumber" />
+                  </div>
+                </div>
+                    <div class="form-group">
+                    <label class="control-label col-sm-4" for="telephone">Course Image</label>
+                    <div class="col-sm-8">          
+                        <input value="<%= course.courseImage %>" class="form-control" type="text" placeholder="Course Image (Url)" name="courseImage" />
+                    </div>
+                    </div>
+                <div class="form-group">
+                  <label class="control-label col-sm-4" for="mobile">Objectives (List)</label>
+                  <button class="btn btn-primary add" type="button" data-element-to-add="addInput('input class='form-control' type='text' placeholder='Objectives' name='objectives[][text]'>')">Add Objective</button>
+                  <div class="col-sm-8">   
+                    <%
+                        for ( var i = 0; i < course.objectives.length; i++ )
+                        {
+                            var objective = course.objectives[i]
+                                %><div>
+                                    <input value="<%= objective.text %>" class="form-control" type="text" placeholder="Objectives" name="objectives[<%= i %>][text]">  
+                                    <button <%= i == 0 ? "disabled" : "" %> class="btn btn-danger remove">Remove</button>
+                                </div>  <%
+                        }
+                        %>
+                  </div>
+                  <hr>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-sm-4" for="address">Testimonials</label>
+                  <button class="btn btn-primary add">Add Testimonial</button>
+                  <div class="col-sm-8">
+                    <%
+                        for ( var i = 0; i < course.testimonials.length; i++ )
+                        {
+                            var testimonial = course.testimonials[i]
+                                %><div>
+                                    <textarea class="form-control" name="testimonials[<%= i %>][body]" cols="30" rows="10"><%= testimonial.body %></textarea>
+                                    <input value="<%= testimonial.author %>" class="form-control" type="text" placeholder="Author" name="testimonials[<%= i %>][author]">
+                                    <button <%= i == 0 ? "disabled" : "" %> class="btn btn-danger remove">Remove</button>
+                                </div>  <%
+                        }
+                        %>          
+                      
+                  </div>
+                  <hr>
+                </div>
+                
+                <div class="form-group">
+                  <label class="control-label col-sm-4" for="experience">Course Content</label>
+                  <button class="btn btn-primary add">Add Course Content</button>
+                  <div class="col-sm-8">
+                    <%
+                        for ( var i = 0; i < course.courseContent.length; i++ )
+                        {
+                            var content = course.courseContent[i]
+                                %><div>
+                                    <input value="<%= content.body %>" class="form-control" type="text" placeholder="Course Content" name="courseContent[<%= i %>][body]">
+                                    <button <%= i == 0 ? "disabled" : "" %> class="btn btn-danger remove">Remove</button>
+                                </div> <%
+                        }
+                        %>    
+                      
+                  </div>
+                  <hr>
+                </div>
+        
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for="experience">Target Audience</label>
+                    <button class="btn btn-primary add">Add Audience</button>
+                    <div class="col-sm-8">
+                        <%
+                        for ( var i = 0; i < course.targetAudience.length; i++ )
+                        {
+                            var audience = course.targetAudience[i]
+                                %><div>
+                                    <input value="<%= audience.body %>" class="form-control" type="text" placeholder="Target Audience" name="targetAudience[<%= i %>][body]">
+                                    <button <%= i == 0 ? "disabled" : "" %> class="btn btn-danger remove">Remove</button>
+                                </div> <%
+                        }
+                        %>           
+                        
+                    </div>
+                    <hr>
+                  </div>
+        
+                <div class="form-group">
+                <label class="control-label col-sm-4" for="experience">Learning Methodology</label>
+                <button class="btn btn-primary add">Add Methodology</button>
+                <div class="col-sm-8">  
+                    <%
+                        for ( var i = 0; i < course.learningMethodology.length; i++ )
+                        {
+                            var methodology = course.learningMethodology[i]
+                                %><div>
+                                    <input value="<%= methodology.text %>" class="form-control" type="text" placeholder="Learning Methodology" name="learningMethodology[<%= i %>][text]">
+                                    <button <%= i == 0 ? "disabled" : "" %> class="btn btn-danger remove">Remove</button>
+                                </div>    <%
+                        }
+                        %>
+                       
+                </div>
+                <hr>
+                </div>
+        
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for="experience">Other Details</label>
+                    <button class="btn btn-primary add">Add More Details</button>
+                    <div class="col-sm-8">    
+                        <%
+                        for ( var i = 0; i < course.otherDetails.length; i++ )
+                        {
+                            var details = course.otherDetails[i]
+                                %><div>
+                                    <textarea class="form-control" name="otherDetails[<%= i %>][text]" cols="30" rows="10"><%= details.text %></textarea> 
+                                    <button <%= i == 0 ? "disabled" : "" %> class="btn btn-danger remove">Remove</button>
+                                </div>     <%
+                        }
+                        %>
+                           
+                    </div>
+                </div>
+        
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for="experience">External Links</label>
+                    <button class="btn btn-primary add">Add Link</button>
+                    <div class="col-sm-8">         
+                        <%
+                        for ( var i = 0; i < course.externalLinks.length; i++ )
+                        {
+                            var links = course.externalLinks[i]
+                                %><div>
+                                    <input value="<%= links.address %>" class="form-control" type="text" name="externalLinks[<%= i %>][address]" placeholder="External Link Address" />
+                                    <input value="<%= links.link %>" class="form-control" type="text" name="externalLinks[<%= i %>][link]" placeholder="External Link Text" />
+                                    <button <%= i == 0 ? "disabled" : "" %> class="btn btn-danger remove">Remove</button>
+                                </div>    <%
+                        }
+                        %> 
+                      
+                      <hr>
+                    </div>
+                </div>
+        
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for="experience">PDUS (table tag)</label>
+                    <div class="col-sm-8"> 
+                      <textarea class="form-control" name="PDUTable" cols="30" rows="10"><%= course.PDUTable %></textarea> 
+                    </div>
+                </div>
+
+                <% if(course.FAQs){ %>
+                <div class="form-group">
+                  <label class="control-label col-sm-4" for="experience">FAQs</label>
+                  <button class="btn btn-primary add">Add FAQ</button>
+                  <div class="col-sm-8">
+                    <% if(course.FAQs.length == 0){ %>
+                      <div>
+                                    <input class="form-control" type="text" name="FAQs[0][question]" placeholder="Question"/>
+                                    <textarea class="form-control" type="text" name="FAQs[0][answer]">Answer</textarea>
+                                    <button <%= i == 0 ? "disabled" : "" %> class="btn btn-danger remove">Remove</button>
+                                </div> 
+                    <% } %>
+                    <%
+                        for ( var i = 0; i < course.FAQs.length; i++ )
+                        {
+                            var faq = course.FAQs[i]
+                                %><div>
+                                    <input value="<%= faq.question %>" class="form-control" type="text" name="FAQs[<%= i %>][question]" placeholder="Question"/>
+                                    <textarea class="form-control" type="text" name="FAQs[<%= i %>][answer]"><%= faq.answer %></textarea>
+                                    <button <%= i == 0 ? "disabled" : "" %> class="btn btn-danger remove">Remove</button>
+                                </div>   <%
+                        }
+                        %>  
+                  </div>
+              </div>
+              <% } %>
+
+              <% if(course.courseDates){ %>
+                <div class="form-group">
+                  <label class="control-label col-sm-4" for="experience">Dates</label>
+                  <button class="btn btn-primary add">Add Date</button>
+                  <div class="col-sm-8">
+                    <% let now = new Date();
+                    let month = (parseInt(now.getMonth()) + 1 ) >= 10 ? (parseInt(now.getMonth()) + 1 ) : "0" + (parseInt(now.getMonth()) + 1 )
+                    let day = (parseInt(now.getDate())) >= 10 ? (parseInt(now.getDate()) ) : "0" + (parseInt(now.getDate()))
+                    let dateString = now.getFullYear() + "-" + month + "-" + day;
+                    
+                    if(course.courseDates == null || course.courseDates.filter(cd => cd.date > new Date().setHours(0,0,0,0)).length == 0){ %>
+                              <div>
+                                    <input min="<%= dateString %>" class="form-control" type="date" name="courseDates[0][date]" />
+                                    <input class="form-control" type="text" name="courseDates[0][timeFrom]" placeholder="timeFrom">
+                                    <input class="form-control" type="text" name="courseDates[0][timeTo]" placeholder="timeTo">
+                                    <button class="btn btn-danger remove">Remove</button>
+                                </div> 
+                    <% } %>
+                    <%
+                        for ( var i = 0; i < course.courseDates.length; i++ )
+                        {
+                            var date = course.courseDates[i]
+    
+                            if(date.date > new Date().setHours(0,0,0,0)){
+                              let now = new Date();
+                              let month = (parseInt(now.getMonth()) + 1 ) >= 10 ? (parseInt(now.getMonth()) + 1 ) : "0" + (parseInt(now.getMonth()) + 1 )
+                              let day = (parseInt(now.getDate())) >= 10 ? (parseInt(now.getDate()) ) : "0" + (parseInt(now.getDate()))
+                              let dateString = now.getFullYear() + "-" + month + "-" + day;
+                              month = (parseInt(date.date.getMonth()) + 1 ) >= 10 ? (parseInt(date.date.getMonth()) + 1 ) : "0" + (parseInt(date.date.getMonth()) + 1 )
+                              day = (parseInt(date.date.getDate())) >= 10 ? (parseInt(date.date.getDate()) ) : "0" + (parseInt(date.date.getDate()))
+                              let courseDateString = date.date.getFullYear() + "-" + month + "-" + day;
+                                %><div>
+                                  <input min="<%= dateString %>" value="<%= courseDateString %>" class="form-control" type="date" name="courseDates[<%= i %>][date]" />
+                                    <input class="form-control" value="<%= date.timeFrom %>" type="text" name="courseDates[<%= i %>][timeFrom]" placeholder="timeFrom">
+                                    <input class="form-control" value="<%= date.timeTo %>" type="text" name="courseDates[<%= i %>][timeTo]" placeholder="timeTo">
+                                    <button class="btn btn-danger remove">Remove</button>
+                                </div>   <%
+                        }
+                      }
+                        %>  
+                  </div>
+              </div>
+              <% } %>
+
+                <div class="form-group">
+                    <label  class="control-label col-sm-4" for="experience">Key Takeaway</label>
+                    <div class="col-sm-8">          
+                        <textarea class="form-control" name="keyTakeaway" cols="30" rows="10"><%= course.keyTakeaway %></textarea>
+                    </div>
+                </div>
+                
+             
+              <div class="form-group">        
+                <div class="col-sm-offset-2 col-sm-10">
+                  <button type="submit" class="btn btn-default offset-md-2">Submit</button>
+                </div>
+              </div>
+            </form>
+          </div>
+          </div>
+        <% } %>
+    </div>
+
+    <script>
+      function addInput(elementHtml){
+
+      }
+
+      // Used for post formatting
+      let globalCounter = 30
+
+      let addButtons = document.getElementsByClassName("add")
+      for(let i = 0; i < addButtons.length; i++){
+        let button = addButtons[i]
+        console.log(button)
+        button.addEventListener("click", e=>{
+          e.preventDefault()
+          let parent = e.target.parentElement
+          let newItem = e.target.nextElementSibling.firstElementChild.cloneNode(true)
+          console.log(newItem)
+          let inputs = newItem.getElementsByTagName('input')
+          let textAreas = newItem.getElementsByTagName('textarea')
+
+          // Format the name so it comes as an array
+          for(let j = 0; j < inputs.length; j++){
+            let input = inputs[j]
+            let postName = input.getAttribute("name")
+            input.name = postName.replace("0", globalCounter)
+            if(input.type != "date")
+              input.value = ""
+          }
+
+          for(let j = 0; j < textAreas.length; j++){
+            let textArea = textAreas[j]
+            let postName = textArea.getAttribute("name")
+            textArea.name = postName.replace("0", globalCounter)
+            textArea.value = ""
+          }
+          globalCounter++
+          
+          let removeButton = newItem.getElementsByClassName("remove")[0]
+          removeButton.disabled = false
+          removeButton.addEventListener("click", e=>{
+            e.preventDefault()
+            let parentDiv = e.target.parentElement
+            parentDiv.parentElement.removeChild(parentDiv)
+        })
+          e.target.nextElementSibling.appendChild(newItem)
+        })
+      }
+
+      let removeButtons = document.getElementsByClassName("remove")
+      for(let i = 0; i < removeButtons.length; i++){
+        let button = removeButtons[i]
+        console.log(button)
+        button.addEventListener("click", e=>{
+          e.preventDefault()
+          console.log(e.target)
+          let parent = e.target.parentElement
+          parent.parentElement.removeChild(parent)
+        })
+      }
+
+    </script>
+
+  <!-- jquery js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <!-- anime js -->
+  <script src="/public/js/plugins/anime.min.js"></script>
+  <!-- lity js -->
+  <script src="/public/js/plugins/lity.min.js"></script>
+  <!-- waypoint js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/1.1.6/waypoints.min.js"></script>
+  <!-- swiper js -->
+  <script src="/public/js/plugins/swiper.min.js"></script>
+  <!-- animsition js -->
+  <script src="/public/js/plugins/animsition.min.js"></script>
+  <!-- main js -->
+  <script src="/public/js/main.js"></script>
+</body>
+</html>

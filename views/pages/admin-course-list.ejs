@@ -1,0 +1,76 @@
+
+
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <link rel="stylesheet" href="/public/css/plugins/bootstrap.min.css">
+  <!-- font awesome css -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+  <!-- swiper css -->
+  <link rel="stylesheet" href="/public/css/plugins/swiper.min.css">
+  <!-- lity css -->
+  <link rel="stylesheet" href="/public/css/plugins/lity.min.css">
+  <!-- animsition css -->
+  <link rel="stylesheet" href="/public/css/plugins/animsition.min.css">
+  <!-- style css -->
+  <link rel="stylesheet" href="/public/css/style-business.css">
+  <!-- page title -->
+  <title>Admin</title>
+
+</head>
+
+<body>
+
+  <!-- page wrapper -->
+
+    <!-- menu -->
+    <%- include("../partials/admin-nav") %>
+    <!-- menu end -->
+
+  
+      <main class="container-fluid">
+        <h5>Course List</h5>
+        <a class="btn btn-primary" href="/admin/a6/courses/create/new">Create New</a>
+        <ul class="list-group">
+            <%  
+            for(let i = 0; i < courses.length; i++){
+                let course = courses[i];
+                %>
+                <li class="list-group-item"> <a href="/admin/a6/courses/<%= course.moniker %>/update"><%= course.title %></a> </li>
+                <%
+            }
+            %> 
+        </ul>
+
+
+
+      <!-- footer -->
+      <!-- footer end -->
+
+      
+
+    </main>
+
+  <!-- page wrapper end -->
+
+  <!-- jquery js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<!-- anime js -->
+<script src="/public/js/plugins/anime.min.js"></script>
+<!-- lity js -->
+<script src="/public/js/plugins/lity.min.js"></script>
+<!-- waypoint js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/1.1.6/waypoints.min.js"></script>
+<!-- swiper js -->
+<script src="/public/js/plugins/swiper.min.js"></script>
+<!-- animsition js -->
+<script src="/public/js/plugins/animsition.min.js"></script>
+<!-- main js -->
+<script src="/public/js/main.js"></script>
+  
+
+</body>
+
+</html>

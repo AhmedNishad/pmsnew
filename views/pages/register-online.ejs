@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+  <%- include("../partials/head", {title: "Welcome to PMS"}) %>
+
+</head>
+
+<body>
+
+  <!-- preloader -->
+  <svg class="sw-loading" style="position: fixed;top: calc(50% - 30px);left: calc(50% - 30px);" width="35" height="35" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" version="1.1">
+    <path d="M 150,0 a 150,150 0 0,1 106.066,256.066 l -35.355,-35.355 a -100,-100 0 0,0 -70.711,-170.711 z" fill="#D8D8D8">
+      <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 150 150" to="360 150 150" begin="0s" dur=".5s" fill="freeze" repeatCount="indefinite"></animateTransform>
+    </path>
+  </svg>
+  <!-- preloader end -->
+
+  <!-- page wrapper -->
+  <div class="sw-page-wrapper animsition">
+
+    <!-- menu -->
+    <%- include("../partials/header") %>
+    <!-- menu end -->
+    
+    <!-- banner -->
+    <div class="sw-banner">
+        <img src="/public/img/business/banners/classroom.jpeg" alt="banner" class="sw-banner-image">
+        <!-- overlay -->
+        <div class="sw-overlay sw-overlay-left-1">
+          <div class="container sw-d-flex">
+            <!-- main title frame -->
+            <div class="sw-main-title sw-main-title-left sw-animation-opas sw-top-header-fix">
+              <!-- title -->
+              <h2 class="sw-white">Register Now!</h1>
+              <!-- suptitle -->
+              <div class="sw-section-suptitle sw-t-shadow sw-opas sw-white mb-20">PMS  has produced more than 1000 PMI® certificants since 2006.</div>
+              <!-- button -->
+             <!--  <a href="#sw-book-popup-1" class="sw-btn sw-lg-btn sw-solid-btn sw-color-1-btn" data-lity>View Certifications</a> -->
+              <!-- button -->
+              <!-- <a href="contact-business.html" class="sw-btn sw-lg-btn sw-solid-btn sw-color-2-btn">Ask a question</a> -->
+            </div>
+            <!-- main title frame end -->
+          </div>
+        </div>
+        <!-- overlay end -->
+        <!-- scroll hint -->
+        <a href="#sw-content" class="sw-scroll-hint">
+          <!-- arrow -->
+          <i class="fas fa-chevron-down"></i>
+        </a>
+        <!-- scroll hint -->
+      </div>
+      <!-- banner end -->
+  
+      <main id="sw-content">
+  
+          <div class="col-md-12">
+              <div class="thick-separator-rule">&nbsp;</div>
+              <h3>Online Registration to Reserve Your Seat</h3>
+              <p>Please duly fill in this form and submit.</p>
+          <hr>
+        <!-- Form Start -->
+      <div class="row offset-md-3">
+        <form class="form" method="post" action="">
+          
+        <div class="form-group">
+          <label class="control-label col-sm-4" for="name">Select Course</label>
+          <select  class="form-control" name="course" id="selectCourse">
+            <option value="none" disabled>Please Select</option>
+            <%
+              for ( var i = 0; i < courses.length; i++ )
+              {
+                  let course = courses[i];
+                      %>
+                      <option data-slots="<%= JSON.stringify(course.courseDates) %>" value="<%= course.moniker %>"><%= course.title %></option> 
+                  <%
+              }
+            
+          %>  
+        </select>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-sm-4" for="name">Select Time Slot</label>
+            <select  class="form-control" name="date" id="selectSlot">
+                
+            </select>
+          </div>
+
+          <div class="form-group">
+          <label class="control-label col-sm-4" for="name">Select Location</label>
+            <select  class="form-control" name="type" id="selectSlot">
+                <option value="online">Online</option>
+                <option value="class">Physical</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label col-sm-4" for="name">Name in Full</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" id="name" placeholder="Name in Full" name="name">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-4" for="name">Email</label>
+            <div class="col-sm-8">
+              <input type="email" class="form-control" id="email" placeholder="Email" name="email">
+            </div>
+          </div>
+          <div class="form-group">        
+            <div class="col-sm-offset-2 col-sm-10">
+              <button type="submit" id="submit" class="btn btn-default offset-md-2">Submit</button>
+            </div>
+          </div>
+        </form>
+      </div>
+      </div>
+  
+
+      <!-- footer -->
+      <footer class="sw-footer sw-footer-type-1">
+        <%- include("../partials/footer") %>
+      </footer>
+      <!-- footer end -->
+
+      
+
+    </main>
+
+  </div>
+  <!-- page wrapper end -->
+
+  <script>
+    let selectCourse = document.getElementById('selectCourse');
+    let selectSlot = document.getElementById('selectSlot');
+    let submit = document.getElementById('submit')
+
+    selectCourse.addEventListener("change", e => {
+      console.log(e.target.selectedOptions[0]);
+      let selected = e.target.selectedOptions[0];
+      if(selected.dataset.slots == "[]"){
+        console.log('no data')
+        selectSlot.innerHTML = `<option disabled>Sorry No Dates Available </option>`
+        submit.disabled = true;
+      }else{
+        let slots = JSON.parse(selected.dataset.slots.replace("_",""))
+        let optionHtml = ""
+        for(let i = 0; i < slots.length; i++){
+          let slot = slots[i]
+          optionHtml += `<option value=${new Date(slot.date).toLocaleDateString()}>${new Date(slot.date).toDateString()} : ${slot.timeFrom} - ${slot.timeTo}</option>`
+        }
+        selectSlot.innerHTML = optionHtml
+        submit.disabled = false;
+      }
+    })
+  </script>
+
+  <%- include("../partials/scripts") %>
+
+</body>
+
+</html>

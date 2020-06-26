@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+  <%- include("../partials/head", {title: `${course.title}`}) %>
+
+</head>
+
+<body>
+
+  <!-- preloader -->
+  <svg class="sw-loading" style="position: fixed;top: calc(50% - 30px);left: calc(50% - 30px);" width="35" height="35" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" version="1.1">
+    <path d="M 150,0 a 150,150 0 0,1 106.066,256.066 l -35.355,-35.355 a -100,-100 0 0,0 -70.711,-170.711 z" fill="#D8D8D8">
+      <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 150 150" to="360 150 150" begin="0s" dur=".5s" fill="freeze" repeatCount="indefinite"></animateTransform>
+    </path>
+  </svg>
+  <!-- preloader end -->
+
+  <!-- page wrapper -->
+  <div class="sw-page-wrapper animsition">
+
+    <!-- menu -->
+    <%- include("../partials/header") %>
+    <!-- menu end -->
+
+    <!-- banner -->
+    <div class="sw-banner sw-banner-sm">
+        <img src="<%= course.courseImage == "" || course.courseImage == null ? "/public/img/business/banners/classroom.jpeg" : course.courseImage%> " alt="banner" class="sw-banner-image">
+        <!-- overlay -->
+        <div class="sw-overlay sw-overlay-left-1">
+          <div class="container sw-d-flex">
+            <!-- main title frame -->
+            <div class="sw-main-title sw-main-title-left sw-animation-opas sw-top-header-fix">
+              <!-- title -->
+              <h1 class="sw-white text-capitalize"><%= course.title %></h1>
+            </div>
+            <!-- main title frame end -->
+          </div>
+        </div>
+        <!-- overlay end -->
+      </div>
+      <!-- banner end -->
+  
+      <main >
+  
+        <div class="sw-over-frame sw-up">
+  
+          <div class="container">
+  
+            <!-- breadcrumbs -->
+            <ul class="sw-breadcrumb p-30-30">
+              <li><a href="#.">Home</a></li>
+              <li><a href="/courses/display/all">Courses</a></li>
+              <li><a href=""><%= course.title %> </a></li>
+            </ul>
+            <a style="color: white; background: #ff8000;" class="btn" style="position: absolute; right:20px;" href="#sw-content">I'm Interested</a>
+            <!-- breadcrumbs end -->
+            
+          </div>
+        </div>
+
+        <div class="container">
+            <div class="col-lg-12">
+    
+                <div class="mb-60">
+                  <!-- title -->
+                  
+                </div>
+    
+              </div>
+        </div>
+        
+        <div class="container">
+            <div class="row">
+              
+              <div class="col-lg-8">
+    
+                <div >
+                    <h4>Introduction</h4>
+                  <div class="mb-30" style="font-size: 0.9rem;">
+                    <%- course.introduction.body %> 
+                  </div>
+                  <!-- title -->
+                  <h4>What you will learn</h4>
+                  <div class="mb-30">
+                    <!-- title -->
+                    <!-- <div class="sw-section-suptitle"></div> -->
+                    <!-- <p style="text-align: right;"> By the end of this course participants will:</p> -->
+                    <br>
+                    <!-- list -->
+                    <ul class="sw-list">
+                        <%
+                                for ( var i = 0; i < course.objectives.length; i++ )
+                                {
+                                    var objective = course.objectives[i]
+                                    if(objective.text != ""){
+                                        %><li>
+                                        <div class="sw-list-mark"><%= i + 1%></div> <%= objective.text %>
+                                        </li>   <%
+                                    }
+                                }
+                                %> 
+                    </ul>
+                    <!-- list end -->
+                    <!-- suptitle -->
+                    </div>
+                    </div>
+                </div>
+                <!-- Sidebar with details -->
+              <div class="col-lg-4">
+    
+                <!-- Course Video Maxmize on Click-->
+
+                <div >
+                  <!-- suptitle -->
+                  <div class="col-lg-12">
+                    <div class="mb-60">
+                        <!-- title -->
+                        <h5 class="mb-30">Fee</h5>
+                        <div class="sw-section-suptitle"><%= course.courseFee %></div>
+                    </div>
+                </div>
+
+                <div class="col-lg-12">
+                    <div class="mb-60">
+                        <!-- title -->
+                        <h5 class="mb-30">Duration</h5>
+                        <div class="sw-section-suptitle"><%= course.duration %></div>
+                    </div>
+                </div>
+                </div>
+    
+                <div class="mb-60">
+                <!-- title -->
+                <h5 class="mb-30">Who Should Attend</h5>
+                <div style="font-size: 1.0rem;" class="sw-section-suptitle">
+                    <ul class="list-group">
+                    <%
+                    for ( var i = 0; i < course.targetAudience.length; i++ )
+                    {
+                        var attendee = course.targetAudience[i]
+                        if(attendee.body != ""){
+                            %>
+                            <li class="list-group-item"><%= attendee.body %></li> <%
+                        }
+                    }
+                    %>
+                    </ul>
+                </div>
+            </div>
+              </div>
+              </div>
+        </div>
+              
+        <div class="container">
+            <div class="row mb-30">
+                <div style="font-size: 1.0rem;" class="col-lg-7">
+                    <h5>&nbsp;  Course Contents</h5>
+                    <ul class="list-group">
+                        <%
+                            for ( var i = 0; i < course.courseContent.length; i++ )
+                            {
+                                var content = course.courseContent[i]
+                                if(content.body != ""){
+                                    %><li class="list-group-item">
+                                        <%- content.body %>
+                                        </li>  <%
+                                }
+                            }
+                            %>
+                    </ul>
+                </div>
+                <div class="col-md-5">
+                    <h5>&nbsp;  Methodology</h5>
+                    <ul style="font-size: 1.1rem;">
+                        <%
+                            for ( var i = 0; i < course.learningMethodology.length; i++ )
+                            {
+                                var method = course.learningMethodology[i]
+                                if(method.text != ""){
+                                    %><li style="padding: 0.5rem;">
+                                        <%- method.text %>
+                                        </li>  <%
+                                }
+                            }
+                            %>
+                    </ul>
+                </div>    
+            </div>    
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card mb-30">
+                        <img class="card-img-top" src="/public/img/business/faces/avarta-home.jpg" alt="Cover">
+                        <div class="card-header">
+                            <h4 >Trainer Profile</h4>
+                            <button class="btn btn-light" data-toggle="collapse" data-target="#trainer">More</button>
+                        </div>
+                        <div id="trainer" class="collapse" class="card-body">
+                            <div  style="font-size: 0.9rem;">A trainer, speaker, coach and management consultant with two decades of industry experience specialising in project management and one decade of experience in training and coaching professionals from IT, Finance, Healthcare, Real Estate, Pharmaceutical, Leisure, and  Manufacturing industries. Popular for his unique simple and practical training delivery approach. Trained over 4500 executives of leading corporations on project management. Conducted over 80 public and in house workshops on project management and general management. Has produced over 700 PMPs, 200 CAPM credential holders and over 200 Agile Certificants during the last 12 years.
+                            Authored a popular book on Project Management.  Was a visiting faculty member of MBA in Project Management (University of Southern Queensland Sri Lankan Branch) 2005 to 2006 and MBA program (University of Colombo) from 2008 to 2015. Research interests are in the fields of IT project management, IT industry development and Agile transition.</div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="sw-section-suptitle"><strong>Dr. Duminda Weeraratne </strong> <br> MBA (Sri J), PMP,PMI-RMP,PMI-ACP,PMI-PBA,CSM</div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <% if(course.testimonials.filter(t => t.author != "").length > 0){ %>
+                <div class="col-md-6 p-30-30" style="overflow-y: scroll; max-height: 700px;">
+                    <h4>Testimonials</h4>
+                    <%
+                            for ( var i = 0; i < course.testimonials.length; i++ )
+                            {
+                                var testimonial = course.testimonials[i]
+                                if(testimonial.author != ""){
+                                    %><div class="sw-testimonial mb-10">
+                                        <!-- reviewer frame -->
+                                        <div class="sw-reviewer-frame">
+                                        <!-- img -->
+                                        <!-- name -->
+                                        <div>
+                                            <h6 style="color: #000;"><%- testimonial.author.replace(/-/g, "<br>") %></h6>
+                                        </div>
+                                        </div>
+                                        <!-- reviewer frame end -->
+                                        <!-- testimonial frame -->
+                                        <div class="sw-testimonial-frame">
+                                        <!-- testimonial text -->
+                                        <div style="font-size: 0.9rem;" class="">
+                                            <%= testimonial.body %>
+                                        </div>
+                                        </div>
+                                        <!-- testimonial frame end -->
+                                    </div>   <%
+                                }
+                            }
+                            %>         
+                </div>
+                <% } %>
+            </div>    
+        </div>      
+    
+        <div id="sw-content" class="container">
+            <div id="registrationSection" class="row mb-60">
+                <div class="col-md-12">
+                    <h5>Enrollment Options</h5>    
+                </div>
+                <div class="col-md-4">
+                    <div class="card ">
+                        <div class="card-header"><strong>Online</strong> </div>
+                        <div style="font-size: 0.9rem;" class="card-body">Register for Online Classes </div>
+                        <div class="card-footer">
+                            <!-- Redirect to Pay Now-->
+                            <a href="/paynow/<%= course.moniker %>" class="btn btn-warning">Enroll Now</a>
+                        </div>
+                    </div>
+                </div>   
+                <div class="col-md-4">
+                    <div class="card ">
+                        <div class="card-header">In Person</div>
+                        <div style="font-size: 0.9rem;" class="card-body">Register for In Person Classes </div>
+                        <div class="card-footer">
+                            <button data-toggle="modal" data-target="#class" class="btn btn-warning">Enroll Now</button>
+                            
+                        </div>
+                    </div>
+                </div>  
+                <div class="col-md-4">
+                    <div class="card ">
+                        <div class="card-header">Corporate</div>
+                        <div style="font-size: 0.9rem;" class="card-body">Customized solutions for large organizations </div>
+                        <div class="card-footer">
+                            <button data-toggle="modal" data-target="#corporate" class="btn btn-warning">Contact</button>
+                        </div>
+                    </div>
+                </div>   
+            </div>    
+        </div>
+
+        <!-- Reserve Modal -->
+        <div class="modal fade" id="class">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Reserve a Seat for <%= course.title %> </h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <form id="reserveForm" class="form" method="post" action="../../register">
+                        <div class="form-group">
+                        <label class="control-label col-sm-4" for="name">Select Time Slot</label>
+                        <select required class="form-control" name="date" id="selectSlot">
+                            <% 
+                                for(let i = 0; i< course.courseDates.filter(cs => cs.timeFrom != "").length; i++){
+                                    let courseDate = course.courseDates.filter(cs => cs.timeFrom != "")[i];
+                                    if(courseDate.date != null){
+                                    %>
+                                    <option value=<%= new Date(courseDate.date).toLocaleDateString() %>> <%= new Date(courseDate.date).toDateString() %> : <%= courseDate.timeFrom %> - <%= courseDate.timeTo %></option>
+                                    <%}
+                                }
+                            %>
+                            <% if(course.courseDates.filter(cs => cs.timeFrom == "").length > 0 || course.courseDates.length == 0){
+                                %>
+                                <option disabled value="">No dates for this course</option>
+                                <%
+                            } %>
+                        </select>
+                        </div>
+
+                        <select hidden  class="form-control" name="course" id="selectSlot">
+                            <option value="<%= course.moniker %>"><%= course.title %></option>
+                        </select>
+                        
+                        <select hidden  class="form-control" name="type" id="selectSlot">
+                            <option value="class">Physical</option>
+                        </select>
+            
+                        <div class="form-group">
+                        <label class="control-label col-sm-4" for="name">Name in Full</label>
+                        <div class="col-sm-8">
+                            <input required minlength="3" type="text" class="form-control" id="name" placeholder="Name in Full" name="name">
+                        </div>
+                        </div>
+                        <div class="form-group">
+                        <label class="control-label col-sm-4" for="name">Email</label>
+                        <div class="col-sm-8">
+                            <input required type="email" class="form-control" id="email" placeholder="Email" name="email">
+                        </div>
+                        </div>
+                        <div class="form-group">        
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" id="submit" class="btn btn-default offset-md-2">Submit</button>
+                        </div>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Modal footer -->
+                
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Modal -->
+        <div class="modal fade" id="corporate">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Corporate Training </h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <form class="form-horizontal" method="post" action="../../contact">
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                        <input required type="text" class="form-control" id="name" placeholder="Name" name="name">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                        <input required type="email" class="form-control" id="email" placeholder="Email" name="email">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                        <input required type="text" class="form-control" id="name" placeholder="Phone" name="phone">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                        <input required type="text" class="form-control" id="company" placeholder="Company" name="company">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="message" class="text-black">Explain your needs</label>
+                        <div class="col-sm-12">          
+                        <textarea required class="form-control" id="message" name="message" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <!-- submit button -->
+                    <button type="submit" class="sw-btn sw-lg-btn sw-solid-btn sw-color-2-btn">Send <i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+
+                <!-- Modal footer -->
+                
+
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQs-->
+        <% if(course.FAQs.filter(f => f.question != "").length > 0){ %>
+        <div class="container">
+            <div class="col-md-12 mb-30">
+                <h5 class="mb-30">Questions and Answers</h5>
+                <%
+                            for ( var i = 0; i < course.FAQs.length; i++ )
+                            {
+                                var faq = course.FAQs[i]
+                                if(faq.question != ""){
+                                    %><div class="card">
+                                        <div class="card-header">
+                                        <h5 class="mb-0">
+                                            <button class="btn btn-link" data-toggle="collapse" data-target="#question<%= i %>" aria-expanded="true" aria-controls="collapseOne">
+                                            <%= faq.question %>
+                                            </button>
+                                        </h5>
+                                        </div>
+
+                                        <div id="question<%= i %>" class="collapse" aria-labelledby="headingOne" >
+                                        <div style="font-size: 0.9rem;" class="card-body">
+                                            <%= faq.answer %>
+                                        </div>
+                                        </div>
+                                    </div>  <%
+                                }
+                            }
+                            %>
+            </div>    
+        </div>
+        <% } %>
+
+        <% if(course.PDUTable != ""){ %>
+        <div class="container">
+            <div class="row mb-30">
+                <div class="col-md-10">
+                    <div class="card">
+                        <div class="card-header">
+                        <h5 class="mb-0">
+                            <button class="btn btn-primary" data-toggle="collapse" data-target="#pdus" aria-expanded="true" aria-controls="collapseOne">
+                            PDUS (Expand)
+                            </button>
+                        </h5>
+                        </div>
+
+                        <div id="pdus" class="collapse" aria-labelledby="headingOne" >
+                        <div style="font-size: 0.9rem;" class="card-body">
+                            <%- course.PDUTable %>
+                        </div>
+                        </div>
+                    </div>
+                    
+                </div>    
+            </div>
+        </div>
+        <% } %>
+
+      <!-- footer -->
+      <footer class="sw-footer sw-footer-type-1">
+        <%- include("../partials/footer") %>
+      </footer>
+      <!-- footer end -->
+
+      
+
+    </main>
+
+  </div>
+  <!-- page wrapper end -->
+  <%- include("../partials/scripts") %>
+  <script>
+    document.getElementById('reserveForm').addEventListener('submit', e=>{
+        if(!e.target.checkValidity){
+            e.preventDefault()
+            alert("Please enter your details")
+        }
+        console.log(e.target)
+    })
+    </script>
+</body>
+
+</html>

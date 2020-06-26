@@ -1,0 +1,462 @@
+/*-------------------------------
+
+Widgets
+
+-------------------------------*/
+/***** widgets common *****/
+.widget {
+  margin-bottom: 30px;
+
+  & .widget-title {
+    margin-bottom: 30px;
+  }
+
+  & img {
+    width: 100%;
+    border-radius: 2px;
+    box-shadow: $shadow-1;
+  }
+
+  & a {
+    & img {
+      width: 100%;
+      border-radius: 2px;
+      box-shadow: $shadow-1;
+      transition: $tr-sm;
+    }
+
+    &:hover {
+      & img {
+        transform: translateY(-2px) scale(.98);
+        box-shadow: none;
+      }
+    }
+  }
+
+  & ul {
+    padding: 0;
+    margin: 0;
+
+    & li {
+      border-top: solid 1px $dark-light;
+      list-style-type: none;
+      position: relative;
+      font-size: 10px;
+
+      &:before {
+        content: '';
+        position: absolute;
+        margin-left: 15px;
+        top: 22px;
+        height: 5px;
+        width: 5px;
+        border-radius: 50%;
+        background-color: $color-1;
+      }
+
+      & a {
+        color: $dark;
+        font-weight: 600;
+        font-size: 12px;
+        text-transform: uppercase;
+        margin-left: 15px;
+        display: block;
+        padding: 15px 10px 15px 15px;
+
+        &:hover {
+          transform: translateX(4px) scale(.98);
+        }
+      }
+
+      &:last-child {
+        border-bottom: solid 1px $dark-light;
+      }
+
+      & ul {
+        & li {
+          &:before {
+            left: 15px;
+            border: solid 1px $color-1;
+            background-color: transparent;
+          }
+
+          & a {
+            margin-left: 30px;
+          }
+
+          &:last-child {
+            border-bottom: none;
+          }
+
+          & ul {
+            & li {
+              &:before {
+                left: 30px;
+                border-radius: 0;
+                border: solid 1px $color-1;
+                background-color: transparent;
+              }
+
+              & a {
+                margin-left: 45px;
+              }
+            }
+          }
+        }
+      }
+
+      & a {
+        transition: $tr-sm;
+        display: inline-block;
+      }
+    }
+  }
+}
+/***** recent comments widget *****/
+.widget_recent_comments {
+  & ul {
+    & li {
+      &:before {
+        top: 23px;
+      }
+
+      & a {
+        text-transform: none;
+        font-size: 14px;
+        padding-left: 0;
+        padding-right: 5px;
+        margin-right: 0;
+        margin-left: 5px;
+
+        &:hover {
+          transform: none;
+        }
+
+        &:first-child {
+          padding-left: 15px;
+          margin-left: 15px;
+        }
+      }
+    }
+  }
+}
+/***** calendar widget *****/
+.widget_calendar {
+  & .calendar_wrap {
+    & table {
+      background-color: $white;
+      width: 100%;
+      text-align: center;
+      box-shadow: $shadow-1;
+      border-radius: 2px;
+      position: relative;
+      overflow: hidden;
+
+      & * {
+        border: none;
+      }
+
+      & tr {
+        height: 50px;
+
+        & td {
+          border: solid 1px $dark-s-light;
+          transition: $tr-sm;
+          font-size: 12px;
+
+          &:hover {
+            background-color: $dark-s-light;
+          }
+
+          &.pad {
+            border: none;
+
+            &:hover {
+              background-color: transparent;
+            }
+          }
+        }
+      }
+
+      & tfoot {
+        & tr {
+          border: none;
+
+          & td {
+            border: none;
+            background-color: $color-2;
+            height: 50px;
+            color: $white;
+            font-weight: 600;
+            font-size: 12px;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: $tr-sm;
+            box-shadow: $shadow-1;
+
+            &:hover {
+              background-color: $color-2-h;
+            }
+
+            & a {
+              width: 100%;
+              height: 100%;
+              display: block;
+              line-height: 50px;
+            }
+
+            &.pad {
+              border: none;
+              background-color: transparent;
+              box-shadow: none;
+
+              &:hover {
+                background-color: transparent;
+              }
+            }
+          }
+        }
+      }
+
+      & thead {
+        background-color: $color-1;
+        width: 100%;
+        color: $white;
+        box-shadow: $shadow-1;
+
+        & tr {
+          height: 50px;
+
+          & th {
+            border-right: solid 1px $white-light;
+            font-weight: 600;
+            font-size: 12px;
+
+            &:last-child {
+              border-right: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+/***** search widget *****/
+.widget_search {
+  form {
+    position: relative;
+
+    input {
+      margin-bottom: 0;
+    }
+
+    button {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      margin: 0;
+      padding: 0;
+      height: 50px;
+      width: 50px;
+
+      & i {
+        margin: 0;
+      }
+
+      &:hover {
+        transform: none;
+      }
+    }
+  }
+}
+/***** rss widget *****/
+.widget_rss {
+  & .widget-title {
+    position: relative;
+
+    & .rss-widget-icon {
+      width: 15px;
+      height: 15px;
+      margin-bottom: 3px;
+      margin-right: 5px;
+      box-shadow: none;
+    }
+  }
+
+  & ul {
+    & li {
+      &:before {
+        display: none;
+      }
+
+      & a {
+        text-transform: none;
+        font-size: 14px;
+        padding-left: 0;
+        margin-left: 0;
+        padding-bottom: 10px;
+        display: block;
+        color: $dark;
+
+        &:hover {
+          transform: none;
+        }
+      }
+    }
+  }
+
+  & .rss-date {
+    font-size: 12px;
+    border-radius: 2px;
+    display: inline-block;
+    padding: 5px 15px;
+    color: $white;
+    margin-bottom: 15px;
+    width: auto;
+    background-color: $color-2;
+  }
+
+  & .rssSummary {
+    font-size: 14px;
+  }
+
+  & cite {
+    display: block;
+    padding: 15px 0;
+    color: $dark;
+  }
+}
+/***** tag cloud widget *****/
+.widget_tag_cloud {
+  & ul {
+    padding: 0;
+    margin: 0;
+
+    & li {
+      list-style-type: none;
+      border: none;
+
+      & a {
+        text-transform: none;
+        font-weight: 400;
+        padding: 0;
+        margin: 0;
+      }
+    }
+  }
+}
+
+.sw-tagcloud,
+.tagcloud {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+
+  & a {
+    margin-right: 5px;
+    font-size: 12px;
+    border-radius: 2px;
+    display: inline-block;
+    box-shadow: $shadow-1;
+    padding: 5px 15px;
+    color: $white;
+    width: auto;
+    background-color: $color-1;
+    margin-bottom: 5px;
+    transition: $tr-sm;
+
+    &:hover {
+      box-shadow: none;
+      transform: translateY(-1px) scale(.98);
+      background-color: $color-1-h;
+    }
+  }
+}
+/***** recent posts custom widget *****/
+.sw-recent-posts-widget {
+  margin-bottom: 30px;
+
+  & .widget-title {
+    margin-bottom: 30px;
+  }
+
+  & ul {
+    padding: 0;
+    margin: 0;
+
+    & li {
+      list-style-type: none;
+      display: flex;
+      align-content: center;
+      margin-bottom: 15px;
+
+      & .sw-rp-cover-frame {
+        width: 40%;
+        display: block;
+        margin-right: 15px;
+        align-self: center;
+        position: relative;
+        padding-bottom: 25%;
+
+        & img {
+          position: absolute;
+          top: 0;
+          left: 0;
+          border-radius: 2px;
+          box-shadow: $shadow-1;
+          width: 100%;
+          height: 100%;
+          transition: $tr-sm;
+        }
+
+        &:hover {
+          & img {
+            transform: translateY(-1px) scale(.98);
+            box-shadow: none;
+          }
+        }
+      }
+
+      & .sw-post-descr {
+        width: 60%;
+        align-self: center;
+
+        & .sw-rp-date {
+          display: inline-block;
+          color: $white;
+          padding: 2px 10px;
+          border-radius: 2px;
+          margin-bottom: 10px;
+          font-size: 10px;
+          background-color: $color-2;
+        }
+
+        & a {
+          display: block;
+          width: 100%;
+
+          & span {
+            display: block;
+            color: $dark;
+            font-weight: 600;
+            margin-bottom: 5px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            transition: $tr-sm;
+          }
+        }
+
+        & .sw-post-text {
+          width: 80%;
+          white-space: nowrap;
+          font-size: 12px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+    }
+  }
+}

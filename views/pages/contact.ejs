@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+  <%- include("../partials/head", {title: "Welcome to PMS"}) %>
+
+</head>
+
+<body>
+
+  <!-- preloader -->
+  <svg class="sw-loading" style="position: fixed;top: calc(50% - 30px);left: calc(50% - 30px);" width="35" height="35" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" version="1.1">
+    <path d="M 150,0 a 150,150 0 0,1 106.066,256.066 l -35.355,-35.355 a -100,-100 0 0,0 -70.711,-170.711 z" fill="#D8D8D8">
+      <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 150 150" to="360 150 150" begin="0s" dur=".5s" fill="freeze" repeatCount="indefinite"></animateTransform>
+    </path>
+  </svg>
+  <!-- preloader end -->
+
+  <!-- page wrapper -->
+  <div class="sw-page-wrapper animsition">
+
+    <!-- menu -->
+    <%- include("../partials/header") %>
+    <!-- menu end -->
+
+    
+    <!-- banner -->
+    <div class="sw-banner sw-banner-sm">
+        <!-- Replace with company Image -->
+        <img src="/public/img/business/banners/banner-4.jpg" alt="banner" class="sw-banner-image">
+        <!-- overlay -->
+        <div class="sw-overlay sw-overlay-left-1">
+          <div class="container sw-d-flex">
+            <!-- main title frame -->
+            <div class="sw-main-title sw-main-title-left sw-animation-opas sw-top-header-fix">
+              <!-- title -->
+              <h1 class="sw-white">Contact Us</h1>
+            </div>
+            <!-- main title frame end -->
+          </div>
+        </div>
+        <!-- overlay end -->
+      </div>
+      <!-- banner end -->
+  
+      <main id="sw-content">
+  
+        <div class="sw-over-frame sw-up">
+  
+          <div class="container">
+  
+            <ul class="sw-breadcrumb p-30-30">
+              <li><a href="#.">Home</a></li>
+              <li><a href="#.">Contact</a></li>
+              <li><a href="#sw-content">Contact us</a></li>
+            </ul>
+  
+          </div>
+        </div>
+        <div class="container">
+  
+          <!-- contact form frame -->
+          <div class="sw-main-contact-form bg-color-p-1">
+            <hr>
+            <!-- title -->
+            <h4 class="sw-white mb-30">Write us a message</h4>
+            <!-- contact form end -->
+            <form class="form-horizontal" method="post" action="">
+              <div class="form-group">
+                <div class="col-sm-12">
+                  <input type="text" class="form-control" id="name" placeholder="Name" name="name">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-12">
+                  <input type="email" class="form-control" id="email" placeholder="Email" name="email">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-12">
+                  <input type="text" class="form-control" id="name" placeholder="Phone" name="phone">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-12">
+                  <input type="text" class="form-control" id="company" placeholder="Company *" name="company">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="message" class="text-white">Message</label>
+                <div class="col-sm-12">          
+                <textarea class="form-control" id="message" name="message" rows="3"></textarea>
+                </div>
+              </div>
+              <!-- submit button -->
+              <button type="submit" class="sw-btn sw-lg-btn sw-solid-btn sw-color-2-btn">Send <i class="fas fa-paper-plane"></i></button>
+            </form>
+            <!-- contact form end -->
+          </div>
+          <!-- contact form frame end -->
+  
+        </div>
+  
+        <div class="container">
+          <div class="row p-60-60">
+  
+            <div class="col-lg-12">
+  
+              <div class="sw-bt sw-bt-right">
+                <svg width="100%">
+                  <text x="0" y="140px" font-size="150px" stroke="#3e3e41" stroke-width="4" fill="transparent">
+                    <!-- section title -->
+                    Contact
+                  </text>
+                </svg>
+              </div>
+  
+            </div>
+  
+            <div class="col-lg-12">
+  
+              <div class="mb-60">
+                <!-- title -->
+                <h4 class="mb-30">Our Contact information</h4>
+                <!-- suptitle -->
+              </div>
+  
+            </div>
+  
+            <div class="col-lg-4">
+              <div class="sw-icon-box mb-60">
+                <!-- Update icon -->
+                <img src="/public/img/business/icons/i-location.svg" alt="icon">
+                <!-- title -->
+                <h6 class="mb-10">Address</h6>
+                <!-- text -->
+                <div>Project Management Solutions (Pvt) Ltd <br> # 22 , Kirulapone Avenue, <br> Colombo 05, Sri Lanka</div>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="sw-icon-box mb-60">
+                <img src="/public/img/business/icons/i-customer-service.svg" alt="icon">
+                <!-- title -->
+                <h6 class="mb-10">Fax</h6>
+                <!-- text -->
+                <div>(+94)0 112 512 036</div>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="sw-icon-box mb-60">
+                <img src="/public/img/business/icons/i-marketting.svg" alt="icon">
+                <!-- title -->
+                <h6 class="mb-10">Hot Line</h6>
+                <!-- text -->
+                <div>(+94) 0 77 2 511 711</div>
+              </div>
+            </div>
+          </div>
+            <div class="row p-60-60">
+              <div class="col-lg-12">
+                <div class="sw-icon-box mb-120">
+                  <!-- title -->
+                  <h6 class="mb-12">Location</h6>
+                  <!-- text -->
+                  <div>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15844.365784225123!2d79.8747535!3d6.8796474!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x77106101bd2f7b39!2sProject+Management+Solutions!5e0!3m2!1sen!2slk!4v1545207705391" frameborder="0" style="border:0" allowfullscreen="" id="fitvid0"></iframe>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+        </div>
+  
+        
+
+
+      <!-- footer -->
+      <footer class="sw-footer sw-footer-type-1">
+        <%- include("../partials/footer") %>
+      </footer>
+      <!-- footer end -->
+
+      
+
+    </main>
+
+  </div>
+  <!-- page wrapper end -->
+
+  <%- include("../partials/scripts") %>
+
+</body>
+
+</html>

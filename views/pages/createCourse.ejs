@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include("../partials/head", {title: "Create Course"}) %>
+</head>
+<body>
+    
+    <div class="container">
+      <a href="../" class="button button-secondary">Back</a>
+        <div class="row offset-md-2">
+            <form style="width: 100%;" action="/courses" method="post">
+              <div class="form-group">
+                <label class="control-label col-sm-4" for="name">Course Title</label>
+                <div class="col-sm-8">
+                    <input class="form-control" type="text" placeholder="title" name="title" />
+                </div>
+              </div>
+              <!-- Ideally dropdown or searchable text field -->
+              <div class="form-group">
+                <label class="control-label col-sm-4" for="course">SEO Name</label>
+                <div class="col-sm-8">          
+                    <input class="form-control" type="text" placeholder="SEO Friendly Name" name="moniker" />
+                </div>
+              </div>
+              
+              <div class="form-group">
+                  <label class="control-label col-sm-4" for="bcd">Course Type</label>
+                  <div class="col-sm-8">          
+                    <select class="form-control" name="type">
+                        <option value="agile">Agile</option>
+                        <option value="projectManagement">Project Management</option>
+                        <option value="communityProjects">Community Projects</option>
+                        <option value="softSkills">Soft Skills</option>
+                        <option value="businessManagement">Business Management</option>
+                    </select>          
+                </div>
+                </div>
+        
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for="qualifications">Introduction</label>
+                    <div class="col-sm-8">          
+                      <textarea class="form-control" name="introduction[body]" cols="30" rows="10"></textarea>
+                      <button class="btn btn-primary add">Add Highlight</button>
+                      <div>
+                        <div>
+                          <textarea class="form-control" name="introduction[highlights][]" cols="30" rows="10"></textarea>
+                          <button class="btn btn-danger remove">Remove</button>
+                        </div>
+                      </div>
+                    </div>
+                    <hr>
+                  </div>
+        
+                <div class="form-group">
+                  <label class="control-label col-sm-4" for="org">Duration</label>
+                  <div class="col-sm-8">          
+                    <input class="form-control" type="text" placeholder="Duration" name="duration" />          
+                </div>
+                </div>
+        
+                <div class="form-group">
+                  <label class="control-label col-sm-4" for="designation">Fee</label>
+                  <div class="col-sm-8">          
+                    <input class="form-control" type="text" placeholder="Course Fee" name="courseFee" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-sm-4" for="designation">Price</label>
+                  <div class="col-sm-8">          
+                    <input class="form-control" type="number" placeholder="Amount" name="price" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-sm-4" for="telephone">Course Number</label>
+                  <div class="col-sm-8">          
+                    <input class="form-control" type="text" placeholder="Course Number" name="courseNumber" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-sm-4" for="telephone">Course Image</label>
+                  <div class="col-sm-8">          
+                    <input class="form-control" type="text" placeholder="Course Image (Url)" name="courseImage" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-sm-4" for="mobile">Objectives (List)</label>
+                  <button class="btn btn-primary add" type="button" data-element-to-add="addInput('input class='form-control' type='text' placeholder='Objectives' name='objectives[][text]'>')">Add Objective</button>
+                  <div class="col-sm-8">   
+                      <div>
+                        <input class="form-control" type="text" placeholder="Objectives" name="objectives[0][text]">  
+                        <button disabled class="btn btn-danger remove">Remove</button>
+                      </div>       
+                  </div>
+                  <hr>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-sm-4" for="address">Testimonials</label>
+                  <button class="btn btn-primary add">Add Testimonial</button>
+                  <div class="col-sm-8">          
+                      <div>
+                        <textarea class="form-control" name="testimonials[0][body]" cols="30" rows="10"></textarea>
+                        <input class="form-control" type="text" placeholder="Author" name="testimonials[0][author]">
+                        <button disabled class="btn btn-danger remove">Remove</button>
+                      </div>
+                  </div>
+                  <hr>
+                </div>
+                
+                <div class="form-group">
+                  <label class="control-label col-sm-4" for="experience">Course Content</label>
+                  <button class="btn btn-primary add">Add Course Content</button>
+                  <div class="col-sm-8">          
+                      <div>
+                        <input class="form-control" type="text" placeholder="Course Content" name="courseContent[0][body]">
+                        <button disabled class="btn btn-danger remove">Remove</button>
+                      </div>
+                  </div>
+                  <hr>
+                </div>
+        
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for="experience">Target Audience</label>
+                    <button class="btn btn-primary add">Add Audience</button>
+                    <div class="col-sm-8">          
+                        <div>
+                            <input class="form-control" type="text" placeholder="Target Audience" name="targetAudience[0][body]">
+                            <button disabled class="btn btn-danger remove">Remove</button>
+                        </div>
+                    </div>
+                    <hr>
+                  </div>
+        
+                <div class="form-group">
+                <label class="control-label col-sm-4" for="experience">Learning Methodology</label>
+                <button class="btn btn-primary add">Add Methodology</button>
+                <div class="col-sm-8">  
+                  <div>
+                    <input class="form-control" type="text" placeholder="Learning Methodology" name="learningMethodology[0][text]">
+                    <button disabled class="btn btn-danger remove">Remove</button>
+                  </div>        
+                </div>
+                <hr>
+                </div>
+        
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for="experience">Other Details</label>
+                    <button class="btn btn-primary add">Add More Details</button>
+                    <div class="col-sm-8">    
+                      <div>
+                        <textarea class="form-control" name="otherDetails[0][text]" cols="30" rows="10"></textarea> 
+                        <button disabled class="btn btn-danger remove">Remove</button>
+                      </div>      
+                    </div>
+                </div>
+        
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for="experience">External Links</label>
+                    <button class="btn btn-primary add">Add Link</button>
+                    <div class="col-sm-8">          
+                      <div>
+                        <input class="form-control" type="text" name="externalLinks[0][address]" placeholder="External Link Address" />
+                        <input class="form-control" type="text" name="externalLinks[0][link]" placeholder="External Link Text" />
+                        <button disabled class="btn btn-danger remove">Remove</button>
+                      </div>
+                      <hr>
+                    </div>
+                </div>
+        
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for="experience">PDUS</label>
+                    <div class="col-sm-8"> 
+                      <textarea class="form-control" type="text" name="PDUTable"></textarea>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="control-label col-sm-4" for="experience">FAQs</label>
+                  <button class="btn btn-primary add">Add FAQ</button>
+                  <div class="col-sm-8"> 
+                    <div>
+                      <input class="form-control" type="text" name="FAQs[0][question]" placeholder="Question"/>
+                      <textarea class="form-control" type="text" name="FAQs[0][answer]">Answer</textarea>
+                      <button disabled class="btn btn-danger remove">Remove</button>
+                    </div>         
+                  </div>
+              </div>
+        
+                <div class="form-group">
+                    <label  class="control-label col-sm-4" for="experience">Key Takeaway</label>
+                    <div class="col-sm-8">          
+                        <textarea class="form-control" name="keyTakeaway" cols="30" rows="10"></textarea>
+                    </div>
+                </div>
+                
+             
+              <div class="form-group">        
+                <div class="col-sm-offset-2 col-sm-10">
+                  <button type="submit" class="btn btn-default offset-md-2">Submit</button>
+                </div>
+              </div>
+            </form>
+          </div>
+          </div>
+    </div>
+
+    <script>
+      function addInput(elementHtml){
+
+      }
+
+      // Used for post formatting
+      let globalCounter = 1
+
+      let addButtons = document.getElementsByClassName("add")
+      for(let i = 0; i < addButtons.length; i++){
+        let button = addButtons[i]
+        console.log(button)
+        button.addEventListener("click", e=>{
+          e.preventDefault()
+          let parent = e.target.parentElement
+          let newItem = e.target.nextElementSibling.firstElementChild.cloneNode(true)
+          console.log(newItem)
+          let inputs = newItem.getElementsByTagName('input')
+          let textAreas = newItem.getElementsByTagName('textarea')
+
+          // Format the name so it comes as an array
+          for(let j = 0; j < inputs.length; j++){
+            let input = inputs[j]
+            let postName = input.getAttribute("name")
+            input.name = postName.replace("0", globalCounter)
+            input.value = ""
+            globalCounter++
+          }
+
+          for(let j = 0; j < textAreas.length; j++){
+            let textArea = textAreas[j]
+            let postName = textArea.getAttribute("name")
+            textArea.name = postName.replace("0", globalCounter)
+            textArea.value = ""
+            globalCounter++
+          }
+
+          let removeButton = newItem.getElementsByClassName("remove")[0]
+          removeButton.disabled = false
+          removeButton.addEventListener("click", e=>{
+            e.preventDefault()
+            let parentDiv = e.target.parentElement
+            parentDiv.parentElement.removeChild(parentDiv)
+        })
+          e.target.nextElementSibling.appendChild(newItem)
+        })
+      }
+
+      let removeButtons = document.getElementsByClassName("remove")
+      for(let i = 0; i < removeButtons.length; i++){
+        let button = removeButtons[i]
+        console.log(button)
+        button.addEventListener("click", e=>{
+          e.preventDefault()
+          console.log(e.target)
+          let parent = e.target.parentElement
+          parent.parentElement.removeChild(parent)
+        })
+      }
+
+    </script>
+
+  <!-- jquery js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <!-- anime js -->
+  <script src="/public/js/plugins/anime.min.js"></script>
+  <!-- lity js -->
+  <script src="/public/js/plugins/lity.min.js"></script>
+  <!-- waypoint js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/1.1.6/waypoints.min.js"></script>
+  <!-- swiper js -->
+  <script src="/public/js/plugins/swiper.min.js"></script>
+  <!-- animsition js -->
+  <script src="/public/js/plugins/animsition.min.js"></script>
+  <!-- main js -->
+  <script src="/public/js/main.js"></script>
+</body>
+</html>
+<!-- 
+<form action="/courses" method="post">
+    <input value="test post" type="text" placeholder="title" name="title" />
+
+    <input value="test" type="text" placeholder="SEO Friendly Name" name="moniker" />
+
+    <select name="type">
+        <option value="agile">Agile</option>
+        <option value="projectManagement">Project Management</option>
+        <option value="communityProjects">Community Projects</option>
+        <option value="softSkills">Soft Skills</option>
+    </select>
+
+    <br>
+    <label>Introduction</label>
+    <textarea value="dummyintro" name="introduction[body]" cols="30" rows="10">Introduction</textarea>
+    <textarea value="highlights" name="introduction[highlights][]" cols="30" rows="10">Highlights</textarea>
+
+    <input value="2 hours" type="text" placeholder="Duration" name="duration" />
+
+    <input value="200 USD" type="text" placeholder="Course Fee" name="courseFee" />
+
+    <input value="ASS@" type="text" placeholder="Course Number" name="courseNumber" />
+
+    <input value="objective" type="text" placeholder="Objectives" name="objectives[][text]">
+    <br>
+    <textarea value="testimonials" name="testimonials[][body]" cols="30" rows="10">Testimonials</textarea>
+    <input value="testimonials" type="text" placeholder="Testimonials" name="testimonials[][author]">
+
+    <input value="course Content" type="text" placeholder="Course Content" name="courseContent[][body]">
+
+    <input value="target Audience" type="text" placeholder="Target Audience" name="targetAudience[][body]">
+
+    <input value="methodology" type="text" placeholder="Learning Methodology" name="learningMethodology[][text]">
+
+    <br>
+    <label>Other Details</label>
+    <textarea value="other details" name="otherDetails[][text]" cols="30" rows="10">other details</textarea>
+
+    <input type="text" value="external links" name="externalLinks[][link]" placeholder="External Links" />
+
+    <br>
+    <input value="20 PDIs" type="text" name="PDIS[][pdus]" placeholder="pdus"/>
+    <input value="18" type="text" name="PDIS[][technical]" placeholder="technical"/>
+    <input value="2" type="text" name="PDIS[][leadership]" placeholder="leadership"/>
+
+    <label>Key Takeaway</label>
+    <textarea value="This might all be a waste" name="keyTakeaway" cols="30" rows="10">This might all be a waste</textarea>
+
+
+    <input type="submit" value="Create Course" />
+</form> -->

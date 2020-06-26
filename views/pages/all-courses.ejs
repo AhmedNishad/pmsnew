@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+  <%- include("../partials/head", {title: "Welcome to PMS"}) %>
+
+</head>
+
+<body>
+
+  <!-- preloader -->
+  <svg class="sw-loading" style="position: fixed;top: calc(50% - 30px);left: calc(50% - 30px);" width="35" height="35" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" version="1.1">
+    <path d="M 150,0 a 150,150 0 0,1 106.066,256.066 l -35.355,-35.355 a -100,-100 0 0,0 -70.711,-170.711 z" fill="#D8D8D8">
+      <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 150 150" to="360 150 150" begin="0s" dur=".5s" fill="freeze" repeatCount="indefinite"></animateTransform>
+    </path>
+  </svg>
+  <!-- preloader end -->
+
+  <!-- page wrapper -->
+  <div class="sw-page-wrapper animsition">
+
+    <!-- menu -->
+    <%- include("../partials/header") %>
+    <!-- menu end -->
+
+    
+    
+    <!-- banner -->
+    <div class="sw-banner sw-banner-sm">
+        <img src="../img/business/banners/banner-3.jpg" alt="banner" class="sw-banner-image">
+        <!-- overlay -->
+        <div class="sw-overlay sw-overlay-left-1">
+          <div class="container sw-d-flex">
+            <!-- main title frame -->
+            <div class="sw-main-title sw-main-title-left sw-animation-opas sw-top-header-fix">
+              <!-- title -->
+              <h1 class="sw-white">Course List</h1></div>
+            <!-- main title frame end -->
+          </div>
+        </div>
+        <!-- overlay end -->
+      </div>
+      <!-- banner end -->
+  
+      <main id="sw-content">
+  
+        <div class="sw-over-frame sw-up">
+  
+          <div class="container">
+  
+            <!-- breadcrumbs -->
+            <ul class="sw-breadcrumb p-30-30">
+              <li><a href="/">Home</a></li>
+              <li><a href="#">Courses</a></li>
+              <li><a href="#sw-content">All Courses</a></li>
+            </ul>
+            <!-- breadcrumbs end -->
+  
+          </div>
+        </div>
+  
+        <div class="container">
+          <div class="row p-60-0">
+  
+            <div class="col-lg-12">
+  
+              <div class="sw-bt sw-bt-right">
+                <svg width="100%">
+                  <text x="0" y="140px" font-size="150px" stroke="#3e3e41" stroke-width="4" fill="transparent">
+                    <!-- section title -->
+                    Courses
+                  </text>
+                </svg>
+              </div>
+  
+            </div>
+  
+            <!--Agile Start-->
+
+            <div class="col-lg-12">
+  
+              <div class="row">
+  
+                <div class="col-lg-12 sw-as-center mb-60">
+  
+                  <!-- title -->
+                  <h4 class="sw-h sw-h-lvl-4 mb-30">Agile</h4>
+                  <!-- suptitle -->
+
+                </div>
+  
+              </div>
+  
+            </div>
+  
+            <div class="col-lg-12">
+  
+              <div class="row">
+  
+                <% 
+                
+                    let agileCourses = courses.filter(c => c.type == "agile")
+                    for(let i = 0; i< agileCourses.length; i++){
+                    let course = agileCourses[i]
+                    %>
+                    <!-- Course start-->
+                    <div class="col-lg-4">
+    
+                    <!-- card -->
+                    <div class="sw-card">
+                        <!-- img frame -->
+                        <a href="/courses/<%= course.moniker %>" class="sw-img">
+                        <img src="<%= course.courseImage == "" || course.courseImage == null ? "/public/img/business/services/1.png" : course.courseImage %>" alt="thumb">
+                        </a>
+                        <!-- img frame end -->
+                        <!-- description -->
+                        <div class="sw-card-description">
+                        <!-- title -->
+                        <a href="/courses/<%= course.moniker %>" class="mb-15">
+                            <h5><%= course.title %></h5>
+                        </a>
+                        <!-- short description -->
+                        <div> 
+                            <%= course.introduction.body.substring(0,100) %>...
+                            </div>
+                        <!-- button -->
+                        <!-- button -->
+                        </div>
+                        <!-- description end -->
+                        <!-- badge -->
+                    </div>
+                    <!-- card end -->
+    
+                    </div>
+                    <!-- Course end -->
+                    
+                    <%
+                } %> 
+
+                
+    
+                  </div>
+            </div>
+            <!-- Agile End -->
+
+            <!--PM Start-->
+
+            <div class="col-lg-12">
+  
+              <div class="row">
+  
+                <div class="col-lg-12 sw-as-center mb-60">
+  
+                  <!-- title -->
+                  <h4 class="sw-h sw-h-lvl-4 mb-30">Project Management</h4>
+                  <!-- suptitle -->
+
+                </div>
+  
+              </div>
+  
+            </div>
+  
+            <div class="col-lg-12">
+  
+              <div class="row">
+  
+                <% 
+                    let PMCourses = courses.filter(c => c.type == "projectManagement")
+                    for(let i = 0; i< PMCourses.length; i++){
+                    let course = PMCourses[i]
+                    %>
+                    <!-- Course start-->
+                    <div class="col-lg-4">
+    
+                    <!-- card -->
+                    <div class="sw-card">
+                        <!-- img frame -->
+                        <a href="/courses/<%= course.moniker %>" class="sw-img">
+                        <img src="<%= course.courseImage == "" || course.courseImage == null ? "/public/img/business/services/2.png" : course.courseImage %>" alt="thumb">
+                        </a>
+                        <!-- img frame end -->
+                        <!-- description -->
+                        <div class="sw-card-description">
+                        <!-- title -->
+                        <a href="/courses/<%= course.moniker %>" class="mb-15">
+                            <h5><%= course.title %></h5>
+                        </a>
+                        <!-- short description -->
+                        <div> 
+                            <%= course.introduction.body.substring(0,100) %>...
+                            </div>
+                        <!-- button -->
+                        <!-- button -->
+                        </div>
+                        <!-- description end -->
+                        <!-- badge -->
+                    </div>
+                    <!-- card end -->
+    
+                    </div>
+                    <!-- Course end -->
+                    
+                    <%
+                } %> 
+
+                
+    
+                  </div>
+            </div>
+            <!-- PM End -->
+
+            <!--communityProjects Start-->
+
+            <div class="col-lg-12">
+  
+              <div class="row">
+  
+                <div class="col-lg-12 sw-as-center mb-60">
+  
+                  <!-- title -->
+                  <h4 class="sw-h sw-h-lvl-4 mb-30">Community Projects</h4>
+                  <!-- suptitle -->
+
+                </div>
+  
+              </div>
+  
+            </div>
+  
+            <div class="col-lg-12">
+  
+              <div class="row">
+  
+                <% 
+                    let communityCourses = courses.filter(c => c.type == "communityProjects")
+                    for(let i = 0; i< communityCourses.length; i++){
+                    let course = communityCourses[i]
+                    %>
+                    <!-- Course start-->
+                    <div class="col-lg-4">
+    
+                    <!-- card -->
+                    <div class="sw-card">
+                        <!-- img frame -->
+                        <a href="/courses/<%= course.moniker %>" class="sw-img">
+                        <img src="<%= course.courseImage == "" || course.courseImage == null ? "/public/img/business/services/4.png" : course.courseImage %>" alt="thumb">
+                        </a>
+                        <!-- img frame end -->
+                        <!-- description -->
+                        <div class="sw-card-description">
+                        <!-- title -->
+                        <a href="/courses/<%= course.moniker %>" class="mb-15">
+                            <h5><%= course.title %></h5>
+                        </a>
+                        <!-- short description -->
+                        <div> 
+                            <%= course.introduction.body.substring(0,100) %>...
+                            </div>
+                        <!-- button -->
+                        <!-- button -->
+                        </div>
+                        <!-- description end -->
+                        <!-- badge -->
+                    </div>
+                    <!-- card end -->
+    
+                    </div>
+                    <!-- Course end -->
+                    
+                    <%
+                } %> 
+
+                
+    
+                  </div>
+            </div>
+            <!-- communityProjects End -->
+
+            <!--softSkills Start-->
+
+            <div class="col-lg-12">
+  
+              <div class="row">
+  
+                <div class="col-lg-12 sw-as-center mb-60">
+  
+                  <!-- title -->
+                  <h4 class="sw-h sw-h-lvl-4 mb-30">Soft Skills</h4>
+                  <!-- suptitle -->
+
+                </div>
+  
+              </div>
+  
+            </div>
+  
+            <div class="col-lg-12">
+  
+              <div class="row">
+  
+                <% 
+                    let softCourses = courses.filter(c => c.type == "softSkills")
+                    for(let i = 0; i< softCourses.length; i++){
+                    let course = softCourses[i]
+                    %>
+                    <!-- Course start-->
+                    <div class="col-lg-4">
+    
+                    <!-- card -->
+                    <div class="sw-card">
+                        <!-- img frame -->
+                        <a href="/courses/<%= course.moniker %>" class="sw-img">
+                        <img src="<%= course.courseImage == "" || course.courseImage == null ? "/public/img/business/services/5.png" : course.courseImage %>" alt="thumb">
+                        </a>
+                        <!-- img frame end -->
+                        <!-- description -->
+                        <div class="sw-card-description">
+                        <!-- title -->
+                        <a href="/courses/<%= course.moniker %>" class="mb-15">
+                            <h5><%= course.title %></h5>
+                        </a>
+                        <!-- short description -->
+                        <div> 
+                            <%= course.introduction.body.substring(0,100) %>...
+                            </div>
+                        <!-- button -->
+                        <!-- button -->
+                        </div>
+                        <!-- description end -->
+                        <!-- badge -->
+                    </div>
+                    <!-- card end -->
+    
+                    </div>
+                    <!-- Course end -->
+                    
+                    <%
+                } %> 
+
+                
+    
+                  </div>
+            </div>
+            <!-- softSkills End -->
+
+            <!--businessManagement Start-->
+
+            <div class="col-lg-12">
+  
+              <div class="row">
+  
+                <div class="col-lg-12 sw-as-center mb-60">
+  
+                  <!-- title -->
+                  <h4 class="sw-h sw-h-lvl-4 mb-30">Business Management</h4>
+                  <!-- suptitle -->
+
+                </div>
+  
+              </div>
+  
+            </div>
+  
+            <div class="col-lg-12">
+  
+              <div class="row">
+  
+                <% 
+                    let bizCourses = courses.filter(c => c.type == "businessManagement")
+                    for(let i = 0; i< bizCourses.length; i++){
+                    let course = bizCourses[i]
+                    %>
+                    <!-- Course start-->
+                    <div class="col-lg-4">
+    
+                    <!-- card -->
+                    <div class="sw-card">
+                        <!-- img frame -->
+                        <a href="/courses/<%= course.moniker %>" class="sw-img">
+                        <img src="<%= course.courseImage == "" || course.courseImage == null ? "/public/img/business/services/6.png" : course.courseImage %>" alt="thumb">
+                        </a>
+                        <!-- img frame end -->
+                        <!-- description -->
+                        <div class="sw-card-description">
+                        <!-- title -->
+                        <a href="/courses/<%= course.moniker %>" class="mb-15">
+                            <h5><%= course.title %></h5>
+                        </a>
+                        <!-- short description -->
+                        <div> 
+                            <%= course.introduction.body.substring(0,100) %>...
+                            </div>
+                        <!-- button -->
+                        <!-- button -->
+                        </div>
+                        <!-- description end -->
+                        <!-- badge -->
+                    </div>
+                    <!-- card end -->
+    
+                    </div>
+                    <!-- Course end -->
+                    
+                    <%
+                } %> 
+
+                
+    
+                  </div>
+            </div>
+            <!-- businessManagement End -->
+        </div>
+    </div>
+
+      <!-- footer -->
+      <footer class="sw-footer sw-footer-type-1">
+        <%- include("../partials/footer") %>
+      </footer>
+      <!-- footer end -->
+
+      
+
+    </main>
+
+  </div>
+  <!-- page wrapper end -->
+
+  <%- include("../partials/scripts") %>
+
+</body>
+
+</html>

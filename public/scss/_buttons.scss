@@ -1,0 +1,383 @@
+/*-------------------------------
+
+Buttons
+
+-------------------------------*/
+/***** buttons styles *****/
+.sw-btn,
+button {
+  display: inline-block;
+  border-radius: 3px;
+  margin-right: 5px;
+  text-transform: uppercase;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: $tr-sm;
+  font-family: $sf;
+  box-shadow: $shadow-1;
+
+  & i {
+    margin-left: 5px;
+  }
+
+  &:focus {
+    outline: inherit;
+  }
+
+  &.sw-lg-btn {
+    height: 50px;
+    line-height: 50px;
+    padding: 0 45px;
+    font-size: 11px;
+  }
+
+  &.sw-md-btn,
+  button {
+    height: 40px;
+    line-height: 40px;
+    padding: 0 30px;
+    font-size: 11px;
+  }
+
+  &.sw-sm-btn {
+    height: 35px;
+    line-height: 35px;
+    padding: 0 20px;
+    font-size: 11px;
+  }
+
+  &.sw-icon-btn {
+    text-align: center;
+
+    & i {
+      margin-left: 0;
+    }
+
+    &.sw-lg-btn {
+      height: 50px;
+      width: 50px;
+      line-height: 50px;
+      padding: 0;
+      font-size: 14px;
+    }
+
+    &.sw-md-btn {
+      height: 40px;
+      width: 40px;
+      line-height: 41px;
+      padding: 0;
+      font-size: 12px;
+    }
+
+    &.sw-sm-btn {
+      height: 35px;
+      width: 35px;
+      line-height: 32px;
+      padding: 0;
+      font-size: 10px;
+    }
+  }
+
+  &.sw-default-btn {
+    color: $dark;
+    background-color: transparent;
+
+    &:hover {
+      background-color: $dark-light;
+    }
+
+    &.sw-white-btn {
+      color: $white;
+
+      &:hover {
+        background-color: $white;
+      }
+    }
+  }
+
+  &.sw-solid-btn {
+    background-color: $dark;
+    color: $white;
+
+    &:hover {
+      box-shadow: none;
+    }
+
+    &.sw-color-1-btn {
+      background-color: $color-1;
+
+      &:hover {
+        background-color: $color-1-h;
+      }
+    }
+
+    &.sw-color-2-btn {
+      background-color: $color-2;
+
+      &:hover {
+        background-color: $color-2-h;
+      }
+    }
+
+    &.sw-white-btn {
+      background-color: $white;
+      color: $dark;
+    }
+  }
+
+  &.sw-border-btn {
+    border: solid 2px $dark;
+    color: $dark;
+
+    &:hover {
+      box-shadow: none;
+    }
+
+    &.sw-lg-btn {
+      height: 50px;
+      line-height: 48px;
+      padding: 0 44px;
+      font-size: 12px;
+    }
+
+    &.sw-md-btn {
+      height: 40px;
+      line-height: 37px;
+      padding: 0 30px;
+      font-size: 11px;
+    }
+
+    &.sw-sm-btn {
+      height: 30px;
+      line-height: 28px;
+      padding: 0 20px;
+      font-size: 10px;
+    }
+
+    &.sw-icon-btn {
+      text-align: center;
+
+      &.sw-lg-btn {
+        height: 50px;
+        width: 50px;
+        line-height: 48px;
+        padding: 0;
+        font-size: 14px;
+      }
+
+      &.sw-md-btn {
+        height: 40px;
+        width: 40px;
+        line-height: 37px;
+        padding: 0;
+        font-size: 12px;
+      }
+
+      &.sw-sm-btn {
+        height: 30px;
+        width: 30px;
+        line-height: 28px;
+        padding: 0;
+        font-size: 10px;
+      }
+    }
+
+    &.sw-color-1-btn {
+      border-color: $color-1;
+      color: $color-1;
+
+      &:hover {
+        border-color: $color-1;
+        color: $color-1;
+      }
+    }
+
+    &.sw-color-2-btn {
+      border-color: $color-1;
+      color: $color-1;
+
+      &:hover {
+        border-color: $color-1;
+        color: $color-1
+      }
+    }
+
+    &.sw-color-3-btn {
+      border-color: $color-1;
+      color: $color-1;
+
+      &:hover {
+        border-color: $color-1;
+        color: $color-1;
+      }
+    }
+
+    &.sw-white-btn {
+      border-color: $white;
+      color: $white;
+    }
+  }
+
+  &.sw-round-btn {
+    border-radius: 50px;
+  }
+
+  &:hover {
+    transform: translateY(-2px) scale(.98);
+  }
+
+  &.sw-animation-center {
+    &:hover {
+      & i {
+        animation: centerpuls 0.6s infinite;
+      }
+    }
+  }
+
+  &.sw-animation-left {
+    &:hover {
+      & i {
+        animation: leftpuls 0.6s infinite;
+      }
+    }
+  }
+
+  &.sw-animation-right {
+    &:hover {
+      & i {
+        animation: rightpuls 0.6s infinite;
+      }
+    }
+  }
+
+  &.sw-animation-down {
+    &:hover {
+      & i {
+        animation: downpuls 0.6s infinite;
+      }
+    }
+  }
+
+  &.swiper-button-disabled {
+    position: relative;
+    cursor: not-allowed;
+    transition: $tr-md;
+
+    &:after {
+      background-color: $color-2;
+      position: absolute;
+      top: 0;
+      font-size: 9px;
+      width: 100%;
+      text-align: center;
+      left: 0;
+      border-radius: 50%;
+      opacity: 1;
+    }
+
+    &.sw-swiper-prev:after {
+      animation: slow-show 0.8s;
+      content: 'first';
+    }
+
+    &.sw-swiper-next:after {
+      animation: slow-show 0.8s;
+      content: 'last';
+    }
+
+    &:hover {
+      transform: none;
+      box-shadow: $shadow-1;
+    }
+  }
+}
+
+.sw-link {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+@keyframes slow-show {
+  0% {
+    opacity: 0;
+  }
+
+  30% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+/***** buttons hover animations *****/
+@keyframes leftpuls {
+  0% {
+    transform: translateX(0);
+  }
+
+  30% {
+    transform: translateX(1px);
+  }
+
+  80% {
+    transform: translateX(-1px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes rightpuls {
+  0% {
+    transform: translateX(0);
+  }
+
+  30% {
+    transform: translateX(-1px);
+  }
+
+  80% {
+    transform: translateX(1px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes downpuls {
+  0% {
+    transform: translateX(0);
+  }
+
+  30% {
+    transform: translateY(-1px);
+  }
+
+  80% {
+    transform: translateY(1px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes centerpuls {
+  0% {
+    transform: translateX(0);
+  }
+
+  30% {
+    transform: scale(1.12);
+  }
+
+  80% {
+    transform: scale(.9);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}

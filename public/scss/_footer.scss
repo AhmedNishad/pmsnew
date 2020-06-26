@@ -1,0 +1,225 @@
+/*-------------------------------
+
+Footer
+
+-------------------------------*/
+/***** instagram *****/
+.sw-instagram-slider {
+  box-shadow: $shadow-1;
+}
+
+.sw-instagram-img {
+  display: block;
+  padding-bottom: 94%;
+  position: relative;
+  overflow: hidden;
+  transition: $tr-sm;
+
+  & img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.05);
+    transition: $tr-sm;
+  }
+
+  & .sw-instagram-hover {
+    opacity: 0;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(40,40,60,.7);
+    width: 100%;
+    height: 100%;
+    color: $white;
+    display: flex;
+    justify-content: center;
+    transition: $tr-sm;
+
+    & i {
+      align-self: center;
+      font-size: 200%;
+      transform: scale(1.3);
+      transition: $tr-sm;
+    }
+  }
+
+  &:hover {
+    & .sw-instagram-hover {
+      opacity: 1;
+
+      & i {
+        transform: scale(1);
+      }
+    }
+
+    & img {
+      transform: scale(1);
+    }
+  }
+}
+
+.sw-instagram-footer {
+  height: 70px;
+  padding: 7px;
+  box-shadow: $shadow-1;
+}
+@media screen and (max-width: 992px) {
+  .sw-instagram-footer {
+    height: 90px;
+  }
+}
+/***** footar body *****/
+.sw-footer {
+  & .sw-footer-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  & .sw-footer-overlay {
+    position: relative;
+    width: 100%;
+    background-color: rgba(40,40,60,.95);
+    padding-top: 160px;
+  }
+
+  &.sw-footer-type-1 {
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 8px 24px 0 $dark;
+
+    .sw-footer-info {
+      margin-bottom: 15px;
+    }
+  }
+
+  & .sw-footer-list {
+    margin-bottom: 30px;
+
+    & a {
+      &:hover {
+        opacity: 1;
+        color: $color-2;
+      }
+    }
+  }
+
+  & .sw-footer-bottom {
+    margin-top: 75px;
+    padding: 10px 0;
+    background-color: #000;
+    opacity: 0.3;
+    font-size: 12px;
+
+    & .container {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    & a:hover {
+      color: $color-2;
+    }
+  }
+
+  & ul {
+    padding: 0;
+
+    & li {
+      list-style-type: none;
+      margin-bottom: 5px;
+    }
+  }
+}
+@media screen and (max-width: 768px) {
+  .sw-footer-bottom {
+    & .container {
+      flex-direction: column;
+    }
+  }
+
+  .sw-footer {
+    text-align: center;
+  }
+}
+/***** popups *****/
+.sw-popup-frame {
+  display: flex;
+
+  & .sw-popup-image {
+    width: 50%;
+    height: 505px;
+    background-size: cover;
+    background-position: center;
+  }
+
+  & .sw-popup-form-frame {
+    width: 50%;
+    padding: 30px;
+    display: flex;
+
+    & .sw-btn {
+      width: 100%;
+    }
+  }
+}
+
+.lity-close {
+  display: none;
+}
+
+.sw-close-popup {
+  margin-top: 0;
+  box-shadow: none;
+  background-color: transparent;
+  border: none;
+  position: absolute;
+  z-index: 1;
+  right: 15px;
+  top: 10px;
+  font-size: 26px;
+  font-weight: 600;
+  color: $dark;
+  transition: $tr-sm;
+
+  &:hover {
+    background-color: transparent;
+    transform: scale(1.2) rotate(90deg);
+  }
+}
+
+.sw-book-popup {
+  position: relative;
+  overflow: hidden;
+  max-width: 80vw;
+  max-height: 80vh;
+  background-color: $white;
+  border-radius: 2px;
+  box-shadow: $shadow-1;
+}
+@media screen and (max-width: 768px) {
+  .sw-popup-frame {
+    flex-direction: column;
+  }
+
+  .sw-close-popup {
+    color: $white;
+  }
+
+  .sw-popup-frame {
+    & .sw-popup-image {
+      width: 100%;
+      height: 60px;
+      filter: brightness(0.8);
+    }
+
+    & .sw-popup-form-frame {
+      width: 100%;
+    }
+  }
+}
