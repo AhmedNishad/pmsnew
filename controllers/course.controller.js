@@ -66,7 +66,8 @@ router.post("", (req,res) => {
             console.log(err)
             return res.status(500).json({error: "Error creating course", posted: req.body})
         }
-        return res.render("pages/course-details",{course})  
+        return res.redirect("/courses/"+ req.body.moniker)
+        //return res.render("pages/course-details",{course})  
         res.send("Course Created Successfully") // Redirect to newly created course page
     })
 })
@@ -84,7 +85,7 @@ router.get("/:moniker/update", (req, res)=>{
 
 router.post("/:moniker/update", (req, res) => {
     console.log("Updating course")
-    console.log(req.body)
+    console.log(req.body.course)
     let updateBody = {
         title:  req.body.title, // Title at top of 
         type: req.body.type, // Agile, project management etc

@@ -7,7 +7,9 @@ var registrationSchema = new Schema({
     name: String,
     address: String,
     email: String,
-    mobile: String
+    mobile: String,
+    placedOn: String,
+    handled: {type: Boolean, default: false}
 });
 
 module.exports = mongoose.model('Registration', registrationSchema)

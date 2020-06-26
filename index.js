@@ -141,7 +141,8 @@ app.post('/paynow/:moniker', function(req, res) {
             courseName: course.title,
             address: req.body.address,
             mobile: req.body.mobile,
-            fee: course.price
+            fee: course.price,
+            placedOn: new Date()
         })
 
         registration.save((err)=>{
@@ -156,8 +157,6 @@ app.post('/paynow/:moniker', function(req, res) {
         })
     })
 });
-
-
 
 app.use('/courses', courseController)
 app.use('/blog', blogController)
@@ -183,6 +182,15 @@ app.get('/inquiry/:id/delete', (req,res)=>{
             return  res.status(500).json({error: "Error deleting inquiry"})
 
         return res.redirect("/admin/a6/inquiries")
+    })
+})
+
+app.get('/registration/:id/handle', (req,res)=>{
+    Registration.findByIdAndUpdate({_id: req.params.id}, {handled: true}, function (err) {
+        if (err) 
+            return  res.status(500).json({error: "Error handling registration"})
+
+        return res.redirect("/admin/a6/registrations")
     })
 })
 

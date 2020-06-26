@@ -4,6 +4,7 @@ let router = express.Router()
 const Course = require('../models/course.model')
 const Reservation = require('../models/reservation.model')
 const Inquiry = require('../models/inquiry.model')
+const Registration = require('../models/registration.model')
 
 router.get('/courses', (req,res)=>{
     console.log("Admin all courses")
@@ -54,7 +55,8 @@ router.post("/courses/:moniker/update", (req, res) => {
         keyTakeaway: req.body.keyTakeaway,
         courseImage: req.body.courseImage,
         courseDates: req.body.courseDates,
-        FAQs: req.body.FAQs
+        FAQs: req.body.FAQs,
+        price: req.body.price
     }
     //return res.json(updateBody)
     //return res.json(req.body)
@@ -65,6 +67,7 @@ router.post("/courses/:moniker/update", (req, res) => {
                 return res.render("pages/message-page",{courses,message: "Course Not Found"})
             } 
 
+            return res.redirect("/courses/"+ req.params.moniker)
             return res.render("pages/course-detailsv2",{course, courses})
         })
     });
@@ -96,5 +99,13 @@ router.get('/inquiries', (req,res)=>{
     })
 })
 
+router.get('/registrations', (req,res)=>{
+    Registration.find({}, (err, registrations)=>{
+        if(err) 
+            return res.status(404).json({error: "Error!"}) // Replace with Unfound page
+        
+            return res.render('pages/admin-registrations', {registrations });
+    })
+})
 
 module.exports = router

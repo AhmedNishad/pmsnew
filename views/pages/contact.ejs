@@ -68,17 +68,17 @@
             <form class="form-horizontal" method="post" action="">
               <div class="form-group">
                 <div class="col-sm-12">
-                  <input type="text" class="form-control" id="name" placeholder="Name" name="name">
+                  <input required minlength="3" type="text" class="form-control" id="name" placeholder="Name" name="name">
                 </div>
               </div>
               <div class="form-group">
                 <div class="col-sm-12">
-                  <input type="email" class="form-control" id="email" placeholder="Email" name="email">
+                  <input required type="email" class="form-control" id="email" placeholder="Email" name="email">
                 </div>
               </div>
               <div class="form-group">
                 <div class="col-sm-12">
-                  <input type="text" class="form-control" id="name" placeholder="Phone" name="phone">
+                  <input required minlength="10" type="text" class="form-control" id="name" placeholder="Phone" name="phone">
                 </div>
               </div>
               <div class="form-group">
@@ -89,7 +89,7 @@
               <div class="form-group">
                 <label for="message" class="text-white">Message</label>
                 <div class="col-sm-12">          
-                <textarea class="form-control" id="message" name="message" rows="3"></textarea>
+                <textarea required class="form-control" id="message" name="message" rows="3"></textarea>
                 </div>
               </div>
               <!-- submit button -->
