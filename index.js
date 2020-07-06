@@ -128,6 +128,49 @@ app.post('/paynow/:moniker', function(req, res) {
     //return res.json(req.body)
 
     // ----------------- Payment gateway redirect ------------------
+    /*
+//Save Product details
+        $coursedetails = Course::where('id', $request->courseid)->where('status', '1')->first();
+        $coursecost = $coursedetails->courseprice;
+        $coursename = $coursedetails->itemname;
+
+        //Unique ID
+        $sysidnew = uniqid();
+
+        $onlineorder = new Order();
+        $onlineorder->sysid = $sysidnew;
+        $onlineorder->name = $request->name;
+        $onlineorder->address = $request->address;
+        $onlineorder->email = $request->email;
+        $onlineorder->mobile = $request->mobile;
+        $onlineorder->telephone = $request->phone;
+        $onlineorder->course = $coursename;
+        $onlineorder->courseprice = $coursecost;
+        $onlineorder->status = "1";
+        $onlineorder->orderstatus = "Pending";
+        $onlineorder->save();
+
+
+        //Payment gateway details
+
+        $pgdomain="www.paystage.com";
+        $pgInstanceId="73787690";
+        $merchantId="73797374";
+        $hashKey="EB1BDE02A037BF65";
+
+        header("pragma".": "."no-cache");
+        header("cache-control".": "."No-cache");
+
+        $perform='initiatePaymentCapture#sale';
+        $currencyCode='144';
+        $amount=$coursecost * 100;
+        $merchantReferenceNo=$sysidnew;
+        $orderDesc='PMS Online Payment';
+
+        $messageHash = $pgInstanceId."|".$merchantId."|".$perform."|".$currencyCode."|".$amount."|"   .$merchantReferenceNo."|".$hashKey."|";
+        $message_hash = "CURRENCY:7:".base64_encode(sha1($messageHash, true));
+
+    */
     
     // Once action is complete... then create and store registration
     Course.findOne({ moniker: req.params.moniker}, (err, course)=>{

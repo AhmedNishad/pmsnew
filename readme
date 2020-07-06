@@ -37,7 +37,7 @@ Course Page
  Fix course menu showing on hover (Done)
  Intergrate payment page
  Fix Links Navbar (Done)
- ADd Social Media
+ ADd Social Media (Done)
  Add images (Done)
  View Reservations Page (Done)
  View Queries Page (Done) 
@@ -46,9 +46,22 @@ Course Page
  All Courses (Done)
 Blogs (Done)
 Course Schedule (Done)
-Ten steps to becoming PMP
+Ten steps to becoming PMP - As a blog post
+
+Mail Gun
+-- After registration
+-- payment
+-- Reminder (Sent a day before the starting date)
+-- Promotions (Existing Customers)
 
 
+
+MAIL_DRIVER=smtp
+MAIL_HOST=pms.lk
+MAIL_PORT=465
+MAIL_USERNAME=noreply@pms.lk
+MAIL_PASSWORD=#g7+hnMgFItx
+MAIL_ENCRYPTION=ssl
 
 -------------------------------footer-----------------------------------------
 <div class="row">

@@ -1,0 +1,600 @@
+
+application/x-httpd-php FrontViewController.php ( PHP script text )
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Course;
+use App\Order;
+use Illuminate\Http\Request;
+use App\Category;
+use App\Product;
+use App\Home; //home table
+use App\RegisterUser; //home table
+use Session; // For pass messages
+use Redirect; // for redirect pages
+use Mail;
+use App\Slider;
+use App\Blog;
+
+class FrontViewController extends Controller
+{
+    
+    public function home()
+    {
+        $home1 = Home::where('id', '1')->first();
+       $home2 = Home::where('id', '2')->first();
+       $home3 = Home::where('id', '3')->first();
+        $home4 = Home::where('id', '4')->first();
+        $sliders = Slider::where('status', '1')->get();
+        $categories = Category::where('parent_id', '=', 0)->where('position', '1')->get();
+
+        //sub couses
+        $agile = Category::where('parent_id', '=', 18)->where('position', '1')->get();
+        $projectm = Category::where('parent_id', '=', 19)->where('position', '1')->orderBy('list', 'ASC')->get();
+        $community = Category::where('parent_id', '=', 20)->where('position', '1')->get();
+        $softskills = Category::where('parent_id', '=', 21)->where('position', '1')->get();
+        $business = Category::where('parent_id', '=', 53)->where('position', '1')->get();
+        
+       return view('home', compact('categories','home1','home2','home3', 'home4', 'agile', 'projectm', 'community', 'softskills', 'business', 'sliders'));
+    }
+    
+    public function page($id)
+    {
+      
+       $getproduct = Product::where('categoryone', $id)->orwhere('categorytwo', $id)->orWhere('categorythree', $id)->where('status', '1')->first();
+        
+      $categories = Category::where('parent_id', '=', 0)->where('position', '1')->get();
+
+        //sub couses
+        $agile = Category::where('parent_id', '=', 18)->where('position', '1')->get();
+        $projectm = Category::where('parent_id', '=', 19)->where('position', '1')->orderBy('list', 'ASC')->get();
+        $community = Category::where('parent_id', '=', 20)->where('position', '1')->get();
+        $softskills = Category::where('parent_id', '=', 21)->where('position', '1')->get();
+        $business = Category::where('parent_id', '=', 53)->where('position', '1')->get();
+
+      return view('page', compact('categories', 'getproduct', 'agile', 'projectm', 'community', 'softskills', 'business'));
+    }
+    
+     public function course($id, $idnext)
+    {
+      
+       $getproduct = Product::where('categoryone', $id)->orwhere('categorytwo', $id)->orWhere('categorythree', $id)->where('status', '1')->first();
+       
+       if($getproduct->categorytwo!= 0){
+        $getcategorytwo = Category::where('id', '=', $getproduct->categorytwo)->where('position', '1')->first(); 
+        
+       }else{
+        $getcategorytwo="";   
+       }
+       
+       
+       if($getproduct->categorythree != 0){
+        $getcategorythree = Category::where('id', '=', $getproduct->categorythree)->where('position', '1')->first(); 
+        
+       }else{
+        $getcategorythree="";   
+       }
+       
+       $getlevelthreeitems = Category::where('parent_id', '=', $getproduct->categorytwo)->get();
+       
+      $categories = Category::where('parent_id', '=', 0)->where('position', '1')->get();
+
+        //sub couses
+        $agile = Category::where('parent_id', '=', 18)->where('position', '1')->get();
+        $projectm = Category::where('parent_id', '=', 19)->where('position', '1')->orderBy('list', 'ASC')->get();
+        $community = Category::where('parent_id', '=', 20)->where('position', '1')->get();
+        $softskills = Category::where('parent_id', '=', 21)->where('position', '1')->get();
+        $business = Category::where('parent_id', '=', 53)->where('position', '1')->get();
+
+      return view('course', compact('categories', 'getproduct', 'getcategorytwo', 'getcategorythree', 'getlevelthreeitems', 'agile', 'projectm', 'community', 'softskills', 'business'));
+    }
+    
+    
+    public function other($id)
+    {
+      
+       $getproduct = Product::where('id', $id)->where('status', '1')->first();
+        
+      $categories = Category::where('parent_id', '=', 0)->where('position', '1')->get();
+
+        //sub couses
+        $agile = Category::where('parent_id', '=', 18)->where('position', '1')->get();
+        $projectm = Category::where('parent_id', '=', 19)->where('position', '1')->orderBy('list', 'ASC')->get();
+        $community = Category::where('parent_id', '=', 20)->where('position', '1')->get();
+        $softskills = Category::where('parent_id', '=', 21)->where('position', '1')->get();
+        $business = Category::where('parent_id', '=', 53)->where('position', '1')->get();
+
+      return view('other', compact('categories', 'getproduct', 'agile', 'projectm', 'community', 'softskills', 'business'));
+    }
+
+    public function registration()
+    {
+
+        $categories = Category::where('parent_id', '=', 0)->where('position', '1')->get();
+
+        //sub couses
+        $agile = Category::where('parent_id', '=', 18)->where('position', '1')->get();
+        $projectm = Category::where('parent_id', '=', 19)->where('position', '1')->orderBy('list', 'ASC')->get();
+        $community = Category::where('parent_id', '=', 20)->where('position', '1')->get();
+        $softskills = Category::where('parent_id', '=', 21)->where('position', '1')->get();
+        $business = Category::where('parent_id', '=', 53)->where('position', '1')->get();
+
+        return view('registration', compact('categories', 'agile', 'projectm', 'community', 'softskills', 'business'));
+    }
+
+    public function contact()
+    {
+
+        $categories = Category::where('parent_id', '=', 0)->where('position', '1')->get();
+
+        //sub couses
+        $agile = Category::where('parent_id', '=', 18)->where('position', '1')->get();
+        $projectm = Category::where('parent_id', '=', 19)->where('position', '1')->orderBy('list', 'ASC')->get();
+        $community = Category::where('parent_id', '=', 20)->where('position', '1')->get();
+        $softskills = Category::where('parent_id', '=', 21)->where('position', '1')->get();
+        $business = Category::where('parent_id', '=', 53)->where('position', '1')->get();
+
+        return view('contact', compact('categories', 'agile', 'projectm', 'community', 'softskills', 'business'));
+    }
+
+    public function allcourses()
+    {
+        $courses = Category::where('parent_id', '=', 17)->where('position', '1')->get();
+
+        $categories = Category::where('parent_id', '=', 0)->where('position', '1')->get();
+
+        //sub couses
+        $agile = Category::where('parent_id', '=', 18)->where('position', '1')->get();
+        $projectm = Category::where('parent_id', '=', 19)->where('position', '1')->orderBy('list', 'ASC')->get();
+        $community = Category::where('parent_id', '=', 20)->where('position', '1')->get();
+        $softskills = Category::where('parent_id', '=', 21)->where('position', '1')->get();
+        $business = Category::where('parent_id', '=', 53)->where('position', '1')->get();
+
+        return view('allcourses', compact('categories', 'courses', 'agile', 'projectm', 'community', 'softskills', 'business'));
+    }
+
+    public function coursesbycategories($id)
+    {
+        $courses = Category::where('parent_id', '=', $id)->where('position', '1')->get();
+
+        $categories = Category::where('parent_id', '=', 0)->where('position', '1')->get();
+
+        //sub couses
+        $agile = Category::where('parent_id', '=', 18)->where('position', '1')->get();
+        $projectm = Category::where('parent_id', '=', 19)->where('position', '1')->orderBy('list', 'ASC')->get();
+        $community = Category::where('parent_id', '=', 20)->where('position', '1')->get();
+        $softskills = Category::where('parent_id', '=', 21)->where('position', '1')->get();
+        $business = Category::where('parent_id', '=', 53)->where('position', '1')->get();
+
+        return view('coursesbycategories', compact('categories', 'courses', 'agile', 'projectm', 'community', 'softskills', 'business'));
+    }
+
+    public function allcoursesonline()
+    {
+        $coursesonline = Course::where('status', '=', 1)->get();
+
+        $categories = Category::where('parent_id', '=', 0)->where('position', '1')->get();
+
+        //sub couses
+        $agile = Category::where('parent_id', '=', 18)->where('position', '1')->get();
+        $projectm = Category::where('parent_id', '=', 19)->where('position', '1')->orderBy('list', 'ASC')->get();
+        $community = Category::where('parent_id', '=', 20)->where('position', '1')->get();
+        $softskills = Category::where('parent_id', '=', 21)->where('position', '1')->get();
+        $business = Category::where('parent_id', '=', 53)->where('position', '1')->get();
+
+        return view('allcoursesonline', compact('categories', 'coursesonline', 'agile', 'projectm', 'community', 'softskills', 'business'));
+    }
+
+    public function bringpms()
+    {
+
+        $categories = Category::where('parent_id', '=', 0)->where('position', '1')->get();
+
+        //sub couses
+        $agile = Category::where('parent_id', '=', 18)->where('position', '1')->get();
+        $projectm = Category::where('parent_id', '=', 19)->where('position', '1')->orderBy('list', 'ASC')->get();
+        $community = Category::where('parent_id', '=', 20)->where('position', '1')->get();
+        $softskills = Category::where('parent_id', '=', 21)->where('position', '1')->get();
+        $business = Category::where('parent_id', '=', 53)->where('position', '1')->get();
+
+        return view('bringpms', compact('categories', 'agile', 'projectm', 'community', 'softskills', 'business'));
+    }
+
+    public function registrationuser(Request $request){
+
+
+
+
+      //store data
+        $registeruser = new RegisterUser();
+        $registeruser->name = $request->name;
+        //$registeruser->nic = $request->nic;
+        $registeruser->course = $request->course;
+        $registeruser->batchdate = $request->batchdate;
+        $registeruser->organization = $request->organization    ;
+        $registeruser->designation = $request->designation;
+        $registeruser->telephone = $request->telephone;
+        $registeruser->mobile = $request->mobile;
+        $registeruser->email = $request->email;
+        $registeruser->address = $request->address;
+        $registeruser->qualifications = $request->qualifications;
+        $registeruser->experience = $request->experience;
+
+        $hearusvalue = "";
+        if( $request->has('hearAboutUs') ) {
+            foreach ($request->hearAboutUs as $hearus) {
+                $hearusvalue .=  $hearus.", ";
+            }
+        }
+
+        $registeruser->hearAboutUs = $hearusvalue;
+
+        $registeruser->other = $request->other;
+        $registeruser->status = 1;
+        $registeruser->save();
+
+        //send email
+        $data = array(
+            'name'=>$request->name,
+            //'nic'=>$request->nic,
+            'course'=>$request->course,
+            'batchdate'=>$request->batchdate,
+            'organization'=>$request->organization,
+            'designation'=>$request->designation,
+            'telephone'=>$request->telephone,
+            'mobile'=>$request->mobile,
+            'email'=>$request->email,
+            'address'=>$request->address,
+            'qualifications'=>$request->qualifications,
+            'experience'=>$request->experience,
+            'hearAboutUs'=>$hearusvalue,
+            'other'=>$request->other,
+            );
+
+        Mail::send('mail', $data, function($message) {
+            $message->to('register@pms.lk', 'Project Management Solutions')->subject
+            ('Successfully registered User');
+            $message->from('noreply@pms.lk','Project Management Solutions');
+        });
+
+        Session::flash('message', 'Successfully registered User!'); //redirect with session message
+        return Redirect::to('registration');
+
+    }
+
+    public function onlineregistration($id)
+    {
+
+        $corsedetails = Course::where('id', $id)->where('status', '1')->first();
+
+        $categories = Category::where('parent_id', '=', 0)->where('position', '1')->get();
+
+        //sub couses
+        $agile = Category::where('parent_id', '=', 18)->where('position', '1')->get();
+        $projectm = Category::where('parent_id', '=', 19)->where('position', '1')->orderBy('list', 'ASC')->get();
+        $community = Category::where('parent_id', '=', 20)->where('position', '1')->get();
+        $softskills = Category::where('parent_id', '=', 21)->where('position', '1')->get();
+        $business = Category::where('parent_id', '=', 53)->where('position', '1')->get();
+
+        return view('onlineregistration2', compact('categories','corsedetails', 'agile', 'projectm', 'community', 'softskills', 'business'));
+    }
+
+    public function onlineregistrationpay(Request $request)
+    {
+        //Save Product details
+        $coursedetails = Course::where('id', $request->courseid)->where('status', '1')->first();
+        $coursecost = $coursedetails->courseprice;
+        $coursename = $coursedetails->itemname;
+
+        //Unique ID
+        $sysidnew = uniqid();
+
+        $onlineorder = new Order();
+        $onlineorder->sysid = $sysidnew;
+        $onlineorder->name = $request->name;
+        $onlineorder->address = $request->address;
+        $onlineorder->email = $request->email;
+        $onlineorder->mobile = $request->mobile;
+        $onlineorder->telephone = $request->phone;
+        $onlineorder->course = $coursename;
+        $onlineorder->courseprice = $coursecost;
+        $onlineorder->status = "1";
+        $onlineorder->orderstatus = "Pending";
+        $onlineorder->save();
+
+
+        //Payment gateway details
+
+        $pgdomain="www.paystage.com";
+        $pgInstanceId="73787690";
+        $merchantId="73797374";
+        $hashKey="EB1BDE02A037BF65";
+
+        header("pragma".": "."no-cache");
+        header("cache-control".": "."No-cache");
+
+        $perform='initiatePaymentCapture#sale';
+        $currencyCode='144';
+        $amount=$coursecost * 100;
+        $merchantReferenceNo=$sysidnew;
+        $orderDesc='PMS Online Payment';
+
+        $messageHash = $pgInstanceId."|".$merchantId."|".$perform."|".$currencyCode."|".$amount."|"   .$merchantReferenceNo."|".$hashKey."|";
+        $message_hash = "CURRENCY:7:".base64_encode(sha1($messageHash, true));
+
+        //Page Display
+        echo "<html>";
+        echo "<head><title>Processing..</title>
+<script language='javascript'>
+function onLoadSubmit() {
+	document.merchantForm.submit();
+}
+</script>
+</head>";
+
+        echo '<body onload="onLoadSubmit();">
+	<br />&nbsp;<br />
+	<center><font size="5" color="#3b4455">Transaction is being processed,<br/>Please wait ...</font></center>
+	<form name="merchantForm" method="post" action="https://'.$pgdomain.'/AccosaPG/verify.jsp">
+
+	<input type="hidden" name="pg_instance_id" value="'.$pgInstanceId.'" />
+	<input type="hidden" name="merchant_id" value="'.$merchantId.'" />
+	
+	<input type="hidden" name="perform" value="'.$perform.'" />
+	<input type="hidden" name="currency_code" value="'.$currencyCode.'" />
+	<input type="hidden" name="amount" value="'.$amount.'" />
+	<input type="hidden" name="merchant_reference_no" value="'.$merchantReferenceNo.'" />
+	<input type="hidden" name="order_desc" value="'.$orderDesc.'" />
+
+	<input type="hidden" name="message_hash" value="'.$message_hash.'" />
+
+	<noscript>
+		<br />&nbsp;<br />
+		<center>
+		<font size="3" color="#3b4455">
+        JavaScript is currently disabled or is not supported by your browser.<br />
+		Please click Submit to continue the processing of your transaction.<br />&nbsp;<br />
+		<input type="submit" />
+		</font>
+		</center>
+	</noscript>
+	</form>
+</body>
+</html>';
+
+    }
+
+
+    public function response(Request $request)
+    {
+
+
+        //GATEWAY SETTINGS
+
+        $pgdomain="www.paystage.com";
+        $pgInstanceId="73787690";
+        $merchantId="73797374";
+        $hashKey="EB1BDE02A037BF65";
+
+        header("pragma".": "."no-cache");
+        header("cache-control".": "."No-cache");
+
+        $transactionTypeCode=$_POST["transaction_type_code"];
+        $installments=$_POST["installments"];
+        $transactionId=$_POST["transaction_id"];
+
+        $amount=$_POST["amount"];
+        $exponent=$_POST["exponent"];
+        $currencyCode=$_POST["currency_code"];
+        $merchantReferenceNo=$_POST["merchant_reference_no"];
+
+        $status=$_POST["status"];
+        $eci=$_POST["3ds_eci"];
+        $pgErrorCode=$_POST["pg_error_code"];
+
+        $pgErrorDetail=$_POST["pg_error_detail"];
+        $pgErrorMsg=$_POST["pg_error_msg"];
+
+        $messageHash=$_POST["message_hash"];
+
+
+        $messageHashBuf=$pgInstanceId."|".$merchantId."|".$transactionTypeCode."|".$installments."|".$transactionId."|".$amount."|".$exponent."|".$currencyCode."|".$merchantReferenceNo."|".$status."|".$eci."|".$pgErrorCode."|".$hashKey."|";
+
+        $messageHashClient = "13:".base64_encode(sha1($messageHashBuf, true));
+
+        $hashMatch=false;
+
+        if ($messageHash==$messageHashClient){
+            $hashMatch=true;
+        } else {
+            $hashMatch=false;
+        }
+
+
+        //Update status
+        if($status == "50020")
+        {
+            Order::where('sysid', $merchantReferenceNo)->update(['orderstatus' => 'Active']);
+
+            $onlineorder = Order::where('sysid', $merchantReferenceNo)->first();
+
+            if($onlineorder->orderstatus == "Active"){
+
+                $amountpaid = $onlineorder->courseprice;
+                $amountdue = 0;
+                $invoicestatus = "<span style='color: green;'>UNPAID</span>";
+                $invoicemsg = "You have been successfully paid to Project Management Solutions";
+
+            }else{
+
+                $amountpaid = 0;
+                $amountdue = $onlineorder->courseprice;
+                $invoicestatus = "<span style='color: red;'>UNPAID</span>";
+                $invoicemsg = "We Cannot process your payment.";
+
+            }
+
+            // Data to be used on the email view
+            $data = array(
+                'sysid' => $onlineorder->sysid,
+                'name' => $onlineorder->name,
+                'course' => $onlineorder->course,
+                'telephone' => $onlineorder->telephone,
+                'mobile' => $onlineorder->mobile,
+                'email' => $onlineorder->email,
+                'address' => $onlineorder->address,
+                'courseprice' => $onlineorder->courseprice,
+                'status' => $onlineorder->status,
+                'orderstatus' => $onlineorder->orderstatus,
+                'created_at' => $onlineorder->created_at,
+                'amountpaid' => $amountpaid,
+                'amountdue' => $amountdue,
+                'invoicestatus' => $invoicestatus,
+                'invoicemsg' => $invoicemsg
+
+
+            );
+
+            $useremail = $onlineorder->email;
+            $username = $onlineorder->name;
+
+            Mail::send('invoice', $data, function($message) use ($useremail, $username){
+                $message->to($useremail, $username)->subject
+                ('You have been successfully paid to Project Management Solutions');
+                $message->from('noreply@pms.lk','Project Management Solutions');
+                $message->bcc('info@pms.lk','Project Management Solutions');
+            });
+
+
+        }else{
+
+            Order::where('sysid', $merchantReferenceNo)->update(['orderstatus' => 'Deactive']);
+
+            $onlineorder = Order::where('sysid', $merchantReferenceNo)->first();
+
+            if($onlineorder->orderstatus == "Active"){
+                $amountpaid = $onlineorder->courseprice;
+                $amountdue = 0;
+                $invoicestatus = "<font color='green'>UNPAID</font>";
+                $invoicemsg = "You have been successfully paid to Project Management Solutions";
+            }else{
+                $amountpaid = 0;
+                $amountdue = $onlineorder->courseprice;
+                $invoicestatus = "<font color='red'>UNPAID</font>";
+                $invoicemsg = "We Cannot process your payment.";
+            }
+
+
+            // Data to be used on the email view
+            $data = array(
+                'sysid' => $onlineorder->sysid,
+                'name' => $onlineorder->name,
+                'course' => $onlineorder->course,
+                'telephone' => $onlineorder->telephone,
+                'mobile' => $onlineorder->mobile,
+                'email' => $onlineorder->email,
+                'address' => $onlineorder->address,
+                'courseprice' => $onlineorder->courseprice,
+                'status' => $onlineorder->status,
+                'orderstatus' => $onlineorder->orderstatus,
+                'created_at' => $onlineorder->created_at,
+                'amountpaid' => $amountpaid,
+                'amountdue' => $amountdue,
+                'invoicestatus' => $invoicestatus,
+                'invoicemsg' => $invoicemsg
+
+
+            );
+
+            $useremail = $onlineorder->email;
+            $username = $onlineorder->name;
+
+            Mail::send('invoice', $data, function($message) use ($useremail, $username){
+                $message->to($useremail, $username)->subject
+                ('We Cannot process your payment');
+                $message->from('noreply@pms.lk','Project Management Solutions');
+                $message->bcc('info@pms.lk','Project Management Solutions');
+            });
+
+        }
+
+        $categories = Category::where('parent_id', '=', 0)->where('position', '1')->get();
+
+        //sub couses
+        $agile = Category::where('parent_id', '=', 18)->where('position', '1')->get();
+        $projectm = Category::where('parent_id', '=', 19)->where('position', '1')->orderBy('list', 'ASC')->get();
+        $community = Category::where('parent_id', '=', 20)->where('position', '1')->get();
+        $softskills = Category::where('parent_id', '=', 21)->where('position', '1')->get();
+        $business = Category::where('parent_id', '=', 53)->where('position', '1')->get();
+
+
+        return view('response', compact('categories','status', 'agile', 'projectm', 'community', 'softskills', 'business'));
+    }
+
+
+    public function knowladgecanter()
+    {
+
+        $categories = Category::where('parent_id', '=', 0)->where('position', '1')->get();
+
+        //sub couses
+        $agile = Category::where('parent_id', '=', 18)->where('position', '1')->get();
+        $projectm = Category::where('parent_id', '=', 19)->where('position', '1')->orderBy('list', 'ASC')->get();
+        $community = Category::where('parent_id', '=', 20)->where('position', '1')->get();
+        $softskills = Category::where('parent_id', '=', 21)->where('position', '1')->get();
+        $business = Category::where('parent_id', '=', 53)->where('position', '1')->get();
+
+        $blogs = Blog::where('status', '1')->where('sections', 'KnowledgeCenter')->get();
+
+
+        return view('knowladgecenter', compact('categories', 'agile', 'projectm', 'community', 'softskills', 'business', 'blogs'));
+    }
+
+    public function viewknowladgecanter($id)
+    {
+
+        $categories = Category::where('parent_id', '=', 0)->where('position', '1')->get();
+
+        //sub couses
+        $agile = Category::where('parent_id', '=', 18)->where('position', '1')->get();
+        $projectm = Category::where('parent_id', '=', 19)->where('position', '1')->orderBy('list', 'ASC')->get();
+        $community = Category::where('parent_id', '=', 20)->where('position', '1')->get();
+        $softskills = Category::where('parent_id', '=', 21)->where('position', '1')->get();
+        $business = Category::where('parent_id', '=', 53)->where('position', '1')->get();
+
+        $vblog = Blog::where('status', '1')->where('sections', 'KnowledgeCenter')->where('id', $id)->first();
+        $blogs = Blog::where('status', '1')->where('sections', 'KnowledgeCenter')->get();
+
+
+        return view('viewknowladgecenter', compact('categories', 'agile', 'projectm', 'community', 'softskills', 'business', 'vblog', 'blogs'));
+    }
+
+    public function sendcontact(Request $request){
+
+
+        //send email
+        $data = array(
+            'name'=>$request->name,
+            'mobile'=>$request->mobile,
+            'email'=>$request->email,
+            'qualifications'=>$request->qualifications,
+        );
+
+        Mail::send('contactmail', $data, function($message) {
+            $message->to('info@pms.lk', 'Project Management Solutions')->subject
+            ('Contact Form Submission');
+            $message->from('noreply@pms.lk','Project Management Solutions');
+        });
+
+        Session::flash('message', 'Successfully Received.!'); //redirect with session message
+        return Redirect::to('contact');
+
+    }
+
+
+
+
+    
+}
+
