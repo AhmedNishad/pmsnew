@@ -33,6 +33,7 @@
             <div class="sw-main-title sw-main-title-left sw-animation-opas sw-top-header-fix">
               <!-- title -->
               <h1 class="sw-white text-capitalize"><%= course.title %></h1>
+
             </div>
             <!-- main title frame end -->
           </div>
@@ -56,7 +57,7 @@
                       </ul>
                 </div>
                 <div class="col p-30-30">
-                    <a style="color: white; background: #ff8000;" class="btn" style="position: relative;" href="#sw-content">I'm Interested</a>
+                    <a style="color: white; background: #ed6663;" class="btn" style="position: relative;" href="#sw-content">I'm Interested</a>
 
                 </div>
               <!-- breadcrumbs end -->
@@ -203,22 +204,27 @@
                 </div>
                 <div class="col-md-4">
                     <div class="card ">
-                        <div class="card-header">Live Online</div>
+                        <div class="card-header">Register for Live Online Classes</div>
                         
                         <div class="card-body">
-                                <img src="/public/img/Learning/1.png">
-                            Register for Online Classes 
+                                <img src="/public/img/Learning/1-1.png">
+                        
+                                <!-- <p>Register for Online Classes</p>  -->
                         </div>
                         <div class="card-footer">
                             <!-- Redirect to Pay Now-->
-                            <a href="/paynow/<%= course.moniker %>" class="btn btn-warning">Enroll Now</a>
+                            <button href="/paynow/<%= course.moniker %>" class="btn btn-warning">ENROLL NOW</button>
                         </div>
                     </div>
                 </div>   
                 <div class="col-md-4">
-                    <div class="card ">
-                        <div class="card-header">In Person</div>
-                        <div class="card-body">Register for In Person Classes </div>
+                    <div class="card">
+                        <div class="card-header">Register for In Person Classes
+                        </div>
+                        <div class="card-body"> 
+
+                            <img src="/public/img/Learning/2-1.png">
+                        </div>
                         <div class="card-footer">
                             <button data-toggle="modal" data-target="#class" class="btn btn-warning">Enroll Now</button>
                             
@@ -226,9 +232,11 @@
                     </div>
                 </div>  
                 <div class="col-md-4">
-                    <div class="card ">
-                        <div class="card-header">Corporate</div>
-                        <div class="card-body">Customized solutions for large organizations </div>
+                    <div class="card">
+                        <div class="card-header">For Organisational Training</div>
+                        <div class="card-body">
+                            <img src="/public/img/Learning/3-1.png">
+                        </div>
                         <div class="card-footer">
                             <button data-toggle="modal" data-target="#corporate" class="btn btn-warning">Contact</button>
                         </div>

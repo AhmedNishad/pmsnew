@@ -182,7 +182,7 @@ p {
   height: 100%;
   left: 0;
   top: 0;
-  background-color: #6a7efc;
+  background-color: lightskyblue;
 }
 
 @media screen and (max-width: 768px) {
@@ -2056,7 +2056,7 @@ Common content
 }
 
 .card img{
-  width: 20%;
+  width: 50%;
   height: auto;
 }
 .card-body{
@@ -3489,12 +3489,12 @@ input{
 } */
 
 #registrationSection button{
-  background: #ff8000;
+  background: #f87d42;
   color: white;
 }
 
 #registrationSection a{
-  background: #ff8000;
+  background: #f87d42;
   color: white;
 }
 
