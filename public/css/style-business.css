@@ -94,7 +94,7 @@ h3,
 h4,
 h5,
 h6 {
-  color: #0f4c81;
+  color: #1b262c;
   font-family: "Helvetica Neue", sans-serif;
   font-weight: bold;
   display: block;
@@ -1114,7 +1114,7 @@ Banner
   background: linear-gradient(106deg, rgba(40, 40, 60, 0.7) 7%, rgba(40, 40, 60, 0) 78%);
 }
 .sw-banner .sw-overlay.sw-overlay-left-1-cs {
-  background: lightskyblue;
+  background: #111d5e;
 }
 .sw-banner .sw-overlay .container {
   height: 100%;
@@ -1686,7 +1686,7 @@ button.sw-solid-btn:hover {
 }
 .sw-btn.sw-solid-btn.sw-color-1-btn,
 button.sw-solid-btn.sw-color-1-btn {
-  background-color: #4d80e4;
+  background-color: #1b6ca8;
 }
 .sw-btn.sw-solid-btn.sw-color-1-btn:hover,
 button.sw-solid-btn.sw-color-1-btn:hover {
