@@ -81,9 +81,9 @@ Typography
 /***** text *****/
 body {
   color:#494953;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Varela", sans-serif;
   font-weight: 400;
-  font-size: 20px;
+  font-size: 19px;
   background-color: #f8f8fb;
 }
 
@@ -94,9 +94,9 @@ h3,
 h4,
 h5,
 h6 {
-  color: #004165;
-  font-family: "Montserrat", sans-serif;
-  font-weight: 900;
+  color: #1b262c;
+  font-family: "Helvetica Neue", sans-serif;
+  font-weight: bold;
   display: block;
 }
 
@@ -182,7 +182,7 @@ p {
   height: 100%;
   left: 0;
   top: 0;
-  background-color: #6a7efc;
+  background-color: lightskyblue;
 }
 
 @media screen and (max-width: 768px) {
@@ -614,7 +614,7 @@ form input:focus {
 }
 
 .bg-color-p-1 {
-  background-color: #4682e6;
+  background-color: #1b6ca8;
 }
 
 .bg-color-p-2 {
@@ -1113,6 +1113,9 @@ Banner
 .sw-banner .sw-overlay.sw-overlay-left-1 {
   background: linear-gradient(106deg, rgba(40, 40, 60, 0.7) 7%, rgba(40, 40, 60, 0) 78%);
 }
+.sw-banner .sw-overlay.sw-overlay-left-1-cs {
+  background: #111d5e;
+}
 .sw-banner .sw-overlay .container {
   height: 100%;
   -webkit-box-pack: center;
@@ -1185,10 +1188,15 @@ Banner
   color: #fafafd;
 }
 .sw-banner.sw-banner-sm {
-  height: 70vh;
+  height: 50vh;
 }
+.sw-banner.sw-banner-cs {
+  height: 50vh;
+}
+
+
 .sw-banner.sw-banner-sm .sw-banner-image {
-  height: 70vh;
+  height: 60vh;
   -o-object-fit: contain;
      object-fit: contain;
      width: auto;
@@ -1678,19 +1686,19 @@ button.sw-solid-btn:hover {
 }
 .sw-btn.sw-solid-btn.sw-color-1-btn,
 button.sw-solid-btn.sw-color-1-btn {
-  background-color: #337ab7;
+  background-color: #1b6ca8;
 }
 .sw-btn.sw-solid-btn.sw-color-1-btn:hover,
 button.sw-solid-btn.sw-color-1-btn:hover {
-  background-color: #2892ef;
+  background-color: #94c9f7;
 }
 .sw-btn.sw-solid-btn.sw-color-2-btn,
 button.sw-solid-btn.sw-color-2-btn {
-  background-color: #337ab7;
+  background-color: #dd6b4d;
 }
 .sw-btn.sw-solid-btn.sw-color-2-btn:hover,
 button.sw-solid-btn.sw-color-2-btn:hover {
-  background-color: #2892ef;
+  background-color: #94c9f7;
 }
 .sw-btn.sw-solid-btn.sw-white-btn,
 button.sw-solid-btn.sw-white-btn {
@@ -1829,7 +1837,7 @@ button.swiper-button-disabled {
 }
 .sw-btn.swiper-button-disabled:after,
 button.swiper-button-disabled:after {
-  background-color: #34699a;
+  background-color: #4d80e4;
   position: absolute;
   top: 0;
   font-size: 9px;
@@ -2047,6 +2055,15 @@ Common content
           animation: loader 3s linear infinite;
 }
 
+.card img{
+  width: 50%;
+  height: auto;
+}
+.card-body{
+  align-content: center;
+  align-items: center;
+  text-align: center;
+}
 /***** breadcrumbs *****/
 .sw-breadcrumb {
   padding-left: 0;
@@ -2279,6 +2296,10 @@ Sections
 .sw-icon-box {
   margin-bottom: 30px;
 }
+#fitvid0{
+  height: 300px;
+  width: 600px;
+}
 .sw-icon-box.text-center img {
   margin-right: auto;
   margin-left: auto;
@@ -2451,6 +2472,10 @@ Sections
   margin-bottom: 25px;
   padding: 0 10px;
 }
+
+.sw-testimonial .sw-reviewer-frame h6{
+  color: #1b262c;
+}
 .sw-testimonial .sw-reviewer-frame img {
   margin: 0 15px 0 0;
   border-radius: 50%;
@@ -2604,7 +2629,7 @@ Sections
   z-index: 99;
   position: absolute;
   right: 0;
-  top: -440px;
+  top:100px;
 }
 
 @media screen and (max-width: 992px) {
@@ -3464,12 +3489,12 @@ input{
 } */
 
 #registrationSection button{
-  background: #ff8000;
+  background: #ff5d5d;
   color: white;
 }
 
 #registrationSection a{
-  background: #ff8000;
+  background: #ff5d5d;
   color: white;
 }
 
