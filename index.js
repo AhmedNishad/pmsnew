@@ -14,7 +14,6 @@ mongoose.connect('mongodb+srv://nishad:@ristotlE456@sayat-g5aje.mongodb.net/pms?
 let courseController = require('./controllers/course.controller')
 let blogController = require('./controllers/blog.controller')
 let adminController = require('./controllers/admin.controller')
-const sha1 = require('sha1');
 var crypto = require('crypto')
 //app.set('views', path.join(__dirname, 'views'));
 // set the view engine to ejs
