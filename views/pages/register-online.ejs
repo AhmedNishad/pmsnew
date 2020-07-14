@@ -73,7 +73,7 @@
               {
                   let course = courses[i];
                       %>
-                      <option data-slots="<%= JSON.stringify(course.courseDates) %>" value="<%= course.moniker %>"><%= course.title %></option> 
+                      <option data-slots="<%= JSON.stringify(course.courseDates.filter(d => d.date > new Date().setHours(0,0,0,0))) %>" value="<%= course.moniker %>"><%= course.title %></option> 
                   <%
               }
             
@@ -136,11 +136,9 @@
     let selectSlot = document.getElementById('selectSlot');
     let submit = document.getElementById('submit')
 
-    selectCourse.addEventListener("change", e => {
-      console.log(e.target.selectedOptions[0]);
+    selectCourse.addEventListener("click", e => {
       let selected = e.target.selectedOptions[0];
       if(selected.dataset.slots == "[]"){
-        console.log('no data')
         selectSlot.innerHTML = `<option disabled>Sorry No Dates Available </option>`
         submit.disabled = true;
       }else{

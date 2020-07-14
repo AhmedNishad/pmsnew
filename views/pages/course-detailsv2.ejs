@@ -298,7 +298,7 @@
                         <label class="control-label col-sm-4" for="name">Select Time Slot</label>
                         <select required class="form-control" name="date" id="selectSlot">
                             <% 
-                                for(let i = 0; i< course.courseDates.filter(cs => cs.timeFrom != "").length; i++){
+                                for(let i = 0; i< course.courseDates.filter(d => d.date > new Date().setHours(0,0,0,0)).length; i++){
                                     let courseDate = course.courseDates.filter(cs => cs.timeFrom != "")[i];
                                     if(courseDate.date != null){
                                     %>

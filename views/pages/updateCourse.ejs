@@ -281,11 +281,11 @@
                                 </div> 
                     <% } %>
                     <%
-                        for ( var i = 0; i < course.courseDates.length; i++ )
+                        for ( var i = 0; i < course.courseDates.filter(d => d.date > new Date().setHours(0,0,0,0)).length; i++ )
                         {
-                            var date = course.courseDates[i]
+                            var date = course.courseDates.filter(d => d.date > new Date().setHours(0,0,0,0))[i]
     
-                            if(date.date > new Date().setHours(0,0,0,0)){
+                            /* if(date.date > new Date().setHours(0,0,0,0)){ */
                               let now = new Date();
                               let month = (parseInt(now.getMonth()) + 1 ) >= 10 ? (parseInt(now.getMonth()) + 1 ) : "0" + (parseInt(now.getMonth()) + 1 )
                               let day = (parseInt(now.getDate())) >= 10 ? (parseInt(now.getDate()) ) : "0" + (parseInt(now.getDate()))
@@ -299,7 +299,6 @@
                                     <input class="form-control" value="<%= date.timeTo %>" type="text" name="courseDates[<%= i %>][timeTo]" placeholder="timeTo">
                                     <button class="btn btn-danger remove">Remove</button>
                                 </div>   <%
-                        }
                       }
                         %>  
                   </div>
