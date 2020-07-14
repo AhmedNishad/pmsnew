@@ -14,7 +14,8 @@ mongoose.connect('mongodb+srv://nishad:@ristotlE456@sayat-g5aje.mongodb.net/pms?
 let courseController = require('./controllers/course.controller')
 let blogController = require('./controllers/blog.controller')
 let adminController = require('./controllers/admin.controller')
-
+const sha1 = require('sha1');
+var crypto = require('crypto')
 //app.set('views', path.join(__dirname, 'views'));
 // set the view engine to ejs
 app.set('view engine', 'ejs');
@@ -123,35 +124,12 @@ app.get('/paynow/:moniker', function(req, res) {
     })
 });
 
-app.post('/paynow/:moniker', function(req, res) {
-    //console.log(req.body)
-    //return res.json(req.body)
-
-    // ----------------- Payment gateway redirect ------------------
+// Response from the gateway based on the result
+app.get('/response', (req,res)=>{
     /*
-//Save Product details
-        $coursedetails = Course::where('id', $request->courseid)->where('status', '1')->first();
-        $coursecost = $coursedetails->courseprice;
-        $coursename = $coursedetails->itemname;
-
-        //Unique ID
-        $sysidnew = uniqid();
-
-        $onlineorder = new Order();
-        $onlineorder->sysid = $sysidnew;
-        $onlineorder->name = $request->name;
-        $onlineorder->address = $request->address;
-        $onlineorder->email = $request->email;
-        $onlineorder->mobile = $request->mobile;
-        $onlineorder->telephone = $request->phone;
-        $onlineorder->course = $coursename;
-        $onlineorder->courseprice = $coursecost;
-        $onlineorder->status = "1";
-        $onlineorder->orderstatus = "Pending";
-        $onlineorder->save();
-
-
-        //Payment gateway details
+public function response(Request $request)
+    {
+        //GATEWAY SETTINGS
 
         $pgdomain="www.paystage.com";
         $pgInstanceId="73787690";
@@ -161,18 +139,249 @@ app.post('/paynow/:moniker', function(req, res) {
         header("pragma".": "."no-cache");
         header("cache-control".": "."No-cache");
 
-        $perform='initiatePaymentCapture#sale';
-        $currencyCode='144';
-        $amount=$coursecost * 100;
-        $merchantReferenceNo=$sysidnew;
-        $orderDesc='PMS Online Payment';
+        $transactionTypeCode=$_POST["transaction_type_code"];
+        $installments=$_POST["installments"];
+        $transactionId=$_POST["transaction_id"];
 
-        $messageHash = $pgInstanceId."|".$merchantId."|".$perform."|".$currencyCode."|".$amount."|"   .$merchantReferenceNo."|".$hashKey."|";
-        $message_hash = "CURRENCY:7:".base64_encode(sha1($messageHash, true));
+        $amount=$_POST["amount"];
+        $exponent=$_POST["exponent"];
+        $currencyCode=$_POST["currency_code"];
+        $merchantReferenceNo=$_POST["merchant_reference_no"];
+
+        $status=$_POST["status"];
+        $eci=$_POST["3ds_eci"];
+        $pgErrorCode=$_POST["pg_error_code"];
+
+        $pgErrorDetail=$_POST["pg_error_detail"];
+        $pgErrorMsg=$_POST["pg_error_msg"];
+
+        $messageHash=$_POST["message_hash"];
+
+
+        $messageHashBuf=$pgInstanceId."|".$merchantId."|".$transactionTypeCode."|".$installments."|".$transactionId."|".$amount."|".$exponent."|".$currencyCode."|".$merchantReferenceNo."|".$status."|".$eci."|".$pgErrorCode."|".$hashKey."|";
+
+        $messageHashClient = "13:".base64_encode(sha1($messageHashBuf, true));
+
+        $hashMatch=false;
+
+        if ($messageHash==$messageHashClient){
+            $hashMatch=true;
+        } else {
+            $hashMatch=false;
+        }
+
+
+        //Update status
+        if($status == "50020")
+        {
+            Order::where('sysid', $merchantReferenceNo)->update(['orderstatus' => 'Active']);
+
+            $onlineorder = Order::where('sysid', $merchantReferenceNo)->first();
+
+            if($onlineorder->orderstatus == "Active"){
+
+                $amountpaid = $onlineorder->courseprice;
+                $amountdue = 0;
+                $invoicestatus = "<span style='color: green;'>UNPAID</span>";
+                $invoicemsg = "You have been successfully paid to Project Management Solutions";
+
+            }else{
+
+                $amountpaid = 0;
+                $amountdue = $onlineorder->courseprice;
+                $invoicestatus = "<span style='color: red;'>UNPAID</span>";
+                $invoicemsg = "We Cannot process your payment.";
+
+            }
+
+            // Data to be used on the email view
+            $data = array(
+                'sysid' => $onlineorder->sysid,
+                'name' => $onlineorder->name,
+                'course' => $onlineorder->course,
+                'telephone' => $onlineorder->telephone,
+                'mobile' => $onlineorder->mobile,
+                'email' => $onlineorder->email,
+                'address' => $onlineorder->address,
+                'courseprice' => $onlineorder->courseprice,
+                'status' => $onlineorder->status,
+                'orderstatus' => $onlineorder->orderstatus,
+                'created_at' => $onlineorder->created_at,
+                'amountpaid' => $amountpaid,
+                'amountdue' => $amountdue,
+                'invoicestatus' => $invoicestatus,
+                'invoicemsg' => $invoicemsg
+
+
+            );
+
+            $useremail = $onlineorder->email;
+            $username = $onlineorder->name;
+
+            Mail::send('invoice', $data, function($message) use ($useremail, $username){
+                $message->to($useremail, $username)->subject
+                ('You have been successfully paid to Project Management Solutions');
+                $message->from('noreply@pms.lk','Project Management Solutions');
+                $message->bcc('info@pms.lk','Project Management Solutions');
+            });
+
+
+        }else{
+
+            Order::where('sysid', $merchantReferenceNo)->update(['orderstatus' => 'Deactive']);
+
+            $onlineorder = Order::where('sysid', $merchantReferenceNo)->first();
+
+            if($onlineorder->orderstatus == "Active"){
+                $amountpaid = $onlineorder->courseprice;
+                $amountdue = 0;
+                $invoicestatus = "<font color='green'>UNPAID</font>";
+                $invoicemsg = "You have been successfully paid to Project Management Solutions";
+            }else{
+                $amountpaid = 0;
+                $amountdue = $onlineorder->courseprice;
+                $invoicestatus = "<font color='red'>UNPAID</font>";
+                $invoicemsg = "We Cannot process your payment.";
+            }
+
+
+            // Data to be used on the email view
+            $data = array(
+                'sysid' => $onlineorder->sysid,
+                'name' => $onlineorder->name,
+                'course' => $onlineorder->course,
+                'telephone' => $onlineorder->telephone,
+                'mobile' => $onlineorder->mobile,
+                'email' => $onlineorder->email,
+                'address' => $onlineorder->address,
+                'courseprice' => $onlineorder->courseprice,
+                'status' => $onlineorder->status,
+                'orderstatus' => $onlineorder->orderstatus,
+                'created_at' => $onlineorder->created_at,
+                'amountpaid' => $amountpaid,
+                'amountdue' => $amountdue,
+                'invoicestatus' => $invoicestatus,
+                'invoicemsg' => $invoicemsg
+
+
+            );
+
+            $useremail = $onlineorder->email;
+            $username = $onlineorder->name;
+
+            Mail::send('invoice', $data, function($message) use ($useremail, $username){
+                $message->to($useremail, $username)->subject
+                ('We Cannot process your payment');
+                $message->from('noreply@pms.lk','Project Management Solutions');
+                $message->bcc('info@pms.lk','Project Management Solutions');
+            });
+
+        }
+
+        $categories = Category::where('parent_id', '=', 0)->where('position', '1')->get();
+
+        //sub couses
+        $agile = Category::where('parent_id', '=', 18)->where('position', '1')->get();
+        $projectm = Category::where('parent_id', '=', 19)->where('position', '1')->orderBy('list', 'ASC')->get();
+        $community = Category::where('parent_id', '=', 20)->where('position', '1')->get();
+        $softskills = Category::where('parent_id', '=', 21)->where('position', '1')->get();
+        $business = Category::where('parent_id', '=', 53)->where('position', '1')->get();
+
+
+        return view('response', compact('categories','status', 'agile', 'projectm', 'community', 'softskills', 'business'));
+    }
 
     */
+   
+   let pgdomain="www.paystage.com";
+   let pgInstanceId="73787690";
+   let merchantId="73797374";
+   let hashKey="EB1BDE02A037BF65";
+
+   res.set('pragma', 'no-cache');
+   res.set('cache-control', 'No-cache');
+
+   let transactionTypeCode=req.body.transaction_type_code
+   let installments=req.body.installments
+   let transactionId = req.body.transaction_id
+
+   let amount=req.body.amount
+   let exponent=req.body.exponent
+   let currencyCode=req.body.currency_code
+   let merchantReferenceNo=req.body.merchant_reference_no
+
+   let status=req.body.status
+   let eci=req.body["3ds_eci"];
+   let pgErrorCode=req.body["pg_error_code"];
+
+   let pgErrorDetail=req.body["pg_error_detail"];
+   let pgErrorMsg=req.body["pg_error_msg"];
+
+   let messageHash=req.body["message_hash"];
+
+   let messageHashBuf = `${pgInstanceId}|${merchantId}|${transactionTypeCode}|${installments}|${transactionId}|${amount}|${exponent}|${currencyCode}|${merchantReferenceNo}|${status}|${eci}|${pgErrorCode}|${hashKey}|`
+   //$messageHashBuf=$pgInstanceId."|".$merchantId."|".$transactionTypeCode."|".$installments."|".$transactionId."|".$amount."|".$exponent."|".$currencyCode."|".$merchantReferenceNo."|".$status."|".$eci."|".$pgErrorCode."|".$hashKey."|";
+
+   let sha1EncryptedHash = crypto.createHash('sha1')
+   sha1EncryptedHash.update(messageHashBuf)
+
+    // Create buffer object, specifying binary as encoding
+   let bufferObj = Buffer.from(sha1EncryptedHash.digest('hash'), "utf8");
+    // Encode the Buffer as a base64 string
+   let base64String = bufferObj.toString("base64");
+
+   let messageHashClient = "13:" + base64String // .base64_encode(sha1($messageHashBuf, true));
+
+   let hashMatch=false;
+
+   if (messageHash==messageHashClient){
+       hashMatch=true;
+   } else {
+       hashMatch=false;
+       // Handle bad request
+       return res.send("Invalid Operation");
+   }
+
+
+   //Update status
+   if(status == "50020")
+   {
+       let updateBody = {
+        paymentComplete: true
+       }
+       // Update Registration
+       Registration.findOneAndUpdate({_id: merchantReferenceNo}, updateBody, function (err, course) {
+        Course.find({}, (error, courses)=>{
+            if(err || course == null){
+                console.log(err)
+                return res.render("pages/message-page",{courses,message: "Course Not Found"})
+            } 
+
+            return res.render("pages/message-page",{courses,message: "Payment Successful!"})
+        })
+    });
+
+
+   }else{
+        // Delete associated registration
+        Registration.findOneAndRemove({_id: merchantReferenceNo}, function (err) {
+            if (err) 
+            return  res.status(500).json({error: "Error deleting course"})
+            Course.find({}, (error, courses)=>{
+                if(error || course == null){
+                    console.log(error)
+                    return res.render("pages/message-page",{courses,message: "Course Not Found"})
+                } 
     
-    // Once action is complete... then create and store registration
+                return res.render("pages/message-page",{courses,message: "Could not process payment"})
+            })
+        })
+
+   }
+})
+
+app.post('/paynow/:moniker', function(req, res) {
+
     Course.findOne({ moniker: req.params.moniker}, (err, course)=>{
         if(err || course == null){
             return res.render("pages/message-page",{courses,message: "Coure Not Found"})
@@ -185,10 +394,84 @@ app.post('/paynow/:moniker', function(req, res) {
             address: req.body.address,
             mobile: req.body.mobile,
             fee: course.price,
-            placedOn: new Date()
+            placedOn: new Date(),
+            paymentComplete: false
         })
 
-        registration.save((err)=>{
+        registration.save((errr, reg)=>{
+            if(errr)
+                console.log(errr);
+                let pgdomain="www.paystage.com";
+                let pgInstanceId="73787690";
+                let merchantId="73797374";
+                let hashKey="EB1BDE02A037BF65";
+             
+                res.set('pragma', 'no-cache');
+                res.set('cache-control', 'No-cache');
+             
+                let perform='initiatePaymentCapture#sale';
+                let currencyCode='144';
+                let amount= course.price * 100;
+                let merchantReferenceNo = reg._id; // Needs to be the created registrations mongoId
+                let orderDesc = 'PMS Online Payment';
+             
+                let messageHash = `${pgInstanceId}|${merchantId}|${perform}|${currencyCode}|${amount}|${merchantReferenceNo}|${hashKey}|` 
+                //$pgInstanceId."|".$merchantId."|".$perform."|".$currencyCode."|".$amount."|"   .$merchantReferenceNo."|".$hashKey."|";
+                console.log(messageHash)
+                //let sha1EncryptedHash = sha1(messageHash)
+                let sha1EncryptedHash = crypto.createHash('sha1')
+                sha1EncryptedHash.update(messageHash)
+                
+                // Create buffer object, specifying binary as encoding
+                let bufferObj = Buffer.from(sha1EncryptedHash.digest('hash'), "utf8");
+                 // Encode the Buffer as a base64 string
+                 let base64String = bufferObj.toString("base64");
+                 let message_hash = `CURRENCY:7:${base64String}` //"CURRENCY:7:".base64_encode(sha1($messageHash, true));
+                console.log(message_hash)
+                 // Return HTML page
+                let header = `<html>
+                 <head><title>Processing..</title>
+                    <script language='javascript'>
+                    function onLoadSubmit() {
+                        document.merchantForm.submit();
+                    }
+                    </script>
+                </head>`;
+
+                let body = `<body onload="onLoadSubmit();">
+                <br />&nbsp;<br />
+                <center><font size="5" color="#3b4455">Transaction is being processed,<br/>Please wait ...</font></center>
+                <form name="merchantForm" method="post" action="https://${pgdomain}/AccosaPG/verify.jsp">
+            
+                <input type="hidden" name="pg_instance_id" value="${pgInstanceId}" />
+                <input type="hidden" name="merchant_id" value="${merchantId}" />
+                
+                <input type="hidden" name="perform" value="${perform}" />
+                <input type="hidden" name="currency_code" value="${currencyCode}" />
+                <input type="hidden" name="amount" value="${amount}" />
+                <input type="hidden" name="merchant_reference_no" value="${merchantReferenceNo}" />
+                <input type="hidden" name="order_desc" value="${orderDesc}" />
+            
+                <input type="hidden" name="message_hash" value="${message_hash}" />
+            
+                <noscript>
+                    <br />&nbsp;<br />
+                    <center>
+                    <font size="3" color="#3b4455">
+                    JavaScript is currently disabled or is not supported by your browser.<br />
+                    Please click Submit to continue the processing of your transaction.<br />&nbsp;<br />
+                    <input type="submit" />
+                    </font>
+                    </center>
+                </noscript>
+                </form>
+            </body>
+            </html>`;
+
+            let html = header + body;
+
+            return res.send(html);
+
             Course.find({}, (error, courses)=>{
                 if(error){
                     console.log(error)
