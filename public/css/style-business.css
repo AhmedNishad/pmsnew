@@ -2305,8 +2305,8 @@ Sections
   margin-left: auto;
 }
 .sw-icon-box img {
-  width: 60px;
-  height: 60px;
+  width: 100px;
+  height: 100px;
   display: block;
   margin-bottom: 15px;
   -webkit-transition: ease-in-out 0.3s;
