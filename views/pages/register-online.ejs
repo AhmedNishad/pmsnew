@@ -48,17 +48,21 @@
   
       <main id="sw-content">
   
-          <div class="col-md-12">
+          <div class="col-md-18">
               <div class="thick-separator-rule">&nbsp;</div>
-              <h3>Online Registration to Reserve Your Seat</h3>
-              <p>Please duly fill in this form and submit.</p>
+              <div>
+                <h4>Online Registration to Reserve Your Seat</h4>
+                <p>Please duly fill in this form and submit.</p>
+              </div>
+
           <hr>
         <!-- Form Start -->
       <div class="row offset-md-3">
         <form class="form" method="post" action="">
           
         <div class="form-group">
-          <label class="control-label col-sm-4" for="name">Select Course</label>
+          <div class="row">
+            <label class="control-label col-md-4" for="name">Select Course</label>
           <select required class="form-control" name="course" id="selectCourse">
             <option value="none" disabled>Please Select</option>
             <%
@@ -72,10 +76,12 @@
             
           %>  
         </select>
+          </div>
+          
         </div>
 
         <div class="form-group">
-          <label class="control-label col-sm-4" for="name">Select Time Slot</label>
+          <label class="control-label col-md-4" for="name">Select Time Slot</label>
             <select required  class="form-control" name="date" id="selectSlot">
                 
             </select>
