@@ -72,7 +72,7 @@ router.post("", (req,res) => {
     })
 })
 
-router.get("/:moniker/update", (req, res)=>{
+/* router.get("/:moniker/update", (req, res)=>{
     let mon = req.params.moniker
     Course.findOne({moniker: mon}, (err, course)=>{
         if(err || course == null) 
@@ -81,7 +81,7 @@ router.get("/:moniker/update", (req, res)=>{
             
             return res.render("pages/updateCourse", {course})
     })
-})
+}) */
 
 router.post("/:moniker/update", (req, res) => {
     console.log("Updating course")

@@ -48,7 +48,7 @@
              <tbody>
                 <%  
             for(let i = 0; i < registrations.filter(r => r.handled == false).length; i++){
-                let registration = registrations[i];
+                let registration = registrations.filter(r => r.handled == false).sort((a, b) => (a.placedOn < b.placedOn) ? 1 : -1)[i];
                 %>
                 <tr>
                     <td><%= registration.name %></td> 
@@ -57,7 +57,7 @@
                     <td><%= registration.mobile %></td>    
                     <td><%= registration.fee %></td> 
                     <td><%= registration.address %></td> 
-                    <td><%= registration.fee %></td> 
+                    <td><%= new Date(registration.placedOn).toLocaleDateString() %></td> 
                     <td><a class="btn btn-primary" href="/registration/<%= registration._id %>/handle" >Handle</a></td>
                 </tr>
                   

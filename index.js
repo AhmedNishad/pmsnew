@@ -26,6 +26,9 @@ app.use("/public", express.static(__dirname + '/public'))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
+// Send notification for every course on day of course (Cron Job)
+
+
 // index page 
 app.get('/', function(req, res) {
     Course.find({}, (err, courses)=>{
@@ -126,267 +129,106 @@ app.get('/paynow/:moniker', function(req, res) {
 
 // Response from the gateway based on the result
 app.get('/response', (req,res)=>{
-    /*
-public function response(Request $request)
-    {
-        //GATEWAY SETTINGS
-
-        $pgdomain="www.paystage.com";
-        $pgInstanceId="73787690";
-        $merchantId="73797374";
-        $hashKey="EB1BDE02A037BF65";
-
-        header("pragma".": "."no-cache");
-        header("cache-control".": "."No-cache");
-
-        $transactionTypeCode=$_POST["transaction_type_code"];
-        $installments=$_POST["installments"];
-        $transactionId=$_POST["transaction_id"];
-
-        $amount=$_POST["amount"];
-        $exponent=$_POST["exponent"];
-        $currencyCode=$_POST["currency_code"];
-        $merchantReferenceNo=$_POST["merchant_reference_no"];
-
-        $status=$_POST["status"];
-        $eci=$_POST["3ds_eci"];
-        $pgErrorCode=$_POST["pg_error_code"];
-
-        $pgErrorDetail=$_POST["pg_error_detail"];
-        $pgErrorMsg=$_POST["pg_error_msg"];
-
-        $messageHash=$_POST["message_hash"];
-
-
-        $messageHashBuf=$pgInstanceId."|".$merchantId."|".$transactionTypeCode."|".$installments."|".$transactionId."|".$amount."|".$exponent."|".$currencyCode."|".$merchantReferenceNo."|".$status."|".$eci."|".$pgErrorCode."|".$hashKey."|";
-
-        $messageHashClient = "13:".base64_encode(sha1($messageHashBuf, true));
-
-        $hashMatch=false;
-
-        if ($messageHash==$messageHashClient){
-            $hashMatch=true;
-        } else {
-            $hashMatch=false;
-        }
-
-
-        //Update status
-        if($status == "50020")
-        {
-            Order::where('sysid', $merchantReferenceNo)->update(['orderstatus' => 'Active']);
-
-            $onlineorder = Order::where('sysid', $merchantReferenceNo)->first();
-
-            if($onlineorder->orderstatus == "Active"){
-
-                $amountpaid = $onlineorder->courseprice;
-                $amountdue = 0;
-                $invoicestatus = "<span style='color: green;'>UNPAID</span>";
-                $invoicemsg = "You have been successfully paid to Project Management Solutions";
-
-            }else{
-
-                $amountpaid = 0;
-                $amountdue = $onlineorder->courseprice;
-                $invoicestatus = "<span style='color: red;'>UNPAID</span>";
-                $invoicemsg = "We Cannot process your payment.";
-
-            }
-
-            // Data to be used on the email view
-            $data = array(
-                'sysid' => $onlineorder->sysid,
-                'name' => $onlineorder->name,
-                'course' => $onlineorder->course,
-                'telephone' => $onlineorder->telephone,
-                'mobile' => $onlineorder->mobile,
-                'email' => $onlineorder->email,
-                'address' => $onlineorder->address,
-                'courseprice' => $onlineorder->courseprice,
-                'status' => $onlineorder->status,
-                'orderstatus' => $onlineorder->orderstatus,
-                'created_at' => $onlineorder->created_at,
-                'amountpaid' => $amountpaid,
-                'amountdue' => $amountdue,
-                'invoicestatus' => $invoicestatus,
-                'invoicemsg' => $invoicemsg
-
-
-            );
-
-            $useremail = $onlineorder->email;
-            $username = $onlineorder->name;
-
-            Mail::send('invoice', $data, function($message) use ($useremail, $username){
-                $message->to($useremail, $username)->subject
-                ('You have been successfully paid to Project Management Solutions');
-                $message->from('noreply@pms.lk','Project Management Solutions');
-                $message->bcc('info@pms.lk','Project Management Solutions');
-            });
-
-
-        }else{
-
-            Order::where('sysid', $merchantReferenceNo)->update(['orderstatus' => 'Deactive']);
-
-            $onlineorder = Order::where('sysid', $merchantReferenceNo)->first();
-
-            if($onlineorder->orderstatus == "Active"){
-                $amountpaid = $onlineorder->courseprice;
-                $amountdue = 0;
-                $invoicestatus = "<font color='green'>UNPAID</font>";
-                $invoicemsg = "You have been successfully paid to Project Management Solutions";
-            }else{
-                $amountpaid = 0;
-                $amountdue = $onlineorder->courseprice;
-                $invoicestatus = "<font color='red'>UNPAID</font>";
-                $invoicemsg = "We Cannot process your payment.";
-            }
-
-
-            // Data to be used on the email view
-            $data = array(
-                'sysid' => $onlineorder->sysid,
-                'name' => $onlineorder->name,
-                'course' => $onlineorder->course,
-                'telephone' => $onlineorder->telephone,
-                'mobile' => $onlineorder->mobile,
-                'email' => $onlineorder->email,
-                'address' => $onlineorder->address,
-                'courseprice' => $onlineorder->courseprice,
-                'status' => $onlineorder->status,
-                'orderstatus' => $onlineorder->orderstatus,
-                'created_at' => $onlineorder->created_at,
-                'amountpaid' => $amountpaid,
-                'amountdue' => $amountdue,
-                'invoicestatus' => $invoicestatus,
-                'invoicemsg' => $invoicemsg
-
-
-            );
-
-            $useremail = $onlineorder->email;
-            $username = $onlineorder->name;
-
-            Mail::send('invoice', $data, function($message) use ($useremail, $username){
-                $message->to($useremail, $username)->subject
-                ('We Cannot process your payment');
-                $message->from('noreply@pms.lk','Project Management Solutions');
-                $message->bcc('info@pms.lk','Project Management Solutions');
-            });
-
-        }
-
-        $categories = Category::where('parent_id', '=', 0)->where('position', '1')->get();
-
-        //sub couses
-        $agile = Category::where('parent_id', '=', 18)->where('position', '1')->get();
-        $projectm = Category::where('parent_id', '=', 19)->where('position', '1')->orderBy('list', 'ASC')->get();
-        $community = Category::where('parent_id', '=', 20)->where('position', '1')->get();
-        $softskills = Category::where('parent_id', '=', 21)->where('position', '1')->get();
-        $business = Category::where('parent_id', '=', 53)->where('position', '1')->get();
-
-
-        return view('response', compact('categories','status', 'agile', 'projectm', 'community', 'softskills', 'business'));
-    }
-
-    */
    
-   let pgdomain="www.paystage.com";
-   let pgInstanceId="73787690";
-   let merchantId="73797374";
-   let hashKey="EB1BDE02A037BF65";
+   let pgInstanceId = "73787690";
+   let merchantId = "73797374";
+   let hashKey = "EB1BDE02A037BF65";
 
    res.set('pragma', 'no-cache');
    res.set('cache-control', 'No-cache');
 
-   let transactionTypeCode=req.body.transaction_type_code
-   let installments=req.body.installments
+   let transactionTypeCode = req.body.transaction_type_code
+   let installments = req.body.installments
    let transactionId = req.body.transaction_id
 
-   let amount=req.body.amount
-   let exponent=req.body.exponent
-   let currencyCode=req.body.currency_code
-   let merchantReferenceNo=req.body.merchant_reference_no
+   let amount = req.body.amount
+   let exponent = req.body.exponent
+   let currencyCode = req.body.currency_code
+   let merchantReferenceNo = req.body.merchant_reference_no
 
-   let status=req.body.status
-   let eci=req.body["3ds_eci"];
-   let pgErrorCode=req.body["pg_error_code"];
+   let status = req.body.status
+   let eci = req.body["3ds_eci"];
+   let pgErrorCode = req.body["pg_error_code"];
 
-   let pgErrorDetail=req.body["pg_error_detail"];
-   let pgErrorMsg=req.body["pg_error_msg"];
+   // TODO Custom Error Handling
+   let pgErrorDetail = req.body["pg_error_detail"];
+   let pgErrorMsg = req.body["pg_error_msg"];
 
-   let messageHash=req.body["message_hash"];
+   let messageHash = req.body["message_hash"];
 
    let messageHashBuf = `${pgInstanceId}|${merchantId}|${transactionTypeCode}|${installments}|${transactionId}|${amount}|${exponent}|${currencyCode}|${merchantReferenceNo}|${status}|${eci}|${pgErrorCode}|${hashKey}|`
    //$messageHashBuf=$pgInstanceId."|".$merchantId."|".$transactionTypeCode."|".$installments."|".$transactionId."|".$amount."|".$exponent."|".$currencyCode."|".$merchantReferenceNo."|".$status."|".$eci."|".$pgErrorCode."|".$hashKey."|";
 
-   let sha1EncryptedHash = crypto.createHash('sha1')
-   sha1EncryptedHash.update(messageHashBuf)
+   let sha1EncryptedHash = crypto.createHash('sha1');
+   sha1EncryptedHash.update(messageHashBuf);
 
-    // Create buffer object, specifying binary as encoding
    let bufferObj = Buffer.from(sha1EncryptedHash.digest('hash'), "utf8");
-    // Encode the Buffer as a base64 string
    let base64String = bufferObj.toString("base64");
 
-   let messageHashClient = "13:" + base64String // .base64_encode(sha1($messageHashBuf, true));
+   let messageHashClient = "13:" + base64String;
 
-   let hashMatch=false;
+   let hashMatch = false;
 
    if (messageHash==messageHashClient){
-       hashMatch=true;
+       hashMatch = true;
    } else {
-       hashMatch=false;
+       hashMatch = false;
        // Handle bad request
-       return res.send("Invalid Operation");
+       return res.send("Hash failed to match");
    }
 
+   // Handle Card Declined Error
+   if(pgErrorCode == "13004"){
+    Course.find({}, (error, courses)=>{
+        if(error || course == null){
+            console.log(error)
+            return res.render("pages/message-page",{courses,message: "Course Not Found"})
+        } 
 
-   //Update status
+        return res.render("pages/message-page",{courses,message: "Card Issuer Declined Payment"})
+    })
+   }
+
+   //Success 
    if(status == "50020")
    {
        let updateBody = {
-        paymentComplete: true
-       }
+            paymentComplete: true
+       };
+       let sendConfirmation = require('./mail');
        // Update Registration
-       Registration.findOneAndUpdate({_id: merchantReferenceNo}, updateBody, function (err, course) {
+       Registration.findOneAndUpdate({_id: merchantReferenceNo}, updateBody, function (err, registration) {
         Course.find({}, (error, courses)=>{
-            if(err || course == null){
-                console.log(err)
-                return res.render("pages/message-page",{courses,message: "Course Not Found"})
+            if(err || registration == null){
+                console.log(err);
+                return res.render("pages/message-page",{courses,message: "Registration Not Found"});
             } 
-
-            return res.render("pages/message-page",{courses,message: "Payment Successful!"})
-        })
+            sendConfirmation(registration.email);
+            return res.render("pages/message-page",{courses,message: "Payment Successful!"});
+        });
     });
-
-
    }else{
         // Delete associated registration
         Registration.findOneAndRemove({_id: merchantReferenceNo}, function (err) {
             if (err) 
-            return  res.status(500).json({error: "Error deleting course"})
+            return  res.status(500).json({error: "Error deleting Registration"})
             Course.find({}, (error, courses)=>{
-                if(error || course == null){
+                if(error || courses == null){
                     console.log(error)
-                    return res.render("pages/message-page",{courses,message: "Course Not Found"})
+                    return res.render("pages/message-page",{courses,message: "Registration Not Found"})
                 } 
     
                 return res.render("pages/message-page",{courses,message: "Could not process payment"})
             })
         })
-
    }
 })
 
 app.post('/paynow/:moniker', function(req, res) {
-
     Course.findOne({ moniker: req.params.moniker}, (err, course)=>{
         if(err || course == null){
             return res.render("pages/message-page",{courses,message: "Coure Not Found"})
         }
-        console.log(course)
         let registration = new Registration({
             name: req.body.name,
             email: req.body.email,
@@ -416,19 +258,12 @@ app.post('/paynow/:moniker', function(req, res) {
                 let orderDesc = 'PMS Online Payment';
              
                 let messageHash = `${pgInstanceId}|${merchantId}|${perform}|${currencyCode}|${amount}|${merchantReferenceNo}|${hashKey}|` 
-                //$pgInstanceId."|".$merchantId."|".$perform."|".$currencyCode."|".$amount."|"   .$merchantReferenceNo."|".$hashKey."|";
-                console.log(messageHash)
-                //let sha1EncryptedHash = sha1(messageHash)
                 let sha1EncryptedHash = crypto.createHash('sha1')
                 sha1EncryptedHash.update(messageHash)
                 
-                // Create buffer object, specifying binary as encoding
                 let bufferObj = Buffer.from(sha1EncryptedHash.digest('hash'), "utf8");
-                 // Encode the Buffer as a base64 string
                  let base64String = bufferObj.toString("base64");
-                 let message_hash = `CURRENCY:7:${base64String}` //"CURRENCY:7:".base64_encode(sha1($messageHash, true));
-                console.log(message_hash)
-                 // Return HTML page
+                 let message_hash = `CURRENCY:7:${base64String}`;
                 let header = `<html>
                  <head><title>Processing..</title>
                     <script language='javascript'>
@@ -469,17 +304,7 @@ app.post('/paynow/:moniker', function(req, res) {
             </html>`;
 
             let html = header + body;
-
-            return res.send(html);
-
-            Course.find({}, (error, courses)=>{
-                if(error){
-                    console.log(error)
-                    return res.render("pages/message-page",{courses,message: "Failed to Register. Please try again soon or contact hotline"})
-                }
-
-                return res.render("pages/message-page",{courses,message: "Your Registration has been received. Our team will respond shortly"})
-            }) 
+            return res.send(html); 
         })
     })
 });
@@ -512,6 +337,7 @@ app.get('/inquiry/:id/delete', (req,res)=>{
 })
 
 app.get('/registration/:id/handle', (req,res)=>{
+    console.log(req.params.id)
     Registration.findByIdAndUpdate({_id: req.params.id}, {handled: true}, function (err) {
         if (err) 
             return  res.status(500).json({error: "Error handling registration"})
