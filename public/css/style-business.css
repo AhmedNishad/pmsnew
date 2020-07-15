@@ -94,7 +94,7 @@ h3,
 h4,
 h5,
 h6 {
-  color: #111d5e;
+  color: #004165;
   font-family: "Helvetica Neue", sans-serif;
   font-weight: bold;
   display: block;
@@ -1686,7 +1686,7 @@ button.sw-solid-btn:hover {
 }
 .sw-btn.sw-solid-btn.sw-color-1-btn,
 button.sw-solid-btn.sw-color-1-btn {
-  background-color: #1b6ca8;
+  background-color: #111d5e;
 }
 .sw-btn.sw-solid-btn.sw-color-1-btn:hover,
 button.sw-solid-btn.sw-color-1-btn:hover {
