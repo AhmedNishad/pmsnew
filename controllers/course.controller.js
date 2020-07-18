@@ -17,7 +17,7 @@ router.get('/:moniker', (req,res) => {
     })
 })
 
-router.get('/display/all', (req,res) => {
+router.get('', (req,res) => {
     console.log("Loading all courses")
     Course.find({}, (error, courses)=>{
         if(error || courses == null) 
@@ -26,6 +26,16 @@ router.get('/display/all', (req,res) => {
         return res.render("pages/all-courses",{ courses})
     })
 })
+
+/* router.get('/display/all', (req,res) => {
+    console.log("Loading all courses")
+    Course.find({}, (error, courses)=>{
+        if(error || courses == null) 
+            return res.render("pages/message-page",{courses,message: "Course Not Found"})
+
+        return res.render("pages/all-courses",{ courses})
+    })
+}) */
 
 router.get('/display/schedule', (req,res) => {
     console.log("Loading Schedule")

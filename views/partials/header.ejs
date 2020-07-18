@@ -1,6 +1,14 @@
+<style>
+  nav li{
+    height: 1rem;
+  }
+  #branding{
+    width: 10%;
+  }
+</style>
 <div class="sw-menu sw-menu-fixed">
     <div class="container">
-      <div class="sw-menu-content">
+      <div id="branding" class="sw-menu-content">
         <!-- logo link -->
         <a href="/" class="sw-logo">
           <!-- logo img -->
@@ -13,16 +21,16 @@
             <!-- menu list -->
             <ul class="main-menu">
               <!-- nav link -->
-              <li class="menu-item current-menu-item"><a href="/">Home</a></li>
+              <li class="menu-item current-menu-parent"><a href="/">Home</a></li>
               <!-- nav link -->
               <li class="menu-item current-menu-parent">
                 <a href="/about">About</a>
               </li>
               <!-- nav link -->
-              <li class="menu-item"><a href="/courses/display/schedule">Course Schedule</a></li>
+              <li class="menu-item"><a href="/courses/display/schedule">Schedule</a></li>
               <!-- nav link -->
-              <li id="navbar" class="menu-item current-menu-item">
-                <a href="/courses/display/all">Courses</a>
+              <li id="navbar" class="menu-item current-menu-parent">
+                <a href="/courses">Courses</a>
                 <% if(courses != undefined){ %>
                   <div id="navbar-menu">
                     <div class="container">
@@ -61,7 +69,7 @@
               </li>
               <!-- nav link -->
               <li class="menu-item current-menu-parent">
-                <a href="/register">Register Now</a>
+                <a href="/register">Register</a>
               </li>
               <!-- nav link -->
               <li class="menu-item"><a href="/contact">Contact</a></li>
