@@ -272,7 +272,7 @@
                     let day = (parseInt(now.getDate())) >= 10 ? (parseInt(now.getDate()) ) : "0" + (parseInt(now.getDate()))
                     let dateString = now.getFullYear() + "-" + month + "-" + day;
                     
-                    if(course.courseDates == null || course.courseDates.filter(cd => cd.date > new Date().setHours(0,0,0,0)).length == 0){ %>
+                    if(course.courseDates == null || course.courseDates.length == 0){ %>
                               <div>
                                     <input min="<%= dateString %>" class="form-control" type="date" name="courseDates[0][date]" />
                                     <input class="form-control" value="" type="text" name="courseDates[0][times]" placeholder="times">
@@ -280,9 +280,9 @@
                                 </div> 
                     <% } %>
                     <%
-                        for ( var i = 0; i < course.courseDates.filter(d => d.date > new Date().setHours(0,0,0,0)).length; i++ )
+                        for ( var i = 0; i < course.courseDates.length; i++ )
                         {
-                            var date = course.courseDates.filter(d => d.date > new Date().setHours(0,0,0,0))[i]
+                            var date = course.courseDates[i]
     
                             /* if(date.date > new Date().setHours(0,0,0,0)){ */
                               let now = new Date();
