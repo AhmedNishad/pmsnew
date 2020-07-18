@@ -62,30 +62,34 @@
           
         <div class="form-group">
           <div class="row">
-            <label class="control-label col-md-4" for="name">Select Course</label>
-          <select required class="form-control" name="course" id="selectCourse">
-            <option value="none" disabled>Please Select</option>
-            <%
-              for ( var i = 0; i < courses.length; i++ )
-              {
-                  let course = courses[i];
-                      %>
-                      <option data-slots="<%= JSON.stringify(course.courseDates.filter(d => d.date > new Date().setHours(0,0,0,0))) %>" value="<%= course.moniker %>"><%= course.title %></option> 
-                  <%
-              }
+            <div class="col-md-6">
+              <label class="control-label col-md-4" for="name">Select Course</label>
+              <select required class="form-control" name="course" id="selectCourse">
+                <option value="none" disabled>Please Select</option>
+                <%
+                  for ( var i = 0; i < courses.length; i++ )
+                  {
+                      let course = courses[i];
+                          %>
+                          <option data-slots="<%= JSON.stringify(course.courseDates.filter(d => d.date > new Date().setHours(0,0,0,0))) %>" value="<%= course.moniker %>"><%= course.title %></option> 
+                      <%
+                  }
+                
+              %>  
+            </select>
+            </div>
             
-          %>  
-        </select>
-          </div>
-          
-        </div>
-
-        <div class="form-group">
+        <div class="col-md-6">
           <label class="control-label col-md-4" for="name">Select Time Slot</label>
             <select required  class="form-control" name="date" id="selectSlot">
                 
             </select>
           </div>
+          </div>
+          
+        </div>
+
+        
 
           <div class="form-group">
           <label class="control-label col-sm-4" for="name">Select Location</label>
