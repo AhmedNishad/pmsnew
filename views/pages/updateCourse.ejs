@@ -275,8 +275,7 @@
                     if(course.courseDates == null || course.courseDates.filter(cd => cd.date > new Date().setHours(0,0,0,0)).length == 0){ %>
                               <div>
                                     <input min="<%= dateString %>" class="form-control" type="date" name="courseDates[0][date]" />
-                                    <input class="form-control" type="text" name="courseDates[0][timeFrom]" placeholder="timeFrom">
-                                    <input class="form-control" type="text" name="courseDates[0][timeTo]" placeholder="timeTo">
+                                    <input class="form-control" value="" type="text" name="courseDates[0][times]" placeholder="times">
                                     <button class="btn btn-danger remove">Remove</button>
                                 </div> 
                     <% } %>
@@ -295,8 +294,8 @@
                               let courseDateString = date.date.getFullYear() + "-" + month + "-" + day;
                                 %><div>
                                   <input min="<%= dateString %>" value="<%= courseDateString %>" class="form-control" type="date" name="courseDates[<%= i %>][date]" />
-                                    <input class="form-control" value="<%= date.timeFrom %>" type="text" name="courseDates[<%= i %>][timeFrom]" placeholder="timeFrom">
-                                    <input class="form-control" value="<%= date.timeTo %>" type="text" name="courseDates[<%= i %>][timeTo]" placeholder="timeTo">
+                                    <input class="form-control" value="<%= date.times || "" %>" type="text" name="courseDates[<%= i %>][times]" placeholder="times">
+                                
                                     <button class="btn btn-danger remove">Remove</button>
                                 </div>   <%
                       }

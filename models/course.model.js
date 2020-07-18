@@ -23,7 +23,7 @@ var courseSchema = new Schema({
   courseImage: String,
   price: { type: Number, default: 0 },
   nextSession: { type: Date, default: Date.now }, // 
-  courseDates: [{date: Date, timeFrom: String, timeTo: String}]
+  courseDates: [{date: Date, timeFrom: String, timeTo: String, times: String}]
 });
 
 module.exports = mongoose.model('Course', courseSchema)

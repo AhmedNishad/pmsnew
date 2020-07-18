@@ -89,7 +89,7 @@
                       </thead>
                       <tbody>
                           <%
-                            let filtered = courses.filter(c => c.courseDates.filter(d => d.timeFrom == "").length == 0)
+                            let filtered = courses.filter(c => c.courseDates.filter(d => d.times == "").length == 0)
                             for(let i = 0; i < filtered.length; i++){
                                 let course = filtered[i]
                                 %>
@@ -101,7 +101,7 @@
                                             for(let j = 0; j < filteredCourseDates.length; j++){
                                                 let date = filteredCourseDates[j];
                                                 %>
-                                                    <p><%= date.date.toDateString() %> from <%= date.timeFrom %> to <%= date.timeTo %></p>
+                                                    <p><%= date.date.toDateString() %> - <%= date.times || "" %></p>
                                                 <%
                                             }
                                         %>

@@ -320,14 +320,14 @@
                         <select required class="form-control" name="date" id="selectSlot">
                             <% 
                                 for(let i = 0; i< course.courseDates.filter(d => d.date > new Date().setHours(0,0,0,0)).length; i++){
-                                    let courseDate = course.courseDates.filter(cs => cs.timeFrom != "")[i];
+                                    let courseDate = course.courseDates.filter(cs => cs.times != "")[i];
                                     if(courseDate.date != null){
                                     %>
-                                    <option value=<%= new Date(courseDate.date).toLocaleDateString() %>> <%= new Date(courseDate.date).toDateString() %> : <%= courseDate.timeFrom %> - <%= courseDate.timeTo %></option>
+                                    <option value=<%= new Date(courseDate.date).toLocaleDateString() %>> <%= new Date(courseDate.date).toDateString() %></option>
                                     <%}
                                 }
                             %>
-                            <% if(course.courseDates.filter(cs => cs.timeFrom == "").length > 0 || course.courseDates.length == 0){
+                            <% if(course.courseDates.filter(cs => cs.times == "").length > 0 || course.courseDates.length == 0){
                                 %>
                                 <option disabled value="">No dates for this course</option>
                                 <%

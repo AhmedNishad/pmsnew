@@ -63,7 +63,7 @@
         <div class="form-group">
           <div class="row">
             <div class="col-md-6">
-              <label class="control-label col-md-4" for="name">Select Course</label>
+              <label class="control-label col-md-8" for="name">Select Course</label>
               <select required class="form-control" name="course" id="selectCourse">
                 <option value="none" disabled>Please Select</option>
                 <%
@@ -80,7 +80,7 @@
             </div>
             
         <div class="col-md-6">
-          <label class="control-label col-md-4" for="name">Select Time Slot</label>
+          <label class="control-label col-md-8" for="name">Select Time Slot</label>
             <select required  class="form-control" name="date" id="selectSlot">
                 
             </select>
@@ -149,7 +149,7 @@
         let optionHtml = ""
         for(let i = 0; i < slots.length; i++){
           let slot = slots[i]
-          optionHtml += `<option value=${new Date(slot.date).toLocaleDateString()}>${new Date(slot.date).toDateString()} : ${slot.timeFrom} - ${slot.timeTo}</option>`
+          optionHtml += `<option value=${new Date(slot.date).toLocaleDateString()}>${new Date(slot.date).toDateString()}</option>`
         }
         selectSlot.innerHTML = optionHtml
         submit.disabled = false;
