@@ -591,10 +591,12 @@ function onLoadSubmit() {
         return Redirect::to('contact');
 
     }
-
-
-
-
-    
 }
+
+MAIL_DRIVER=smtp
+MAIL_HOST=pms.lk
+MAIL_PORT=465
+MAIL_USERNAME=noreply@pms.lk
+MAIL_PASSWORD=#g7+hnMgFItx
+MAIL_ENCRYPTION=ssl
 

@@ -68,7 +68,7 @@ router.post("", (req,res) => {
         PDUTable: req.body.PDUTable,  // For the tables
         keyTakeaway: req.body.keyTakeaway,
         courseImage: req.body.courseImage,
-        courseDates: [{date: new Date().addDays(10), timeFrom: "", timeTo: ""}],
+        courseDates: [{date: new Date(), timeFrom: "", timeTo: "", times: ""}],
         price: req.body.price
     })
     course.save((err)=>{
