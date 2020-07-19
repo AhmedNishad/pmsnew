@@ -89,7 +89,16 @@
                       </thead>
                       <tbody>
                           <%
-                            let filtered = courses.filter(c => c.courseDates.filter(d => d.times == "").length == 0)
+
+                            let filtered = courses.filter(c => {
+                              if(c.courseDates == null){
+                                return false;
+                              } 
+                              if(c.courseDates.filter(d => d.date).length == 0){
+                                return false;
+                              }
+                              return true;
+                            })
                             for(let i = 0; i < filtered.length; i++){
                                 let course = filtered[i]
                                 %>
@@ -97,11 +106,11 @@
                                     <td scope="row"><a href="/courses/<%= course.moniker %>"><%= course.title %></></td>
                                     <td>
                                         <%
-                                            let filteredCourseDates = course.courseDates.filter(date => date.date > new Date())
+                                            let filteredCourseDates = course.courseDates
                                             for(let j = 0; j < filteredCourseDates.length; j++){
                                                 let date = filteredCourseDates[j];
                                                 %>
-                                                    <p><%= date.date.toDateString() %> - <%= date.times || "" %></p>
+                                                    <p><%= date.date.toDateString() %> - <%= date.times %></p>
                                                 <%
                                             }
                                         %>
