@@ -199,7 +199,7 @@
                     <h5>&nbsp;  Course Contents</h5>
                     <ul id="courseContents" class="list-group">
                         <%
-                            until = course.courseContent.length > 5 ? 5 : course.courseContent.length
+                            until = course.courseContent.length > 10 ? 10 : course.courseContent.length
                             for ( var i = 0; i < until; i++ )
                             {
                                 var content = course.courseContent[i]
@@ -211,10 +211,10 @@
                             }
                             %>
                     </ul>
-                    <% if(course.courseContent.length > 5){ %>
+                    <% if(course.courseContent.length > 10){ %>
                         <div class="collapse" id="hiddenContent">
                             <%
-                                for ( var i = 5; i < course.courseContent.length; i++ )
+                                for ( var i = 10; i < course.courseContent.length; i++ )
                                 {
                                     var content = course.courseContent[i]
                                 if(content.body != ""){
