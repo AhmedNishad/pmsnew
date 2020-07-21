@@ -3548,3 +3548,18 @@ input{
 /* #navbar:hover #navbar-menu {
    
 } */
+
+.enroll-option ul{
+  list-style: none;
+}
+.enroll-option{
+  align-items: center;
+  font-size: medium;
+text-align: initial;
+}
+.enroll-option ul li{
+  padding-top: 10px;
+}
+.enroll-option ul li:before{
+  content: '✓';
+}
