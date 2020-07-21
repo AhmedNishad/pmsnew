@@ -124,8 +124,6 @@
                                 }
                                 %>
                         </div>
-                            
-                        <% } %>
                         <button id="show-more-objectives-button" class="btn btn-sm btn-link" type="button" data-toggle="collapse" data-target="#hiddenObjectives" aria-expanded="false" aria-controls="collapseExample">
                             Show <span id="show-more-objectives-span">More</span>
                         </button>
@@ -141,6 +139,8 @@
                             })
                             
                         </script>
+                        <% } %>
+                        
                 </ul>
                     <!-- list end -->
                     <!-- suptitle -->
@@ -211,21 +211,36 @@
                             }
                             %>
                     </ul>
-                    <% if(until > 5){ %>
-                    <ul id="courseContentsHidden" class="list-group" >
-                        <%
-                            for ( var i = 5; i < course.courseContent.length; i++ )
-                            {
-                                var content = course.courseContent[i]
+                    <% if(course.courseContent.length > 5){ %>
+                        <div class="collapse" id="hiddenContent">
+                            <%
+                                for ( var i = 5; i < course.courseContent.length; i++ )
+                                {
+                                    var content = course.courseContent[i]
                                 if(content.body != ""){
                                     %><li class="list-group-item">
                                         <%- content.body %>
                                         </li>  <%
                                 }
-                            }
-                            %>
-                    </ul>
-                    <% } %>
+                                }
+                                %>
+                        </div>
+                        <button id="show-more-content-button" class="btn btn-sm btn-link" type="button" data-toggle="collapse" data-target="#hiddenContent" aria-expanded="false" aria-controls="collapseExample">
+                            Show <span id="show-more-content-span">More</span>
+                        </button>
+
+                        <script>
+                            document.getElementById('show-more-content-button').addEventListener('click',(e)=>{
+                                let showMoreContentSpan = document.getElementById('show-more-content-span')
+                                if(showMoreContentSpan.textContent == "More"){
+                                    showMoreContentSpan.textContent ="Less"
+                                }else if(showMoreContentSpan.textContent == "Less"){
+                                    showMoreContentSpan.textContent = "More"
+                                }
+                            })
+                            
+                        </script>
+                        <% } %>
                 </div>
                 <div class="col-md-5">
                     <!-- <h5>&nbsp;  Methodology</h5>
