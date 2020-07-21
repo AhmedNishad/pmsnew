@@ -3489,12 +3489,12 @@ input{
 } */
 
 #registrationSection button{
-  background: #ff5d5d;
+  background: rgb(255, 88, 0);;
   color: white;
 }
 
 #registrationSection a{
-  background: #ff5d5d;
+  background: rgb(255, 88, 0);;
   color: white;
 }
 
