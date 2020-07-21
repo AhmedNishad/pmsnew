@@ -98,17 +98,50 @@
                     <!-- list -->
                     <ul class="sw-list">
                         <%
-                                for ( var i = 0; i < course.objectives.length; i++ )
+                            let until = course.objectives.length > 5 ? 5 : course.objectives.length
+                            for ( var i = 0; i < until; i++ )
+                            {
+                                var objective = course.objectives[i]
+                                if(objective.text != ""){
+                                    %><li>
+                                    <div class="sw-list-mark"><%= i + 1%></div> <%= objective.text %>
+                                    </li>   <%
+                                }
+                            }
+                        %> 
+                        
+                        <% if(course.objectives.length > 5){ %>
+                        <div class="collapse" id="hiddenObjectives">
+                            <%
+                                for ( var i = 5; i < course.objectives.length; i++ )
                                 {
                                     var objective = course.objectives[i]
                                     if(objective.text != ""){
                                         %><li>
-                                        <div class="sw-list-mark"><%= i + 1%></div> <%= objective.text %>
-                                        </li>   <%
+                                    <div class="sw-list-mark"><%= i + 1%></div> <%= objective.text %>
+                                    </li>  <%
                                     }
                                 }
-                                %> 
-                    </ul>
+                                %>
+                        </div>
+                            
+                        <% } %>
+                        <button id="show-more-objectives-button" class="btn btn-sm btn-link" type="button" data-toggle="collapse" data-target="#hiddenObjectives" aria-expanded="false" aria-controls="collapseExample">
+                            Show <span id="show-more-objectives-span">More</span>
+                        </button>
+
+                        <script>
+                            document.getElementById('show-more-objectives-button').addEventListener('click',(e)=>{
+                                let showMoreObjectiveSpan = document.getElementById('show-more-objectives-span')
+                                if(showMoreObjectiveSpan.textContent == "More"){
+                                    showMoreObjectiveSpan.textContent ="Less"
+                                }else if(showMoreObjectiveSpan.textContent == "Less"){
+                                    showMoreObjectiveSpan.textContent = "More"
+                                }
+                            })
+                            
+                        </script>
+                </ul>
                     <!-- list end -->
                     <!-- suptitle -->
                     </div>
@@ -164,9 +197,10 @@
             <div class="row mb-30">
                 <div style="font-size: 1.0rem;" class="col-lg-7">
                     <h5>&nbsp;  Course Contents</h5>
-                    <ul class="list-group">
+                    <ul id="courseContents" class="list-group">
                         <%
-                            for ( var i = 0; i < course.courseContent.length; i++ )
+                            until = course.courseContent.length > 5 ? 5 : course.courseContent.length
+                            for ( var i = 0; i < until; i++ )
                             {
                                 var content = course.courseContent[i]
                                 if(content.body != ""){
@@ -177,6 +211,21 @@
                             }
                             %>
                     </ul>
+                    <% if(until > 5){ %>
+                    <ul id="courseContentsHidden" class="list-group" >
+                        <%
+                            for ( var i = 5; i < course.courseContent.length; i++ )
+                            {
+                                var content = course.courseContent[i]
+                                if(content.body != ""){
+                                    %><li class="list-group-item">
+                                        <%- content.body %>
+                                        </li>  <%
+                                }
+                            }
+                            %>
+                    </ul>
+                    <% } %>
                 </div>
                 <div class="col-md-5">
                     <!-- <h5>&nbsp;  Methodology</h5>
