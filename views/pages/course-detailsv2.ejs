@@ -199,7 +199,7 @@
                     <h5>&nbsp;  Course Contents</h5>
                     <ul id="courseContents" class="list-group">
                         <%
-                            until = course.courseContent.length > 5 ? 5 : course.courseContent.length
+                            until = course.courseContent.length > 10 ? 10 : course.courseContent.length
                             for ( var i = 0; i < until; i++ )
                             {
                                 var content = course.courseContent[i]
@@ -211,10 +211,10 @@
                             }
                             %>
                     </ul>
-                    <% if(course.courseContent.length > 5){ %>
+                    <% if(course.courseContent.length > 10){ %>
                         <div class="collapse" id="hiddenContent">
                             <%
-                                for ( var i = 5; i < course.courseContent.length; i++ )
+                                for ( var i = 10; i < course.courseContent.length; i++ )
                                 {
                                     var content = course.courseContent[i]
                                 if(content.body != ""){
@@ -242,6 +242,7 @@
                         </script>
                         <% } %>
                 </div>
+                
                 <div class="col-md-5">
                     <!-- <h5>&nbsp;  Methodology</h5>
                     <ul style="font-size: 1.1rem;">
@@ -257,8 +258,8 @@
                             }
                             %>
                     </ul> -->
-                </div>    
-            </div>    
+                    <iframe id="lf-iframe-embed-code-78776" style="min-width: 100% !important;width: 100px !important;*width: 100% !important; border:none;min-height: 483px;" src="https://app.leadformly.com/get_last_form_url/78776" scrolling="no" frameborder="0"></iframe> <script type="text/javascript">var ifr = document.getElementById("lf-iframe-embed-code-78776"); if (window.location.href && window.location.href.indexOf('?') > -1) { var get = window.location.href.substr(window.location.href.indexOf('?') + 1); if (ifr && get.length > 0) { var src = ifr.src; src = src.indexOf('?') > -1 ? src + '&' + get : src + '?' + get; ifr.src = src; } } var iframePosition = function(e) { var n = ifr.getBoundingClientRect().top + pageYOffset; ifr.contentWindow.postMessage(JSON.stringify({type: 'iframeTop', value1: n}), '*'); }, onTestScroll = function(e) { window.pageYOffset || document.documentElement.scrollTop; var n = ifr.getBoundingClientRect(); ifr.contentWindow.postMessage( JSON.stringify({type: 'windowTop', value2: n.y || n.top, value3: window.innerHeight}), '*'); }; window.addEventListener ? (window.addEventListener('scroll', onTestScroll, !1), window.addEventListener( 'load', onTestScroll, !1), window.addEventListener('scroll', iframePosition, !1), window.addEventListener('load', iframePosition, !1), window.addEventListener('DOMContentLoaded', iframePosition, !1)) : window.attachEvent && (window.addEventListener('DOMContentLoaded', iframePosition), window.attachEvent('scroll', onTestScroll), window.addEventListener('load', onTestScroll)); window.handleIFrameMessage = function(e) { if (e.data.length > 0) { try { var args = JSON.parse(e.data); var iframe = document.getElementById("lf-iframe-embed-code-78776"); var formIds = ["78776"]; if (formIds.indexOf(args.formID) !== -1) { switch (args.case) { case 'redirectTo': window.open(decodeURI(args.redirectToURL), '_self'); ifr.src = ifr.src; break; case 'resizeIframe': iframe.width = args.scrollWidth + 'px', iframe.height = args.scrollHeight + 'px'; break; case 'stepChanged' : var elCoords = getCoords(ifr), isFormOnScreen = isOnScreen(ifr, false); if (!isFormOnScreen) { window.scrollTo(0, elCoords.top); } break; case 'scrollTo': window.scrollTo({top: args.scrollToPosition}); break; } } if ('contentWindow' in iframe && 'postMessage' in iframe.contentWindow) { var urls = { 'docurl': encodeURIComponent(document.URL), 'referrer': encodeURIComponent(document.referrer), }; iframe.contentWindow.postMessage(JSON.stringify({'type': 'urls', 'value': urls}), '*'); } } catch (e) {} } }; if (window.addEventListener) { window.addEventListener('message', handleIFrameMessage, false); } else if (window.attachEvent) { window.attachEvent('onmessage', handleIFrameMessage); } var getCoords = function(elem) { var box = elem.getBoundingClientRect(); var body = document.body; var docEl = document.documentElement; var scrollTop = window.pageYOffset || docEl.scrollTop || body.scrollTop; var scrollLeft = window.pageXOffset || docEl.scrollLeft || body.scrollLeft; var clientTop = docEl.clientTop || body.clientTop || 0; var clientLeft = docEl.clientLeft || body.clientLeft || 0; var top = box.top + scrollTop - clientTop; var left = box.left + scrollLeft - clientLeft; return {top: Math.round(top), left: Math.round(left)}; }; var isOnScreen = function(_this, partial) { var t = _this; var box = t.getBoundingClientRect(); var win = {h: window.innerHeight, w: window.innerWidth}; var topEdgeInRange = box.top >= 0 && box.top <= win.h; var bottomEdgeInRange = box.bottom >= 0 && box.bottom <= win.h; var leftEdgeInRange = box.left >= 0 && box.left <= win.w; var rightEdgeInRange = box.right >= 0 && box.right <= win.w; var coverScreenHorizontally = (box.left <= 0 ^ box.right >= win.w); var coverScreenVertically = (box.top <= 0 ^ box.bottom >= win.h); var topEdgeInScreen = topEdgeInRange && (leftEdgeInRange || rightEdgeInRange || coverScreenHorizontally); var bottomEdgeInScreen = bottomEdgeInRange && (leftEdgeInRange || rightEdgeInRange || coverScreenHorizontally); var leftEdgeInScreen = leftEdgeInRange && (topEdgeInRange || bottomEdgeInRange || coverScreenVertically); var rightEdgeInScreen = rightEdgeInRange && (topEdgeInRange || bottomEdgeInRange || coverScreenVertically); var isPartiallyOnScreen = topEdgeInScreen || bottomEdgeInScreen || leftEdgeInScreen || rightEdgeInScreen; var isEntirelyOnScreen = topEdgeInScreen && bottomEdgeInScreen && leftEdgeInScreen && rightEdgeInScreen; return partial ? isPartiallyOnScreen : isEntirelyOnScreen; };</script>
+                </div>
         </div>
 
         <div id="sw-content" class="container">
@@ -271,31 +272,11 @@
                 <div class="col-md-12">
                     <br>
                     <h5 style="color: #494953;">Live Virtual Classroom</h5>
-                    <p>Our online training course maintains the same high quality instructor delivery standards, better learning impact, pass guarantee as the in person class room course with the flexibility and convenience to attend from your home or office.</p>
-                    <br>
-                    <li>Learn in an instructor-led online training class that fits your needs and schedule</li>
-                    <li>Take the course from the convenience of your home or office</li>
-                    <li>Join from anywhere in the world</li>
-                    <li>Knowledge sharing through live interactions with your instructor and fellow students</li>
-                    <li>Convenience, cost savings and flexibility </li>
-                    <li>Recorded sessions for those who miss classes</li>
-                    <li>Online one on one mentorship for doubt clearance</li>
-                    <li>Learn the strategy to address exam trouble spots</li>
-                    <li>Learn test taking tips, and take and review practice exams after each chapter.</li>
+                    <p>Our online training course maintains the same high quality instructor delivery standards, better learning impact, pass guarantee as the in person class room course with the flexibility and convenience to attend from your home or office.</p>             
                     <br>
                     <h5 style="color: #494953;">In Person Class Room</h5>
                     <p>Instructor-led courses are held at quality training facilities and hosted by one of our certified instructors with more than 10 years learning management experience. Our live classroom opton comes with the flexibility to convert to a virtual course or another date if your plans changes.</p>
                     <br>
-                    <p>In addition to the 6-day interactive training course, you will also receive:</p>
-                    <ul>
-                        <li>Printed Version of Study Materials</li>
-                        <li>In person classroom setting to interact with the instructor and peers</li>
-                        <li>10 case suited to leverage learning with a practical approach</li>
-                        <li>10 hands on activities to support application skills</li>
-                        <li>One on one mentorship for doubt clearance</li>
-                        <li>Learn the strategy to address exam trouble spots</li>
-                        <li>Learn test taking tips, and take and review practice exams after each chapter.</li>
-                    </ul>
                 </div>
 
                 <div class="col-md-4">
@@ -304,7 +285,17 @@
                         
                         <div class="card-body">
                                 <img src="/public/img/Learning/1-1.png">
-                        
+                                <div class="enroll-option">
+                                    <ul>
+                                        <li>Learn in an instructor-led online training class that fits your needs and schedule</li>
+                                        <li>Take the course from the convenience of your home or office</li>
+                                        <li>Join from anywhere in the world</li>
+                                        <li>Knowledge sharing through live interactions with your instructor and fellow students</li>
+                                        <li>Convenience, cost savings and flexibility </li>
+                                        <li>Online one on one mentorship for doubt clearance</li>
+                                    </ul>
+                                </div>
+
                                 <!-- <p>Register for Online Classes</p>  -->
                         </div>
                         <div class="card-footer">
@@ -320,6 +311,15 @@
                         <div class="card-body"> 
 
                             <img src="/public/img/Learning/2-1.png">
+                            <div class="enroll-option">
+                                <ul>
+                                    <li>Printed Version of Study Materials</li>
+                                    <li>In person classroom setting to interact with the instructor and peers</li>
+                                    <li>10 case suited to leverage learning with a practical approach</li>
+                                    <li>10 hands on activities to support application skills</li>
+                                    <li>One on one mentorship for doubt clearance</li>
+                                </ul>
+                            </div>
                         </div>
                         <div class="card-footer">
                             <button data-toggle="modal" data-target="#class" class="btn btn-warning">Enroll Now</button>
