@@ -6,8 +6,6 @@ let router = express.Router()
 router.get('/:moniker', (req,res) => {
     let mon = req.params.moniker
     Course.findOne({moniker: mon}, (err, course)=>{
-         // Replace with Unfound page
-        
             Course.find({}, (error, courses)=>{
                 if(err || course == null) 
                     return res.render("pages/message-page",{courses,message: "Course Not Found"})
@@ -27,16 +25,6 @@ router.get('', (req,res) => {
     })
 })
 
-/* router.get('/display/all', (req,res) => {
-    console.log("Loading all courses")
-    Course.find({}, (error, courses)=>{
-        if(error || courses == null) 
-            return res.render("pages/message-page",{courses,message: "Course Not Found"})
-
-        return res.render("pages/all-courses",{ courses})
-    })
-}) */
-
 router.get('/display/schedule', (req,res) => {
     console.log("Loading Schedule")
     Course.find({}, (error, courses)=>{
@@ -48,8 +36,6 @@ router.get('/display/schedule', (req,res) => {
 })
 
 router.post("", (req,res) => {
-    console.log(req.body)
-    //return res.send("Posted")
     let course = new Course({
         title:  req.body.title, // Title at top of 
         type: req.body.type, // Agile, project management etc
@@ -77,21 +63,9 @@ router.post("", (req,res) => {
             return res.status(500).json({error: "Error creating course", posted: req.body})
         }
         return res.redirect("/courses/"+ req.body.moniker)
-        //return res.render("pages/course-details",{course})  
-        res.send("Course Created Successfully") // Redirect to newly created course page
+        res.send("Course Created Successfully") 
     })
 })
-
-/* router.get("/:moniker/update", (req, res)=>{
-    let mon = req.params.moniker
-    Course.findOne({moniker: mon}, (err, course)=>{
-        if(err || course == null) 
-            return res.status(404).json({error: "Course Not Found"}) // Replace with Unfound page
-        
-            
-            return res.render("pages/updateCourse", {course})
-    })
-}) */
 
 router.post("/:moniker/update", (req, res) => {
     console.log("Updating course")
@@ -118,8 +92,6 @@ router.post("/:moniker/update", (req, res) => {
         FAQs: req.body.FAQs,
         price: req.body.price
     }
-    //return res.json(updateBody)
-    //return res.json(req.body)
     Course.findOneAndUpdate({moniker: req.params.moniker}, updateBody, function (err, course) {
         Course.find({}, (error, courses)=>{
             if(err || course == null){
