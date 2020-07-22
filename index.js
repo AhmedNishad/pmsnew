@@ -9,7 +9,7 @@ var app = express();
 var bodyParser = require('body-parser')
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb+srv://nishad:@ristotlE456@sayat-g5aje.mongodb.net/pms?retryWrites=true&w=majority', {useNewUrlParser: true});
+mongoose.connect('mongodb+srv://pms-user:9EH95a7zD3fr9NCn@pmscluster.i2oou.azure.mongodb.net/pms-lk?retryWrites=true&w=majority', {useNewUrlParser: true});
 
 let courseController = require('./controllers/course.controller')
 let blogController = require('./controllers/blog.controller')
