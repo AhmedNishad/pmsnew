@@ -10,7 +10,7 @@ router.get('/courses', (req,res)=>{
     console.log("Admin all courses")
     Course.find({}, (err, courses)=>{
         if(err || courses == null) 
-            return res.status(404).json({error: "No Courses Found"}) // Replace with Unfound page
+            return res.status(404).json({error: "No Courses Found"})
         
             return res.render('pages/admin-course-list', {courses:courses });
     })
@@ -21,7 +21,7 @@ router.get("/courses/:moniker/update", (req, res)=>{
     let mon = req.params.moniker
     Course.findOne({moniker: mon}, (err, course)=>{
         if(err || course == null) 
-            return res.status(404).json({error: "Course Not Found"}) // Replace with Unfound page
+            return res.status(404).json({error: "Course Not Found"})
         
             
             return res.render("pages/updateCourse", {course})
@@ -58,8 +58,6 @@ router.post("/courses/:moniker/update", (req, res) => {
         FAQs: req.body.FAQs,
         price: req.body.price
     }
-    //return res.json(updateBody)
-    //return res.json(req.body)
     Course.findOneAndUpdate({moniker: req.params.moniker}, updateBody, function (err, course) {
         Course.find({}, (error, courses)=>{
             if(err || course == null){
@@ -84,7 +82,7 @@ router.post("/courses/:moniker/delete", (req, res)=>{
 router.get('/reservations', (req,res)=>{
     Reservation.find({}, (err, reservations)=>{
         if(err) 
-            return res.status(404).json({error: "Error"}) // Replace with Unfound page
+            return res.status(404).json({error: "Error"})
         
             return res.render('pages/admin-reservations', {reservations:reservations });
     })
@@ -93,7 +91,7 @@ router.get('/reservations', (req,res)=>{
 router.get('/inquiries', (req,res)=>{
     Inquiry.find({}, (err, inquiries)=>{
         if(err) 
-            return res.status(404).json({error: "Error!"}) // Replace with Unfound page
+            return res.status(404).json({error: "Error!"})
         
             return res.render('pages/admin-inquiries', {inquiries });
     })
@@ -102,7 +100,7 @@ router.get('/inquiries', (req,res)=>{
 router.get('/registrations', (req,res)=>{
     Registration.find({}, (err, registrations)=>{
         if(err) 
-            return res.status(404).json({error: "Error!"}) // Replace with Unfound page
+            return res.status(404).json({error: "Error!"})
         
             return res.render('pages/admin-registrations', {registrations });
     })

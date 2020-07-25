@@ -9,26 +9,22 @@ var app = express();
 var bodyParser = require('body-parser')
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb+srv://nishad:@ristotlE456@sayat-g5aje.mongodb.net/pms?retryWrites=true&w=majority', {useNewUrlParser: true});
+mongoose.connect('mongodb+srv://pms-user:9EH95a7zD3fr9NCn@pmscluster.i2oou.azure.mongodb.net/pms-lk?retryWrites=true&w=majority', {useNewUrlParser: true});
 
 let courseController = require('./controllers/course.controller')
 let blogController = require('./controllers/blog.controller')
 let adminController = require('./controllers/admin.controller')
 var crypto = require('crypto')
-//app.set('views', path.join(__dirname, 'views'));
-// set the view engine to ejs
+
 app.set('view engine', 'ejs');
 
 app.use("/public", express.static(__dirname + '/public'))
-// use res.render to load up an ejs view file
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 // Send notification for every course on day of course (Cron Job)
 
-
-// index page 
 app.get('/', function(req, res) {
     Course.find({}, (err, courses)=>{
         if(err || courses == null) 
@@ -38,7 +34,6 @@ app.get('/', function(req, res) {
     })
 });
 
-// about page 
 app.get('/about', function(req, res) {
     Course.find({}, (err, courses)=>{
         if(err || courses == null) 
@@ -83,7 +78,7 @@ app.post('/contact', (req,res)=>{
 app.get('/register', function(req, res) {
     Course.find({}, (err, courses)=>{
         if(err || courses == null) 
-            return res.status(404).json({error: "No Courses Found"}) // Replace with Unfound page
+            return res.status(404).json({error: "No Courses Found"})
         
             return res.render('pages/register-online', {courses:courses });
     })
@@ -91,9 +86,6 @@ app.get('/register', function(req, res) {
 });
 
 app.post('/register', function(req, res) {
-    
-    //console.log(req.body)
-    //return res.json(req.body)
     let reservation = new Reservation({
         name: req.body.name,
         email: req.body.email,
@@ -115,8 +107,6 @@ app.post('/register', function(req, res) {
 app.get('/paynow/:moniker', function(req, res) {
     let mon = req.params.moniker
     Course.findOne({moniker: mon}, (err, course)=>{
-         // Replace with Unfound page
-        
             Course.find({}, (error, courses)=>{
                 if(err || course == null) 
                     return res.render("pages/message-page",{courses,message: "Course Not Found"})
@@ -126,7 +116,6 @@ app.get('/paynow/:moniker', function(req, res) {
     })
 });
 
-// Response from the gateway based on the result
 app.get('/response', (req,res)=>{
    
    let pgInstanceId = "73787690";
@@ -156,7 +145,6 @@ app.get('/response', (req,res)=>{
    let messageHash = req.body["message_hash"];
 
    let messageHashBuf = `${pgInstanceId}|${merchantId}|${transactionTypeCode}|${installments}|${transactionId}|${amount}|${exponent}|${currencyCode}|${merchantReferenceNo}|${status}|${eci}|${pgErrorCode}|${hashKey}|`
-   //$messageHashBuf=$pgInstanceId."|".$merchantId."|".$transactionTypeCode."|".$installments."|".$transactionId."|".$amount."|".$exponent."|".$currencyCode."|".$merchantReferenceNo."|".$status."|".$eci."|".$pgErrorCode."|".$hashKey."|";
 
    let sha1EncryptedHash = crypto.createHash('sha1');
    sha1EncryptedHash.update(messageHashBuf);
@@ -172,7 +160,6 @@ app.get('/response', (req,res)=>{
        hashMatch = true;
    } else {
        hashMatch = false;
-       // Handle bad request
        return res.send("Hash failed to match");
    }
 
@@ -183,7 +170,6 @@ app.get('/response', (req,res)=>{
             console.log(error)
             return res.render("pages/message-page",{courses,message: "Course Not Found"})
         } 
-
         return res.render("pages/message-page",{courses,message: "Card Issuer Declined Payment"})
     })
    }
@@ -195,7 +181,7 @@ app.get('/response', (req,res)=>{
             paymentComplete: true
        };
        let sendConfirmation = require('./mail');
-       // Update Registration
+
        Registration.findOneAndUpdate({_id: merchantReferenceNo}, updateBody, function (err, registration) {
         Course.find({}, (error, courses)=>{
             if(err || registration == null){
@@ -207,7 +193,6 @@ app.get('/response', (req,res)=>{
         });
     });
    }else{
-        // Delete associated registration
         Registration.findOneAndRemove({_id: merchantReferenceNo}, function (err) {
             if (err) 
             return  res.status(500).json({error: "Error deleting Registration"})
