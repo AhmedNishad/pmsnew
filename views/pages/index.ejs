@@ -6,6 +6,31 @@
 </head>
 
 <body>
+  <!-- Load Facebook SDK for JavaScript -->
+  <div id="fb-root"></div>
+  <script>
+    window.fbAsyncInit = function() {
+      FB.init({
+        xfbml            : true,
+        version          : 'v7.0'
+      });
+    };
+
+    (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
+
+  <!-- Your Chat Plugin code -->
+  <div class="fb-customerchat"
+    attribution=setup_tool
+    page_id="288298102741"
+logged_in_greeting="Hi! How can we help you?"
+logged_out_greeting="Hi! How can we help you?">
+  </div>
 
   <!-- preloader -->
   <svg class="sw-loading" style="position: fixed;top: calc(50% - 30px);left: calc(50% - 30px);" width="35" height="35" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" version="1.1">
@@ -30,12 +55,12 @@
           <div class="carousel-item active">
             <img class="d-block w-100 sw-banner-image" src="/public/img/business/banner1.jpeg" alt="First slide" >
           </div>
-          <div class="carousel-item">
+          <!-- <div class="carousel-item">
             <img class="d-block w-100 sw-banner-image" src="/public/img/business/banner2.jpeg" alt="Second slide">
           </div>
           <div class="carousel-item">
             <img class="d-block w-100 sw-banner-image" src="/public/img/business/banner3.jpeg" alt="Third slide">
-          </div>
+          </div> -->
         </div>
         <!-- <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -52,23 +77,22 @@
           <!-- main title frame -->
           <div class="sw-main-title sw-main-title-left sw-animation-opas sw-top-header-fix">
             <!-- title -->
+          <div class="home-title"> 
             <h2 class="sw-white">More than 1000 PMI® certificants since 2006</h1>
-            <!-- suptitle -->
-            <div class="sw-section-suptitle sw-t-shadow sw-opas sw-white mb-20">PMS  has produced more than 1000 PMI® certificants since 2006.</div>
-            <!-- button -->
-            <a href="/courses" class="sw-btn sw-lg-btn sw-solid-btn sw-color-1-btn" >Our Courses</a>
-            <!-- button -->
-            <a href="/contact" class="sw-btn sw-lg-btn sw-solid-btn sw-color-2-btn">Ask a question</a>
           </div>
+            <!-- suptitle -->
+            <div id="home-suptitle" class="sw-section-suptitle sw-t-shadow sw-opas sw-white mb-20">PMS  has produced more than 1000 PMI® certificants since 2006.</div>
+            <!-- button -->
+            <a id="our-courses-btn" href="/courses" class="sw-btn sw-lg-btn sw-solid-btn sw-color-1-btn" >Our Courses</a>
+            <!-- button -->
+              <a id="ask-btn" href="/contact" class="sw-btn sw-lg-btn sw-solid-btn sw-color-2-btn">Ask a question</a>
+\          </div>
           <!-- main title frame end -->
         </div>
       </div>
       <!-- overlay end -->
       <!-- scroll hint -->
-      <a href="#sw-content" class="sw-scroll-hint">
-        <!-- arrow -->
-        <i class="fas fa-chevron-down"></i>
-      </a>
+
       <!-- scroll hint -->
     </div>
     <!-- banner end -->
@@ -126,14 +150,15 @@
                 <!-- title -->
                 <h4 class="mb-30">Our popular courses</h4>
                 <!-- suptitle -->
-                <div class="sw-section-suptitle">These are some of the world's most recognized <br>certifications that boosted our students careers.</div>
+                <div id class="sw-section-suptitle">These are some of the world's most recognized <br>certifications that boosted our students careers.</div>
 
               </div>
               <div class="col-lg-6 sw-as-end text-lg-right text-sm-left mb-60">
 
                 <!-- hint -->
-                <a href="#." class="sw-btn sw-icon-btn sw-md-btn sw-solid-btn sw-round-btn sw-color-1-btn sw-swiper-prev sw-services-swiper-prev sw-animation-left"><i class="fa fa-chevron-left"></i></a>
-                <a href="#." class="sw-btn sw-icon-btn sw-md-btn sw-solid-btn sw-round-btn sw-color-1-btn sw-swiper-next sw-services-swiper-next sw-animation-right"><i class="fa fa-chevron-right"></i></a>
+                  <a  href="#." class="sw-btn sw-icon-btn sw-md-btn sw-solid-btn sw-round-btn sw-color-1-btn sw-swiper-prev sw-services-swiper-prev sw-animation-left"><i class="fa fa-chevron-left"></i></a>
+                  <a href="#." class="sw-btn sw-icon-btn sw-md-btn sw-solid-btn sw-round-btn sw-color-1-btn sw-swiper-next sw-services-swiper-next sw-animation-right"><i class="fa fa-chevron-right"></i></a>
+                
 
               </div>
 
@@ -378,7 +403,7 @@
         </div>
       </div>
 
-      <div style="padding-bottom: 50px;" class="container">
+      <div style="padding-bottom: 10px;" class="container">
         <div class="row p-60-0">
           <div class="col-lg-12">
 
