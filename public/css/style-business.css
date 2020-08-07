@@ -86,6 +86,11 @@ body {
   font-size: 19px;
   background-color: #f8f8fb;
 }
+@media (max-width:600px) {
+  body {
+    font-size: 16px;
+  }
+}
 
 /***** heading *****/
 h1,
@@ -94,7 +99,7 @@ h3,
 h4,
 h5,
 h6 {
-  color: #1b262c;
+  color: #373A3C;
   font-family: "Helvetica Neue", sans-serif;
   font-weight: bold;
   display: block;
@@ -140,6 +145,7 @@ h6 {
   .h4 {
     font-size: 30px;
   }
+
 }
 
 @media screen and (max-width: 620px) {
@@ -161,8 +167,20 @@ h1{
 
 @media screen and (max-width: 370px) {
   h1{
-    font-size:45px ;
+    font-size:40px ;
   }
+  .h2 {
+    font-size: 38px;
+  }
+
+  .h3 {
+    font-size: 25px;
+  }
+
+  .h4 {
+    font-size: 20px;
+  }
+  
   }
 /***** text sup classes *****/
 .sw-white {
@@ -1093,6 +1111,9 @@ Menu
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    position: absolute;
+    right: 12px;
+    top: 17px;
   }
 
   .sw-menu-social-links {
@@ -1233,7 +1254,7 @@ Banner
   }
 
   .sw-banner.sw-banner-sm {
-    height: 100vh;
+    height: 60vh;
   }
   .sw-banner.sw-banner-sm .sw-banner-image {
     height: 100vh;
@@ -1244,12 +1265,28 @@ Banner
   }
 
   .sw-main-title {
+
     text-align: center !important;
   }
   .sw-main-title .sw-section-suptitle:before {
     display: none;
-    padding-left: 0;
+    padding-left: 0 ;
   }
+}
+@media screen and (max-width: 370px) {
+  .sw-banner.sw-banner-sm {
+    height: 60vh;
+  }
+  .sw-breadcrumb{
+    display: none;
+  }
+  #course-btn {
+    padding: 0.6rem 6rem;
+  }
+  
+  .sw-banner .sw-overlay .container{
+    align-self: center;  }
+
 }
 @-webkit-keyframes scroll-hint {
   0% {
@@ -1678,7 +1715,7 @@ button.sw-icon-btn.sw-sm-btn {
   width: 35px;
   line-height: 32px;
   padding: 0;
-  font-size: 10px;
+  font-size: 11px;
 }
 .sw-btn.sw-default-btn,
 button.sw-default-btn {
@@ -1757,7 +1794,7 @@ button.sw-border-btn.sw-sm-btn {
   height: 30px;
   line-height: 28px;
   padding: 0 20px;
-  font-size: 10px;
+  font-size: 11px;
 }
 .sw-btn.sw-border-btn.sw-icon-btn,
 button.sw-border-btn.sw-icon-btn {
@@ -1785,7 +1822,7 @@ button.sw-border-btn.sw-icon-btn.sw-sm-btn {
   width: 30px;
   line-height: 28px;
   padding: 0;
-  font-size: 10px;
+  font-size: 11px;
 }
 .sw-btn.sw-border-btn.sw-color-1-btn,
 button.sw-border-btn.sw-color-1-btn {
@@ -1829,7 +1866,7 @@ button.sw-round-btn {
 .sw-btn:hover,
 button:hover {
   -webkit-transform: translateY(-2px) scale(0.98);
-          transform: translateY(-2px) scale(0.98);
+  transform: translateY(0px) scale(1);
 }
 .sw-btn.sw-animation-center:hover i,
 button.sw-animation-center:hover i {
@@ -2292,7 +2329,7 @@ Sections
   border: solid 5px #fafafd;
 }
 .sw-iw-avatar-2 {
-  display: block;
+  /* display: block; */
   margin-top: 30px;
   margin-bottom: 10px;
   border-radius: 50%;
@@ -2330,7 +2367,7 @@ Sections
 .sw-icon-box img {
   width: 100px;
   height: 100px;
-  display: block;
+  /* display: block; */
   margin-bottom: 15px;
   -webkit-transition: ease-in-out 0.3s;
   transition: ease-in-out 0.3s;
@@ -2509,7 +2546,7 @@ Sections
   border: solid 3px #fafafd;
 }
 .sw-testimonial .sw-reviewer-frame .sw-post {
-  font-size: 10px;
+  font-size: 11px;
   display: block;
 }
 .sw-testimonial .sw-reviewer-frame:before {
@@ -2842,7 +2879,7 @@ Widgets
   border-top: solid 1px rgba(52, 64, 90, 0.15);
   list-style-type: none;
   position: relative;
-  font-size: 10px;
+  font-size: 11px;
 }
 .widget ul li:before {
   content: '';
@@ -3184,7 +3221,7 @@ Widgets
   padding: 2px 10px;
   border-radius: 2px;
   margin-bottom: 10px;
-  font-size: 10px;
+  font-size: 11px;
   background-color: #f5a028;
 }
 .sw-recent-posts-widget ul li .sw-post-descr a {
@@ -3327,6 +3364,8 @@ Footer
   color: #34699a;
 }
 .sw-footer .sw-footer-bottom {
+  text-align: center;
+
   margin-top: 75px;
   padding: 10px 0;
   background-color: #000;
@@ -3353,7 +3392,7 @@ Footer
 }
 
 .terms{
-  font-size: 10px;
+  font-size: 11px;
 }
 
 @media screen and (max-width: 768px) {
@@ -3610,13 +3649,8 @@ text-align: initial;
 }
 
 
-/* @media screen and (max-width: 768px) {
-  .home-title .sw-white
-  {
-    font-size: 68px;
-  }
-}
 
+/*
 @media screen and (max-width: 620px) {
   .home-title .sw-white{
     font-size:80px ;

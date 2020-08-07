@@ -1,68 +1,68 @@
 <!DOCTYPE html>
 <html lang="zxx">
 
-<head>
-  <%- include("../partials/head", {title: "Project Management Solutions"}) %>
-</head>
+  <head>
+    <%- include("../partials/head", {title: "Project Management Solutions"}) %>
+  </head>
 
-<body>
-  <!-- Load Facebook SDK for JavaScript -->
-  <div id="fb-root"></div>
-  <script>
-    window.fbAsyncInit = function() {
-      FB.init({
-        xfbml            : true,
-        version          : 'v7.0'
-      });
-    };
+  <body>
+    <!-- Load Facebook SDK for JavaScript -->
+    <div id="fb-root"></div>
+    <script>
+      window.fbAsyncInit = function () {
+        FB.init({
+          xfbml: true,
+          version: 'v7.0'
+        });
+      };
 
-    (function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
-    fjs.parentNode.insertBefore(js, fjs);
-  }(document, 'script', 'facebook-jssdk'));</script>
+      (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
 
-  <!-- Your Chat Plugin code -->
-  <div class="fb-customerchat"
-    attribution=setup_tool
-    page_id="288298102741"
-logged_in_greeting="Hi! How can we help you?"
-logged_out_greeting="Hi! How can we help you?">
-  </div>
+    <!-- Your Chat Plugin code -->
+    <div class="fb-customerchat" attribution=setup_tool page_id="288298102741"
+      logged_in_greeting="Hi! How can we help you?" logged_out_greeting="Hi! How can we help you?">
+    </div>
 
-  <!-- preloader -->
-  <svg class="sw-loading" style="position: fixed;top: calc(50% - 30px);left: calc(50% - 30px);" width="35" height="35" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" version="1.1">
-    <path d="M 150,0 a 150,150 0 0,1 106.066,256.066 l -35.355,-35.355 a -100,-100 0 0,0 -70.711,-170.711 z" fill="#D8D8D8">
-      <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 150 150" to="360 150 150" begin="0s" dur=".5s" fill="freeze" repeatCount="indefinite"></animateTransform>
-    </path>
-  </svg>
-  <!-- preloader end -->
+    <!-- preloader -->
+    <svg class="sw-loading" style="position: fixed;top: calc(50% - 30px);left: calc(50% - 30px);" width="35" height="35"
+      viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" version="1.1">
+      <path d="M 150,0 a 150,150 0 0,1 106.066,256.066 l -35.355,-35.355 a -100,-100 0 0,0 -70.711,-170.711 z"
+        fill="#D8D8D8">
+        <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 150 150" to="360 150 150"
+          begin="0s" dur=".5s" fill="freeze" repeatCount="indefinite"></animateTransform>
+      </path>
+    </svg>
+    <!-- preloader end -->
 
-  <!-- page wrapper -->
-  <div class="sw-page-wrapper animsition">
+    <!-- page wrapper -->
+    <div class="sw-page-wrapper animsition">
 
-    <!-- menu -->
-    <%- include("../partials/header") %>
-    <!-- menu end -->
+      <!-- menu -->
+      <%- include("../partials/header") %>
+      <!-- menu end -->
 
-    <!-- banner -->
-    <div class="sw-banner">
-      <!-- <img src="/public/img/business/banner1.jpeg" alt="banner" class="sw-banner-image"> -->
-      <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" data-interval="2500">
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img class="d-block w-100 sw-banner-image" src="/public/img/business/banner4.png" alt="First slide" >
-          </div>
-          <!-- <div class="carousel-item">
+      <!-- banner -->
+      <div class="sw-banner">
+        <!-- <img src="/public/img/business/banner1.jpeg" alt="banner" class="sw-banner-image"> -->
+        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" data-interval="2500">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img class="d-block w-100 sw-banner-image" src="/public/img/business/banner4.png" alt="First slide">
+            </div>
+            <!-- <div class="carousel-item">
             <img class="d-block w-100 sw-banner-image" src="/public/img/business/banner2.jpeg" alt="Second slide">
           </div>
           <div class="carousel-item">
             <img class="d-block w-100 sw-banner-image" src="/public/img/business/banner3.jpeg" alt="Third slide">
           </div> -->
-        </div>
-        <!-- <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+          </div>
+          <!-- <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
           <span class="sr-only">Previous</span>
         </a>
@@ -70,247 +70,277 @@ logged_out_greeting="Hi! How can we help you?">
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="sr-only">Next</span>
         </a> -->
-      </div>
-      <!-- overlay -->
-      <div class="sw-overlay sw-overlay-left-1">
-        <div class="container sw-d-flex">
-          <!-- main title frame -->
-          <div class="sw-main-title sw-main-title-left sw-animation-opas sw-top-header-fix">
-            <!-- title -->
-          <div class="home-title"> 
-            <h2 class="sw-white">More than 1000 PMI® certificants since 2006</h1>
-          </div>
-            <!-- suptitle -->
-            <div id="home-suptitle" class="sw-section-suptitle sw-t-shadow sw-opas sw-white mb-20">PMS  has produced more than 1000 PMI® certificants since 2006.</div>
-            <!-- button -->
-            <a id="our-courses-btn" href="/courses" class="sw-btn sw-lg-btn sw-solid-btn sw-color-1-btn" >Our Courses</a>
-            <!-- button -->
+        </div>
+        <!-- overlay -->
+        <div class="sw-overlay sw-overlay-left-1">
+          <div class="container sw-d-flex">
+            <!-- main title frame -->
+            <div class="sw-main-title sw-main-title-left sw-animation-opas sw-top-header-fix">
+              <!-- title -->
+              <div class="home-title">
+                <h2 class="sw-white">More than 1000 PMI® certificants since 2006</h1>
+              </div>
+              <!-- suptitle -->
+              <div id="home-suptitle" class="sw-section-suptitle sw-t-shadow sw-opas sw-white mb-20">PMS has produced
+                more than 1000 PMI® certificants since 2006.</div>
+              <!-- button -->
+              <a id="our-courses-btn" href="/courses" class="sw-btn sw-lg-btn sw-solid-btn sw-color-1-btn">Our
+                Courses</a>
+              <!-- button -->
               <a id="ask-btn" href="/contact" class="sw-btn sw-lg-btn sw-solid-btn sw-color-2-btn">Ask a question</a>
-        </div>
-          <!-- main title frame end -->
-        </div>
-      </div>
-      <!-- overlay end -->
-      <!-- scroll hint -->
-
-      <!-- scroll hint -->
-    </div>
-    <!-- banner end -->
-
-    <main id="sw-content">
-
-      <div class="row sw-over-frame sw-up">
-
-        <!-- introductory word -->
-        <div class="col-md-8 introductory-word text-left p-60-60">
-          <div class="container">
-            <!-- avatar -->
-            <!-- <img src="img/business/faces/face-1.jpg" alt="Viktoria Freeman" class="sw-iw-avatar mb-60"> -->
-            <!-- title -->
-            <h4 class="mb-15">We are Project Management Specialists</h4>
-            <!-- suptitle -->
-            <div class="mb-10">Project Management Solutions is an established, dynamic and performance driven training and consultancy services provider for private, public and community development sectors.  </div>
-            <div class="mb-10">We are specialized in developing and delivering world class project management and business management solutions. Our learning solutions focus on wide variety of project management methodologies and frameworks such as conventional project management, agile, scrum, kanban and srumban.</div>
-            <div class="mb-10">PMS is a Global Registered Education Provider with Project Management Institute (PMI) ®  USA. Project Management Solutions has been reviewed and approved as a provider of Project Management training by PMI ® USA.</div>
-            <div class="mb-10">As a PMI ® Registered Education Provider (REP) ® , PMS has agreed to abide by PMI ®  established quality assurance criteria.</div>
-          
-           
-            <!-- signature -->
-            <!-- <img src="img/business/other/signature.png" alt="signature" class="sw-signature"> -->
-            <!-- button -->
-            <!-- <a href="about-business.html" class="sw-btn sw-lg-btn sw-solid-btn sw-color-1-btn">More information</a> -->
-          </div>
-        </div>
-        <!-- introductory word end -->
-        <div class="col-md-4 p-60-60">
-          <div class="mydeco">
-          <div class="fb-page fb_iframe_widget" data-href="https://www.facebook.com/Project-Management-Solutions-288298102741/" data-tabs="timeline" data-width="" data-height="400px" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" fb-xfbml-state="rendered" fb-iframe-plugin-query="adapt_container_width=true&amp;app_id=&amp;container_width=360&amp;height=400&amp;hide_cover=false&amp;href=https%3A%2F%2Fwww.facebook.com%2FProject-Management-Solutions-288298102741%2F&amp;locale=en_GB&amp;sdk=joey&amp;show_facepile=true&amp;small_header=false&amp;tabs=timeline&amp;width="><span style="vertical-align: bottom; width: 340px; height: 400px;"><iframe name="f31e4d6d84b86ec" width="1000px" height="400px" data-testid="fb:page Facebook Social Plugin" title="fb:page Facebook Social Plugin" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" allow="encrypted-media" src="https://web.facebook.com/v4.0/plugins/page.php?adapt_container_width=true&amp;app_id=&amp;channel=https%3A%2F%2Fstaticxx.facebook.com%2Fx%2Fconnect%2Fxd_arbiter%2F%3Fversion%3D46%23cb%3Df39bf5b044e801%26domain%3Dwww.pms.lk%26origin%3Dhttps%253A%252F%252Fwww.pms.lk%252Ff2a02e5b589d788%26relation%3Dparent.parent&amp;container_width=360&amp;height=400&amp;hide_cover=false&amp;href=https%3A%2F%2Fwww.facebook.com%2FProject-Management-Solutions-288298102741%2F&amp;locale=en_GB&amp;sdk=joey&amp;show_facepile=true&amp;small_header=false&amp;tabs=timeline&amp;width=" style="border: none; visibility: visible; width: 340px; height: 400px;" class=""></iframe></span></div>
-          </div>
-          </div>
-      </div>
-
-      <div class="container">
-        <div class="row p-60-0">
-
-          <div class="col-lg-12">
-
-            <div class="sw-bt">
-              <svg width="100%">
-                <text x="0" y="140px" font-size="150px" stroke="#3e3e41" stroke-width="4" fill="transparent">
-                  <!-- section title -->
-                  Services
-                </text>
-              </svg>
             </div>
-
+            <!-- main title frame end -->
           </div>
+        </div>
+        <!-- overlay end -->
+        <!-- scroll hint -->
 
-          <div class="col-lg-12">
+        <!-- scroll hint -->
+      </div>
+      <!-- banner end -->
 
-            <div class="row">
+      <main id="sw-content">
 
-              <div class="col-lg-6 sw-as-center mb-60">
+        <div class="row justify-content-center sw-over-frame sw-up">
 
-                <!-- title -->
-                <h4 class="mb-30">Our popular courses</h4>
-                <!-- suptitle -->
-                <div id class="sw-section-suptitle">These are some of the world's most recognized <br>certifications that boosted our students careers.</div>
-
+          <!-- introductory word -->
+          <div class="col-lg-8 col-md-6 col-sm-12 introductory-word text-left p-60-60">
+            <div class="container">
+              <!-- avatar -->
+              <!-- <img src="img/business/faces/face-1.jpg" alt="Viktoria Freeman" class="sw-iw-avatar mb-60"> -->
+              <!-- title -->
+              <h4 class="mb-15">We are Project Management Specialists</h4>
+              <!-- suptitle -->
+              <div class="mb-10">Project Management Solutions is an established, dynamic and performance driven training
+                and consultancy services provider for private, public and community development sectors. </div>
+              <div class="mb-10">We are specialized in developing and delivering world class project management and
+                business management solutions. Our learning solutions focus on wide variety of project management
+                methodologies and frameworks such as conventional project management, agile, scrum, kanban and srumban.
               </div>
-              <div class="col-lg-6 sw-as-end text-lg-right text-sm-left mb-60">
+              <div class="mb-10">PMS is a Global Registered Education Provider with Project Management Institute (PMI) ®
+                USA. Project Management Solutions has been reviewed and approved as a provider of Project Management
+                training by PMI ® USA.</div>
+              <div class="mb-10">As a PMI ® Registered Education Provider (REP) ® , PMS has agreed to abide by PMI ®
+                established quality assurance criteria.</div>
 
-                <!-- hint -->
-                  <a  href="#." class="sw-btn sw-icon-btn sw-md-btn sw-solid-btn sw-round-btn sw-color-1-btn sw-swiper-prev sw-services-swiper-prev sw-animation-left"><i class="fa fa-chevron-left"></i></a>
-                  <a href="#." class="sw-btn sw-icon-btn sw-md-btn sw-solid-btn sw-round-btn sw-color-1-btn sw-swiper-next sw-services-swiper-next sw-animation-right"><i class="fa fa-chevron-right"></i></a>
-                
 
+              <!-- signature -->
+              <!-- <img src="img/business/other/signature.png" alt="signature" class="sw-signature"> -->
+              <!-- button -->
+              <!-- <a href="about-business.html" class="sw-btn sw-lg-btn sw-solid-btn sw-color-1-btn">More information</a> -->
+            </div>
+          </div>
+          <!-- introductory word end -->
+          <div class="col-lg-4 col-md-6 col-sm-12 p-60-60">
+            <div class="mydeco">
+              <div class="fb-page fb_iframe_widget"
+                data-href="https://www.facebook.com/Project-Management-Solutions-288298102741/" data-tabs="timeline"
+                data-width="" data-height="400px" data-small-header="false" data-adapt-container-width="true"
+                data-hide-cover="false" data-show-facepile="true" fb-xfbml-state="rendered"
+                fb-iframe-plugin-query="adapt_container_width=true&amp;app_id=&amp;container_width=360&amp;height=400&amp;hide_cover=false&amp;href=https%3A%2F%2Fwww.facebook.com%2FProject-Management-Solutions-288298102741%2F&amp;locale=en_GB&amp;sdk=joey&amp;show_facepile=true&amp;small_header=false&amp;tabs=timeline&amp;width=">
+                <span style="vertical-align: bottom; width: 100%; height: 400px;"><iframe name="f31e4d6d84b86ec"
+                    width="1000px" height="400px" data-testid="fb:page Facebook Social Plugin"
+                    title="fb:page Facebook Social Plugin" frameborder="0" allowtransparency="true"
+                    allowfullscreen="true" scrolling="no" allow="encrypted-media"
+                    src="https://web.facebook.com/v4.0/plugins/page.php?adapt_container_width=true&amp;app_id=&amp;channel=https%3A%2F%2Fstaticxx.facebook.com%2Fx%2Fconnect%2Fxd_arbiter%2F%3Fversion%3D46%23cb%3Df39bf5b044e801%26domain%3Dwww.pms.lk%26origin%3Dhttps%253A%252F%252Fwww.pms.lk%252Ff2a02e5b589d788%26relation%3Dparent.parent&amp;container_width=360&amp;height=400&amp;hide_cover=false&amp;href=https%3A%2F%2Fwww.facebook.com%2FProject-Management-Solutions-288298102741%2F&amp;locale=en_GB&amp;sdk=joey&amp;show_facepile=true&amp;small_header=false&amp;tabs=timeline&amp;width="
+                    style="border: none; visibility: visible; width: 100%; height: 400px;" class=""></iframe></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="container">
+          <div class="row p-60-0">
+
+            <div class="col-lg-12">
+
+              <div class="sw-bt">
+                <svg width="100%">
+                  <text x="0" y="140px" font-size="150px" stroke="#3e3e41" stroke-width="4" fill="transparent">
+                    <!-- section title -->
+                    Services
+                  </text>
+                </svg>
               </div>
 
             </div>
 
-          </div>
+            <div class="col-lg-12">
 
-          <div class="col-lg-12">
+              <div class="row">
 
-            <div class="swiper-container sw-services-slider" style="overflow: visible;">
-              <div class="swiper-wrapper">
+                <div class="col-lg-6 sw-as-center mb-60">
 
-                <div class="swiper-slide">
-
-                  <!-- card -->
-                  <div class="sw-card">
-                    <!-- img frame -->
-                    <a href="/courses/project-management-professional" class="sw-img">
-                      <img src="/public/img/business/services/1.png" alt="thumb">
-                    </a>
-                    <!-- img frame end -->
-                    <!-- description -->
-                    <div class="sw-card-description">
-                      <!-- title -->
-                      <a href="/courses/project-management-professional" class="mb-10">
-                        <h5>Project Management Professional (PMP)®</h5>
-                      </a>
-                      <!-- short description -->
-                      <div>52.5 hrs/PDUs</div>
-                      <!-- button -->
-                      <a href="/courses/project-management-professional" class="sw-btn sw-md-btn sw-solid-btn sw-round-btn sw-color-1-btn">More information</a>
-                    </div>
-                    <!-- description end -->
-                  </div>
-                  <!-- card end -->
+                  <!-- title -->
+                  <h4 class="mb-30">Our popular courses</h4>
+                  <!-- suptitle -->
+                  <div id class="sw-section-suptitle">These are some of the world's most recognized <br>certifications
+                    that boosted our students careers.</div>
 
                 </div>
-                <div class="swiper-slide">
+                <div class="col-lg-6 sw-as-end text-lg-right text-sm-left mb-60">
 
-                  <!-- card -->
-                  <div class="sw-card">
-                    <!-- img frame -->
-                    <a href="/courses/certified-associate-in-project-management" class="sw-img">
-                      <img src="/public/img/business/services/2.png" alt="thumb">
-                    </a>
-                    <!-- img frame end -->
-                    <!-- description -->
-                    <div class="sw-card-description">
-                      <!-- title -->
-                      <a href="/courses/certified-associate-in-project-management" class="mb-10">
-                        <h5>Certified Associate in Project Management (CAPM)®</h5>
-                      </a>
-                      <!-- short description -->
-                      <div>52.5 hrs/PDUs</div>
-                      <!-- button -->
-                      <a href="/courses/certified-associate-in-project-management" class="sw-btn sw-md-btn sw-solid-btn sw-round-btn sw-color-1-btn">More information</a>
-                    </div>
-                    <!-- description end -->
-                    <!-- badge -->
-                    <div class="sw-card-badge bg-color-p-2">Popular</div>
-                  </div>
-                  <!-- card end -->
+                  <!-- hint -->
+                  <a href="#."
+                    class="sw-btn sw-icon-btn sw-md-btn sw-solid-btn sw-round-btn sw-color-1-btn sw-swiper-prev sw-services-swiper-prev sw-animation-left"><i
+                      class="fa fa-chevron-left"></i></a>
+                  <a href="#."
+                    class="sw-btn sw-icon-btn sw-md-btn sw-solid-btn sw-round-btn sw-color-1-btn sw-swiper-next sw-services-swiper-next sw-animation-right"><i
+                      class="fa fa-chevron-right"></i></a>
 
-                </div>
-                <div class="swiper-slide">
-
-                  <!-- card -->
-                  <div class="sw-card">
-                    <!-- img frame -->
-                    <a href="/courses/diploma-in-project-management" class="sw-img">
-                      <img src="/public/img/business/services/3.png" alt="thumb">
-                    </a>
-                    <!-- img frame end -->
-                    <!-- description -->
-                    <div class="sw-card-description">
-                      <!-- title -->
-                      <a href="/courses/diploma-in-project-management" class="mb-10">
-                        <h5>Diploma in Project Management</h5>
-                      </a>
-                      <!-- short description -->
-                      <div>6 Months, 120 hrs/PDUs</div>
-                      <!-- button -->
-                      <a href="/courses/diploma-in-project-management" class="sw-btn sw-md-btn sw-solid-btn sw-round-btn sw-color-1-btn">More information</a>
-                    </div>
-                    <!-- description end -->
-                  </div>
-                  <!-- card end -->
-
-                </div>
-                <div class="swiper-slide">
-
-                  <!-- card -->
-                  <div class="sw-card">
-                    <!-- img frame -->
-                    <a href="/courses/prince-2" class="sw-img">
-                      <img src="/public/img/business/services/4.png" alt="thumb">
-                    </a>
-                    <!-- img frame end -->
-                    <!-- description -->
-                    <div class="sw-card-description">
-                      <!-- title -->
-                      <a href="/courses/prince-2" class="mb-10">
-                        <h5>Prince2®</h5>
-                      </a>
-                      <!-- short description -->
-                      <div></div>
-                      <!-- button -->
-                      <a href="/courses/prince-2" class="sw-btn sw-md-btn sw-solid-btn sw-round-btn sw-color-1-btn">More information</a>
-                    </div>
-                    <!-- description end -->
-                  </div>
-                  <!-- card end -->
-
-                </div>
-                <div class="swiper-slide">
-
-                  <!-- card -->
-                  <div class="sw-card">
-                    <!-- img frame -->
-                    <a href="/courses/competent-scrum-master" class="sw-img">
-                      <img src="/public/img/business/services/5.png" alt="thumb">
-                    </a>
-                    <!-- img frame end -->
-                    <!-- description -->
-                    <div class="sw-card-description">
-                      <!-- title -->
-                      <a href="/courses/competent-scrum-master" class="mb-10">
-                        <h5>Competent Scrum Master</h5>
-                      </a>
-                      <!-- short description -->
-                      <div>20 hrs/PDUs</div>
-                      <!-- button -->
-                      <a href="/courses/competent-scrum-master" class="sw-btn sw-md-btn sw-solid-btn sw-round-btn sw-color-1-btn">More information</a>
-                    </div>
-                    <!-- description end -->
-                  </div>
-                  <!-- card end -->
 
                 </div>
 
               </div>
+
             </div>
 
+            <div class="col-lg-12">
+
+              <div class="swiper-container sw-services-slider" style="overflow: visible;">
+                <div class="swiper-wrapper">
+
+                  <div class="swiper-slide">
+
+                    <!-- card -->
+                    <div class="sw-card">
+                      <!-- img frame -->
+                      <a href="/courses/project-management-professional" class="sw-img">
+                        <img src="/public/img/business/services/1.png" alt="thumb">
+                      </a>
+                      <!-- img frame end -->
+                      <!-- description -->
+                      <div class="sw-card-description">
+                        <!-- title -->
+                        <a href="/courses/project-management-professional" class="mb-10">
+                          <h5>Project Management Professional (PMP)®</h5>
+                        </a>
+                        <!-- short description -->
+                        <div>52.5 hrs/PDUs</div>
+                        <!-- button -->
+                        <a href="/courses/project-management-professional"
+                          class="sw-btn sw-md-btn sw-solid-btn sw-round-btn sw-color-1-btn">More information</a>
+                      </div>
+                      <!-- description end -->
+                    </div>
+                    <!-- card end -->
+
+                  </div>
+                  <div class="swiper-slide">
+
+                    <!-- card -->
+                    <div class="sw-card">
+                      <!-- img frame -->
+                      <a href="/courses/certified-associate-in-project-management" class="sw-img">
+                        <img src="/public/img/business/services/2.png" alt="thumb">
+                      </a>
+                      <!-- img frame end -->
+                      <!-- description -->
+                      <div class="sw-card-description">
+                        <!-- title -->
+                        <a href="/courses/certified-associate-in-project-management" class="mb-10">
+                          <h5>Certified Associate in Project Management (CAPM)®</h5>
+                        </a>
+                        <!-- short description -->
+                        <div>52.5 hrs/PDUs</div>
+                        <!-- button -->
+                        <a href="/courses/certified-associate-in-project-management"
+                          class="sw-btn sw-md-btn sw-solid-btn sw-round-btn sw-color-1-btn">More information</a>
+                      </div>
+                      <!-- description end -->
+                      <!-- badge -->
+                      <div class="sw-card-badge bg-color-p-2">Popular</div>
+                    </div>
+                    <!-- card end -->
+
+                  </div>
+                  <div class="swiper-slide">
+
+                    <!-- card -->
+                    <div class="sw-card">
+                      <!-- img frame -->
+                      <a href="/courses/diploma-in-project-management" class="sw-img">
+                        <img src="/public/img/business/services/3.png" alt="thumb">
+                      </a>
+                      <!-- img frame end -->
+                      <!-- description -->
+                      <div class="sw-card-description">
+                        <!-- title -->
+                        <a href="/courses/diploma-in-project-management" class="mb-10">
+                          <h5>Diploma in Project Management</h5>
+                        </a>
+                        <!-- short description -->
+                        <div>6 Months, 120 hrs/PDUs</div>
+                        <!-- button -->
+                        <a href="/courses/diploma-in-project-management"
+                          class="sw-btn sw-md-btn sw-solid-btn sw-round-btn sw-color-1-btn">More information</a>
+                      </div>
+                      <!-- description end -->
+                    </div>
+                    <!-- card end -->
+
+                  </div>
+                  <div class="swiper-slide">
+
+                    <!-- card -->
+                    <div class="sw-card">
+                      <!-- img frame -->
+                      <a href="/courses/prince-2" class="sw-img">
+                        <img src="/public/img/business/services/4.png" alt="thumb">
+                      </a>
+                      <!-- img frame end -->
+                      <!-- description -->
+                      <div class="sw-card-description">
+                        <!-- title -->
+                        <a href="/courses/prince-2" class="mb-10">
+                          <h5>Prince2®</h5>
+                        </a>
+                        <!-- short description -->
+                        <div></div>
+                        <!-- button -->
+                        <a href="/courses/prince-2"
+                          class="sw-btn sw-md-btn sw-solid-btn sw-round-btn sw-color-1-btn">More information</a>
+                      </div>
+                      <!-- description end -->
+                    </div>
+                    <!-- card end -->
+
+                  </div>
+                  <div class="swiper-slide">
+
+                    <!-- card -->
+                    <div class="sw-card">
+                      <!-- img frame -->
+                      <a href="/courses/competent-scrum-master" class="sw-img">
+                        <img src="/public/img/business/services/5.png" alt="thumb">
+                      </a>
+                      <!-- img frame end -->
+                      <!-- description -->
+                      <div class="sw-card-description">
+                        <!-- title -->
+                        <a href="/courses/competent-scrum-master" class="mb-10">
+                          <h5>Competent Scrum Master</h5>
+                        </a>
+                        <!-- short description -->
+                        <div>20 hrs/PDUs</div>
+                        <!-- button -->
+                        <a href="/courses/competent-scrum-master"
+                          class="sw-btn sw-md-btn sw-solid-btn sw-round-btn sw-color-1-btn">More information</a>
+                      </div>
+                      <!-- description end -->
+                    </div>
+                    <!-- card end -->
+
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+
+
           </div>
-
-
         </div>
-      </div>
 
 
 
@@ -321,262 +351,308 @@ logged_out_greeting="Hi! How can we help you?">
             <!-- title -->
             <h4 class="mb-15">Why Learn Project Management?</h4>
             <!-- suptitle -->
-            <div class="mb-10">Increasingly complex and changing business environment demands organizations to undertake more projects than ever. Most of the activities we undertake in organizations today are projects. Project management has become a central activity for many organizations.</div>
-            <div class="mb-10">Today, the practice of project management is expanding to industries which were less projects oriented in the past. No matter how well your organization is structured, the success of the business will ultimately come down to the quality of its project execution.</div>
+            <div class="mb-10">Increasingly complex and changing business environment demands organizations to undertake
+              more projects than ever. Most of the activities we undertake in organizations today are projects. Project
+              management has become a central activity for many organizations.</div>
+            <div class="mb-10">Today, the practice of project management is expanding to industries which were less
+              projects oriented in the past. No matter how well your organization is structured, the success of the
+              business will ultimately come down to the quality of its project execution.</div>
             <div class="mb-10">Hence, the global economy has become more project-oriented now.</div>
-            <div class="mb-10">All organisations need to take project management seriously in order to survive and thrive. Organizations now want workers across all departments having some training in project management methods such as waterfall, agile, scrum, kanban, project cycle management etc.</div>
-            <div class="mb-10">According to Project Management Institute USA statistics, by 2027 employers will need 87.7 million individuals working in project management-oriented roles.  PMI expect 22 million new jobs in project management around the world by 2027. This is a 33% growth.</div>
-            <div class="mb-10">Your degree program lays foundation for Certifications. PMI® certifications are globally recognized</div>
-     
+            <div class="mb-10">All organisations need to take project management seriously in order to survive and
+              thrive. Organizations now want workers across all departments having some training in project management
+              methods such as waterfall, agile, scrum, kanban, project cycle management etc.</div>
+            <div class="mb-10">According to Project Management Institute USA statistics, by 2027 employers will need
+              87.7 million individuals working in project management-oriented roles. PMI expect 22 million new jobs in
+              project management around the world by 2027. This is a 33% growth.</div>
+            <div class="mb-10">Your degree program lays foundation for Certifications. PMI® certifications are globally
+              recognized</div>
+
             <!-- signature -->
             <!-- <img src="img/business/other/signature.png" alt="signature" class="sw-signature"> -->
             <!-- button -->
             <!-- <a href="about-business.html" class="sw-btn sw-lg-btn sw-solid-btn sw-color-1-btn">More information</a> -->
-           <!-- avatar -->
-           <img src="/public/img/business/faces/avarta-home.jpg" alt="Duminda Weeraratne" class="sw-iw-avatar-2 mb-60">
-           <div class="mb-10">Dr. Duminda Weeraratne</div>
-           <div class="mb-10">MBA (Sri J), PMP, PMI-RMP, PMI-ACP, CSM, PMI-PBA</div>
-           <div class="mb-10">CEO</div>
+            <!-- avatar -->
+            <div class="text-center">
+              <img src="/public/img/business/faces/avarta-home.jpg" alt="Duminda Weeraratne"
+                class="sw-iw-avatar-2 mb-60">
+              <div class="mb-10">Dr. Duminda Weeraratne</div>
+              <div class="mb-10">MBA (Sri J), PMP, PMI-RMP, PMI-ACP, CSM, PMI-PBA</div>
+              <div class="mb-10">CEO</div>
+            </div><!-- /.text-center END -->
           </div>
         </div>
         <!-- introductory word end -->
 
-     
 
-      <div class="container">
-        <div class="row p-30-0">
 
-          <div class="col-lg-12">
+        <div class="container">
+          <div class="row p-30-0">
 
-            <div class="sw-bt sw-bt-right">
-              <svg width="100%">
-                <text x="0" y="140px" font-size="150px" stroke="#3e3e41" stroke-width="4" fill="transparent">
-                  <!-- section title -->
-                  Features
-                </text>
-              </svg>
+            <div class="col-lg-12">
+
+              <div class="sw-bt sw-bt-right">
+                <svg width="100%">
+                  <text x="0" y="140px" font-size="150px" stroke="#3e3e41" stroke-width="4" fill="transparent">
+                    <!-- section title -->
+                    Features
+                  </text>
+                </svg>
+              </div>
+
             </div>
 
-          </div>
+            <div class="col-lg-12">
 
-          <div class="col-lg-12">
-
-            <div class="mb-60">
-              <!-- title -->
-              <h4 class="mb-30">Why choose us for PMI Exams ?</h4>
-              <!-- suptitle -->
-              <div class="sw-section-suptitle">We just don’t train you to sit for exams, we make sure that you pass. </div>
-              <div class="mb-10">PMS has a study environment that encourage you to be well prepared in advance to face the exams and our revision program will give that final push you need to cross that hurdle.</div>
-            </div>
-
-          </div>
-
-          <div class="col-lg-4">
-
-            <div class="sw-icon-box">
-              <img src="/public/img/business/icons/1.png" alt="icon">
-              <!-- title -->
-              <h6 class="mb-10">More than 95% Passing Rate</h6>
-              <!-- text -->
-              <div></div>
-            </div>
-
-          </div>
-          <div class="col-lg-4">
-
-            <div class="sw-icon-box">
-              <img src="/public/img/business/icons/2.png" alt="icon">
-              <!-- title -->
-              <h6 class="mb-10">One-on-one guidance and coaching</h6>
-              <!-- text -->
-              <div></div>
-            </div>
-
-          </div>
-          <div class="col-lg-4">
-
-            <div class="sw-icon-box">
-              <img src="/public/img/business/icons/3.png" alt="icon">
-              <!-- title -->
-              <h6 class="mb-10">Quality Training (See Testimonials)</h6>
-              <!-- text -->
-              <div></div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-
-      <div style="padding-bottom: 10px;" class="container">
-        <div class="row p-60-0">
-          <div class="col-lg-12">
-
-            <div class="sw-bt sw-bt-right">
-              <svg width="100%">
-                <text x="0" y="140px" font-size="150px" stroke="#3e3e41" stroke-width="4" fill="transparent">
-                  <!-- section title -->
-                  Testimonials
-                </text>
-              </svg>
-            </div>
-
-          </div>
-
-          <div class="col-lg-12">
-
-            <div class="row">
-
-              <div class="col-lg-6 sw-as-center mb-60">
-
+              <div class="mb-60">
                 <!-- title -->
-                <h4 class="sw-h sw-h-lvl-4 mb-30">What our students say</h4>
+                <h4 class="mb-30">Why choose us for PMI Exams ?</h4>
                 <!-- suptitle -->
-
-              </div>
-              <div class="col-lg-6 sw-as-end text-lg-right text-sm-left mb-60">
-
-                <!-- hint -->
-                <a href="#." class="sw-btn sw-icon-btn sw-md-btn sw-solid-btn sw-round-btn sw-color-1-btn sw-swiper-prev sw-testi-swiper-prev sw-animation-left"><i class="fa fa-chevron-left"></i></a>
-                <a href="#." class="sw-btn sw-icon-btn sw-md-btn sw-solid-btn sw-round-btn sw-color-1-btn sw-swiper-next sw-testi-swiper-next sw-animation-right"><i class="fa fa-chevron-right"></i></a>
-
+                <div class="sw-section-suptitle">We just don’t train you to sit for exams, we make sure that you pass.
+                </div>
+                <div class="mb-10">PMS has a study environment that encourage you to be well prepared in advance to face
+                  the exams and our revision program will give that final push you need to cross that hurdle.</div>
               </div>
 
             </div>
 
-          </div>
+            <div class="col-lg-4 text-center">
 
-          <div class="col-lg-12">
-
-            <div class="swiper-container sw-testimonials-slider" style="overflow: visible;">
-              <div class="swiper-wrapper">
-
-                <div class="swiper-slide">
-
-                  <!-- testimonial-->
-                  <div class="sw-testimonial">
-                    <!-- reviewer frame -->
-                    <div class="sw-reviewer-frame">
-                      <!-- img -->
-                      <!-- name -->
-                      <div>
-                        <h6>W. Akash Fernando PhD, PMP</h6>
-                      </div>
-                    </div>
-                    <!-- reviewer frame end -->
-                    <!-- testimonial frame -->
-                    <div class="sw-testimonial-frame">
-                      <!-- testimonial text -->
-                      <div class="mb-10">Dr. Duminda Weeraratne is an exceptional mentor with indepth knowledge related to project management and the PMP examination process. In addition to the excellent lectures, his mock examinations were monumental to my success. I must say it would have been very difficult to pass this exam in my first attempt, if not for the guidance of Dr. Weeraratne.</div>
-                    </div>
-                    <!-- testimonial frame end -->
-                  </div>
-                  <!-- testimonial end -->
-
-                </div>
-
-                <div class="swiper-slide">
-
-                  <!-- testimonial-->
-                  <div class="sw-testimonial">
-                    <!-- reviewer frame -->
-                    <div class="sw-reviewer-frame">
-                      <!-- img -->
-                      <!-- name -->
-                      <div>
-                        <h6>Sanduni Jayathilake</h6>
-                        <div class="sw-t sw-post">World University Service of Canada</div>
-                      </div>
-                    </div>
-                    <!-- reviewer frame end -->
-                    <!-- testimonial frame -->
-                    <div class="sw-testimonial-frame">
-                      <!-- testimonial text -->
-                      <div class="mb-10">I am really grateful to our lecturer Mr. Duminda for all the knowledge, support, and valuable advice given to us, which paved our way to pass the PMP exam in our first attempt. On the first day itself he gave us a study plan and some exam tips. The slides and the chapter questions were helpful for us to better understand the concepts. Real life examples were shared. It is not only theoretical base but there were group activities in class creating a space to share best practices and PMP concepts among other students representing diverse industries yet studying and practicing project management.</div>
-                    </div>
-                    <!-- testimonial frame end -->
-                  </div>
-                  <!-- testimonial end -->
-
-                </div>
-
-                <div class="swiper-slide">
-
-                  <!-- testimonial-->
-                  <div class="sw-testimonial">
-                    <!-- reviewer frame -->
-                    <div class="sw-reviewer-frame">
-                      <!-- img -->
-                      <!-- name -->
-                      <div>
-                        <h6>Maduka Colombage PMP®, CSM®</h6>
-                        <div class="sw-t sw-post">Manager- Virtusa Cooparation, New York, USA</div>
-                      </div>
-                    </div>
-                    <!-- reviewer frame end -->
-                    <!-- testimonial frame -->
-                    <div class="sw-testimonial-frame">
-                      <!-- testimonial text -->
-                      <div class="mb-10">It is with great pleasure that I write this note for Project Management Solutions (PMS). I wanted to get the PMP credentials and looking for a place to get start. After careful analysis I selected the PMS and I dedicated 5 days from my year-end vacation to attend the course. I attended the PMP preparation program conducted at PMS in December 2018 and I was able to pass the exam in the first attempt. The training program conducted by Mr. Duminda Weeraratne gave me a great assistance to achieve my goal. Mr. Duminda is an excellent lecturer and course material used were very effective. Without taking this course I would not have been able to pass the PMP Exam. Overall the course filtered out the most important information from the PMBOK® Guide, which helped me to better understand project management, and improved my ability to study for the PMP Exam.
-                        I would like to take this opportunity to thank Mr.Duminda and PMS staff for their valuable support given to complete my PMP. I highly recommend the PMP Preparation class to anyone who is interested in obtaining PMP. Thank you!</div>
-                    </div>
-                    <!-- testimonial frame end -->
-                  </div>
-                  <!-- testimonial end -->
-
-                </div>
-
-                <div class="swiper-slide">
-
-                  <!-- testimonial-->
-                  <div class="sw-testimonial">
-                    <!-- reviewer frame -->
-                    <div class="sw-reviewer-frame">
-                      <!-- img -->
-                      <!-- name -->
-                      <div>
-                        <h6>Adeesha Attanayake</h6>
-                        <div class="sw-t sw-post">Executive-Business Solutions, Mobitel (Pvt) Ltd.</div>
-                      </div>
-                    </div>
-                    <!-- reviewer frame end -->
-                    <!-- testimonial frame -->
-                    <div class="sw-testimonial-frame">
-                      <!-- testimonial text -->
-                      <div class="mb-10">The 6 week, weekend PMP course conducted my Mr. DumindaWeeraratne is most probably the best place in Sri Lanka for PMP exam preparation and to get your 35 hours of PM education required for the exam. He is an excellent teacher with great in-depth knowledge in Project Management and general management in the industry. Class is interactive and you will get a chance to meet great people from similar and other</div>
-                    </div>
-                    <!-- testimonial frame end -->
-                  </div>
-                  <!-- testimonial end -->
-
-                </div>
-
+              <div class="card card-body sw-icon-box">
+                <img src="/public/img/business/icons/1.png" alt="icon">
+                <!-- title -->
+                <h6 class="mb-10">More than 95% Passing Rate</h6>
+                <!-- text -->
+                <div></div>
               </div>
+
             </div>
+            <div class="col-lg-4 text-center">
 
+              <div class="card card-body sw-icon-box">
+                <img src="/public/img/business/icons/2.png" alt="icon">
+                <!-- title -->
+                <h6 class="mb-10">One-on-one guidance and coaching</h6>
+                <!-- text -->
+                <div></div>
+              </div>
+
+            </div>
+            <div class="col-lg-4 text-center">
+
+              <div class="card card-body sw-icon-box">
+                <img src="/public/img/business/icons/3.png" alt="icon">
+                <!-- title -->
+                <h6 class="mb-10">Quality Training (See Testimonials)</h6>
+                <!-- text -->
+                <div></div>
+              </div>
+
+            </div>
           </div>
-
         </div>
-      </div>
+
+        <div style="padding-bottom: 10px;" class="container">
+          <div class="row p-60-0">
+            <div class="col-lg-12">
+
+              <div class="sw-bt sw-bt-right">
+                <svg width="100%">
+                  <text x="0" y="140px" font-size="150px" stroke="#3e3e41" stroke-width="4" fill="transparent">
+                    <!-- section title -->
+                    Testimonials
+                  </text>
+                </svg>
+              </div>
+
+            </div>
+
+            <div class="col-lg-12">
+
+              <div class="row">
+
+                <div class="col-lg-6 sw-as-center mb-60">
+
+                  <!-- title -->
+                  <h4 class="sw-h sw-h-lvl-4 mb-30">What our students say</h4>
+                  <!-- suptitle -->
+
+                </div>
+                <div class="col-lg-6 sw-as-end text-lg-right text-sm-left mb-60">
+
+                  <!-- hint -->
+                  <a href="#."
+                    class="sw-btn sw-icon-btn sw-md-btn sw-solid-btn sw-round-btn sw-color-1-btn sw-swiper-prev sw-testi-swiper-prev sw-animation-left"><i
+                      class="fa fa-chevron-left"></i></a>
+                  <a href="#."
+                    class="sw-btn sw-icon-btn sw-md-btn sw-solid-btn sw-round-btn sw-color-1-btn sw-swiper-next sw-testi-swiper-next sw-animation-right"><i
+                      class="fa fa-chevron-right"></i></a>
+
+                </div>
+
+              </div>
+
+            </div>
+
+            <div class="col-lg-12">
+
+              <div class="swiper-container sw-testimonials-slider mb-4" style="overflow: visible;">
+                <div class="swiper-wrapper">
+
+                  <div class="swiper-slide">
+
+                    <!-- testimonial-->
+                    <div class="sw-testimonial">
+                      <!-- reviewer frame -->
+                      <div class="sw-reviewer-frame">
+                        <!-- img -->
+                        <!-- name -->
+                        <div>
+                          <h6>W. Akash Fernando PhD, PMP</h6>
+                        </div>
+                      </div>
+                      <!-- reviewer frame end -->
+                      <!-- testimonial frame -->
+                      <div class="sw-testimonial-frame">
+                        <!-- testimonial text -->
+                        <div class="mb-10">Dr. Duminda Weeraratne is an exceptional mentor with indepth knowledge
+                          related to project management and the PMP examination process. In addition to the excellent
+                          lectures, his mock examinations were monumental to my success. I must say it would have been
+                          very difficult to pass this exam in my first attempt, if not for the guidance of Dr.
+                          Weeraratne.</div>
+                      </div>
+                      <!-- testimonial frame end -->
+                    </div>
+                    <!-- testimonial end -->
+
+                  </div>
+
+                  <div class="swiper-slide">
+
+                    <!-- testimonial-->
+                    <div class="sw-testimonial">
+                      <!-- reviewer frame -->
+                      <div class="sw-reviewer-frame">
+                        <!-- img -->
+                        <!-- name -->
+                        <div>
+                          <h6>Sanduni Jayathilake</h6>
+                          <div class="sw-t sw-post">World University Service of Canada</div>
+                        </div>
+                      </div>
+                      <!-- reviewer frame end -->
+                      <!-- testimonial frame -->
+                      <div class="sw-testimonial-frame">
+                        <!-- testimonial text -->
+                        <div class="mb-10">I am really grateful to our lecturer Mr. Duminda for all the knowledge,
+                          support, and valuable advice given to us, which paved our way to pass the PMP exam in our
+                          first attempt. On the first day itself he gave us a study plan and some exam tips. The slides
+                          and the chapter questions were helpful for us to better understand the concepts. Real life
+                          examples were shared. It is not only theoretical base but there were group activities in class
+                          creating a space to share best practices and PMP concepts among other students representing
+                          diverse industries yet studying and practicing project management.</div>
+                      </div>
+                      <!-- testimonial frame end -->
+                    </div>
+                    <!-- testimonial end -->
+
+                  </div>
+
+                  <div class="swiper-slide">
+
+                    <!-- testimonial-->
+                    <div class="sw-testimonial">
+                      <!-- reviewer frame -->
+                      <div class="sw-reviewer-frame">
+                        <!-- img -->
+                        <!-- name -->
+                        <div>
+                          <h6>Maduka Colombage PMP®, CSM®</h6>
+                          <div class="sw-t sw-post">Manager- Virtusa Cooparation, New York, USA</div>
+                        </div>
+                      </div>
+                      <!-- reviewer frame end -->
+                      <!-- testimonial frame -->
+                      <div class="sw-testimonial-frame">
+                        <!-- testimonial text -->
+                        <div class="mb-10">It is with great pleasure that I write this note for Project Management
+                          Solutions (PMS). I wanted to get the PMP credentials and looking for a place to get start.
+                          After careful analysis I selected the PMS and I dedicated 5 days from my year-end vacation to
+                          attend the course. I attended the PMP preparation program conducted at PMS in December 2018
+                          and I was able to pass the exam in the first attempt. The training program conducted by Mr.
+                          Duminda Weeraratne gave me a great assistance to achieve my goal. Mr. Duminda is an excellent
+                          lecturer and course material used were very effective. Without taking this course I would not
+                          have been able to pass the PMP Exam. Overall the course filtered out the most important
+                          information from the PMBOK® Guide, which helped me to better understand project management,
+                          and improved my ability to study for the PMP Exam.
+                          I would like to take this opportunity to thank Mr.Duminda and PMS staff for their valuable
+                          support given to complete my PMP. I highly recommend the PMP Preparation class to anyone who
+                          is interested in obtaining PMP. Thank you!</div>
+                      </div>
+                      <!-- testimonial frame end -->
+                    </div>
+                    <!-- testimonial end -->
+
+                  </div>
+
+                  <div class="swiper-slide">
+
+                    <!-- testimonial-->
+                    <div class="sw-testimonial">
+                      <!-- reviewer frame -->
+                      <div class="sw-reviewer-frame">
+                        <!-- img -->
+                        <!-- name -->
+                        <div>
+                          <h6>Adeesha Attanayake</h6>
+                          <div class="sw-t sw-post">Executive-Business Solutions, Mobitel (Pvt) Ltd.</div>
+                        </div>
+                      </div>
+                      <!-- reviewer frame end -->
+                      <!-- testimonial frame -->
+                      <div class="sw-testimonial-frame">
+                        <!-- testimonial text -->
+                        <div class="mb-10">The 6 week, weekend PMP course conducted my Mr. DumindaWeeraratne is most
+                          probably the best place in Sri Lanka for PMP exam preparation and to get your 35 hours of PM
+                          education required for the exam. He is an excellent teacher with great in-depth knowledge in
+                          Project Management and general management in the industry. Class is interactive and you will
+                          get a chance to meet great people from similar and other</div>
+                      </div>
+                      <!-- testimonial frame end -->
+                    </div>
+                    <!-- testimonial end -->
+
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+
+            <br>
+            <br>
+
+          </div>
+        </div>
 
 
 
 
 
-      <!-- footer -->
-      <footer class="sw-footer sw-footer-type-1">
-        <%- include("../partials/footer") %>
-      </footer>
-      <!-- footer end -->
+        <!-- footer -->
+        <footer class="sw-footer sw-footer-type-1">
+          <%- include("../partials/footer") %>
+        </footer>
+        <!-- footer end -->
 
-      
 
-    </main>
 
-  </div>
-  <!-- page wrapper end -->
+      </main>
 
-  <%- include("../partials/scripts") %>
+    </div>
+    <!-- page wrapper end -->
 
-</body>
+    <%- include("../partials/scripts") %>
+
+  </body>
 
 </html>
