@@ -57,7 +57,7 @@
                       </ul>
                 </div>
                 <div class="col p-30-30">
-                    <a id="course-btn"style="color: white; background: rgb(255, 88, 0);" class="btn" style="position: relative;" href="#sw-content">I'm Interested</a>
+                    <a id="course-btn"style="color: white; background: rgb(255, 88, 0);" class="btn" style="position: relative;" href="#sw-content">Enroll Now</a>
                 </div>
               <!-- breadcrumbs end -->
               
@@ -241,24 +241,16 @@
                         </script>
                         <% } %>
                 </div>
-                <div class="col-mb-5">
+                    <div class="col-md-5">
                 
-                    <!-- <h5>&nbsp;  Methodology</h5>
-                    <ul style="font-size: 1.1rem;">
-                        <%
-                            for ( var i = 0; i < course.learningMethodology.length; i++ )
-                            {
-                                var method = course.learningMethodology[i]
-                                if(method.text != ""){
-                                    %><li style="padding: 0.5rem;">
-                                        <%- method.text %>
-                                        </li>  <%
-                                }
-                            }
-                            %>
-                    </ul> -->
-                    <iframe id="lf-iframe-embed-code-78776" style="min-width: 300px !important;width: 400px !important;*width: 100% !important; border:none;min-height: 466px;" src="https://app.leadformly.com/get_last_form_url/78776" scrolling="no" frameborder="0"></iframe> <script type="text/javascript">var ifr = document.getElementById("lf-iframe-embed-code-78776"); if (window.location.href && window.location.href.indexOf('?') > -1) { var get = window.location.href.substr(window.location.href.indexOf('?') + 1); if (ifr && get.length > 0) { var src = ifr.src; src = src.indexOf('?') > -1 ? src + '&' + get : src + '?' + get; ifr.src = src; } } var iframePosition = function(e) { var n = ifr.getBoundingClientRect().top + pageYOffset; ifr.contentWindow.postMessage(JSON.stringify({type: 'iframeTop', value1: n}), '*'); }, onTestScroll = function(e) { window.pageYOffset || document.documentElement.scrollTop; var n = ifr.getBoundingClientRect(); ifr.contentWindow.postMessage( JSON.stringify({type: 'windowTop', value2: n.y || n.top, value3: window.innerHeight}), '*'); }; window.addEventListener ? (window.addEventListener('scroll', onTestScroll, !1), window.addEventListener( 'load', onTestScroll, !1), window.addEventListener('scroll', iframePosition, !1), window.addEventListener('load', iframePosition, !1), window.addEventListener('DOMContentLoaded', iframePosition, !1)) : window.attachEvent && (window.addEventListener('DOMContentLoaded', iframePosition), window.attachEvent('scroll', onTestScroll), window.addEventListener('load', onTestScroll)); window.handleIFrameMessage = function(e) { if (e.data.length > 0) { try { var args = JSON.parse(e.data); var iframe = document.getElementById("lf-iframe-embed-code-78776"); var formIds = ["78776"]; if (formIds.indexOf(args.formID) !== -1) { switch (args.case) { case 'redirectTo': window.open(decodeURI(args.redirectToURL), '_self'); ifr.src = ifr.src; break; case 'resizeIframe': iframe.width = args.scrollWidth + 'px', iframe.height = args.scrollHeight + 'px'; break; case 'stepChanged' : var elCoords = getCoords(ifr), isFormOnScreen = isOnScreen(ifr, false); if (!isFormOnScreen) { window.scrollTo(0, elCoords.top); } break; case 'scrollTo': window.scrollTo({top: args.scrollToPosition}); break; } } if ('contentWindow' in iframe && 'postMessage' in iframe.contentWindow) { var urls = { 'docurl': encodeURIComponent(document.URL), 'referrer': encodeURIComponent(document.referrer), }; iframe.contentWindow.postMessage(JSON.stringify({'type': 'urls', 'value': urls}), '*'); } } catch (e) {} } }; if (window.addEventListener) { window.addEventListener('message', handleIFrameMessage, false); } else if (window.attachEvent) { window.attachEvent('onmessage', handleIFrameMessage); } var getCoords = function(elem) { var box = elem.getBoundingClientRect(); var body = document.body; var docEl = document.documentElement; var scrollTop = window.pageYOffset || docEl.scrollTop || body.scrollTop; var scrollLeft = window.pageXOffset || docEl.scrollLeft || body.scrollLeft; var clientTop = docEl.clientTop || body.clientTop || 0; var clientLeft = docEl.clientLeft || body.clientLeft || 0; var top = box.top + scrollTop - clientTop; var left = box.left + scrollLeft - clientLeft; return {top: Math.round(top), left: Math.round(left)}; }; var isOnScreen = function(_this, partial) { var t = _this; var box = t.getBoundingClientRect(); var win = {h: window.innerHeight, w: window.innerWidth}; var topEdgeInRange = box.top >= 0 && box.top <= win.h; var bottomEdgeInRange = box.bottom >= 0 && box.bottom <= win.h; var leftEdgeInRange = box.left >= 0 && box.left <= win.w; var rightEdgeInRange = box.right >= 0 && box.right <= win.w; var coverScreenHorizontally = (box.left <= 0 ^ box.right >= win.w); var coverScreenVertically = (box.top <= 0 ^ box.bottom >= win.h); var topEdgeInScreen = topEdgeInRange && (leftEdgeInRange || rightEdgeInRange || coverScreenHorizontally); var bottomEdgeInScreen = bottomEdgeInRange && (leftEdgeInRange || rightEdgeInRange || coverScreenHorizontally); var leftEdgeInScreen = leftEdgeInRange && (topEdgeInRange || bottomEdgeInRange || coverScreenVertically); var rightEdgeInScreen = rightEdgeInRange && (topEdgeInRange || bottomEdgeInRange || coverScreenVertically); var isPartiallyOnScreen = topEdgeInScreen || bottomEdgeInScreen || leftEdgeInScreen || rightEdgeInScreen; var isEntirelyOnScreen = topEdgeInScreen && bottomEdgeInScreen && leftEdgeInScreen && rightEdgeInScreen; return partial ? isPartiallyOnScreen : isEntirelyOnScreen; };</script>
-                </div>
+                        <h5>&nbsp;  Certificate of Completion</h5>
+                        <img style="padding-top: 20px;" src="https://firebasestorage.googleapis.com/v0/b/repairit-58896.appspot.com/o/certificate.png?alt=media&token=f1f687ad-f50a-40dc-a6f4-c932e389f65f" width="90%">
+    
+                    </div>
+                   
+              
+              
+
         </div>
 
         <div id="sw-content" class="container">
@@ -274,7 +266,7 @@
                     <p>Our online training course maintains the same high quality instructor delivery standards, better learning impact, pass guarantee as the in person class room course with the flexibility and convenience to attend from your home or office.</p>             
                     <br>
                     <h5 style="color: #494953;">In Person Class Room</h5>
-                    <p>Instructor-led courses are held at quality training facilities and hosted by one of our certified instructors with more than 10 years learning management experience. Our live classroom opton comes with the flexibility to convert to a virtual course or another date if your plans changes.</p>
+                    <p>Instructor-led courses are held at quality training facilities and hosted by one of our certified instructors with more than 15 years of learning management experience. Our live classroom opton comes with the flexibility to convert to a virtual course or another date if your plans changes.</p>
                     <br>
                 </div>
 
@@ -340,7 +332,23 @@
             </div>  
         </div>
 
+        <section class="cta-area cta3 py-5">
+            <div class="container">
+              <div class="row align-items-center justify-content-between">
+                <div class="col-12 col-sm-12">
+                  <div class="cta-text">
+                    <h4 class="text-center">Need more information?</h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row align-items-center justify-content-between">
+            <div class="col-12 col-sm-12 text-center" ><h4 style="color: grey;">Call us on</h4></div>
+            <div class="col-12 col-sm-12 text-center" >
+                <h4 style="color: grey;"><i class="fas fa-phone-volume"> <a href="tel:+94772511711">+94 772511711</a></i></h4>
+            </div>
 
+        </section>
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
@@ -575,6 +583,10 @@
             </div>
         </div>
         <% } %>
+        <div class="container">
+        <script src="https://cdn.lightwidget.com/widgets/lightwidget.js"></script><iframe src="//lightwidget.com/widgets/05777223b2d551558dcaf5c70e999923.html" scrolling="no" allowtransparency="true" class="lightwidget-widget" style="width:100%;border:0;overflow:hidden;"></iframe>
+
+        </div>
 
       <!-- footer -->
       <footer class="sw-footer sw-footer-type-1">

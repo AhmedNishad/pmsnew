@@ -81,7 +81,7 @@ Typography
 /***** text *****/
 body {
   color:#494953;
-  font-family: "Varela", sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-size: 19px;
   background-color: #f8f8fb;
@@ -719,7 +719,7 @@ Menu
   width: 100%;
   -ms-flex-item-align: center;
       align-self: center;
-  padding: 10px 20px;
+  padding: 15px 20px;
   border-radius: 2px;
   text-transform: uppercase;
   font-size: 11px;
@@ -729,13 +729,13 @@ Menu
 }
 .sw-menu .sw-menu-content .main-menu .menu-item a:hover {
   color: #3c3c5a;
-  background-color: rgba(52, 64, 90, 0.05);
+  background-color: rgba(77, 73, 80, 0.05);
 }
 .sw-menu .sw-menu-content .main-menu .menu-item.current-menu-item {
   border-radius: 2px;
 }
 .sw-menu .sw-menu-content .main-menu .menu-item.current-menu-item a {
-  color: #3c3c5a;
+  color: #525264;
   background-color: #fafafd;
   /* -webkit-box-shadow: 0 8px 24px 0 rgba(52, 64, 90, 0.15);
           box-shadow: 0 8px 24px 0 rgba(52, 64, 90, 0.15); */
@@ -748,7 +748,7 @@ Menu
 }
 .sw-menu .sw-menu-content .main-menu .menu-item.current-menu-item .sub-menu a:hover {
   color: #3c3c5a;
-  background-color: rgba(52, 64, 90, 0.05);
+  background-color: rgba(90, 52, 88, 0.05);
 }
 .sw-menu .sw-menu-content .main-menu .menu-item.menu-item-has-children {
   position: relative;
@@ -1158,7 +1158,8 @@ Banner
   background: linear-gradient(106deg, rgba(51, 51, 107, 0.7) 7%, rgba(83, 83, 150,0) 78%);
 }
 .sw-banner .sw-overlay.sw-overlay-left-1-cs {
-  background: #271066;
+  /* background: #271066; */
+  background:  linear-gradient(90deg, #271066, #8a78bd);
 }
 .sw-banner .sw-overlay .container {
   height: 100%;
@@ -1746,11 +1747,11 @@ button.sw-solid-btn:hover {
 }
 .sw-btn.sw-solid-btn.sw-color-1-btn,
 button.sw-solid-btn.sw-color-1-btn {
-  background-color: #4682e6;
+  background-color: rgb(255, 88, 0);
 }
 .sw-btn.sw-solid-btn.sw-color-1-btn:hover,
 button.sw-solid-btn.sw-color-1-btn:hover {
-  background-color: #4353b3;
+  background-color: rgb(240, 138, 84);
 }
 .sw-btn.sw-solid-btn.sw-color-2-btn,
 button.sw-solid-btn.sw-color-2-btn {
@@ -1758,7 +1759,7 @@ button.sw-solid-btn.sw-color-2-btn {
 }
 .sw-btn.sw-solid-btn.sw-color-2-btn:hover,
 button.sw-solid-btn.sw-color-2-btn:hover {
-  background-color: rgb(240, 138, 84);;
+  background-color: rgb(240, 138, 84);
 }
 .sw-btn.sw-solid-btn.sw-white-btn,
 button.sw-solid-btn.sw-white-btn {
@@ -1897,7 +1898,7 @@ button.swiper-button-disabled {
 }
 .sw-btn.swiper-button-disabled:after,
 button.swiper-button-disabled:after {
-  background-color: #4d80e4;
+  background-color: rgb(255, 88, 0);
   position: absolute;
   top: 0;
   font-size: 9px;
@@ -3592,12 +3593,12 @@ input{
 }
 
 #navbar h5{
-  color: #004165;
+  color: #373A3C;
   font-size: 1.3rem;
 }
 
 #navbar-menu a:hover{
-  background: #004165;
+  background: #8a78bd;
   color: white;
   opacity: 1;
 }
@@ -3664,6 +3665,9 @@ text-align: initial;
 @media screen and (max-width: 440px) {
   .home-title .sw-white{
   font-size:40px ;
+}
+#facebook-col{
+  display: none;
 }
 .sw-banner {
   position: relative;
@@ -3801,4 +3805,15 @@ text-align: initial;
   background-color: white;
   color: rgb(255, 88, 0);
   font-size: 20px;
+}
+
+.cta-area {
+  
+  position: relative;
+  z-index: 1;
+  background-color: white;
+  margin-bottom: 50px;
+}
+.pb-5, .py-5 {
+  padding-bottom: 3rem!important;
 }
