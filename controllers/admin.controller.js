@@ -88,6 +88,7 @@ router.post("/courses/:moniker/update", (req, res) => {
         keyTakeaway: req.body.keyTakeaway,
         courseImage: req.body.courseImage,
         courseDates,
+        certificateUrl: req.body.certificateUrl,
         FAQs: req.body.FAQs,
         price: req.body.price
     }
