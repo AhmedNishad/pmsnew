@@ -4,13 +4,22 @@ let express = require('express')
 let router = express.Router()
 
 router.get('/:moniker', (req,res) => {
-    let mon = req.params.moniker
+    let mon = req.params.moniker;
+    let enrollNow = req.query.enrollNow;
+    let enrollNowDate = req.query.enrollNowDate;
+    console.log(enrollNow)
     Course.findOne({moniker: mon}, (err, course)=>{
             Course.find({}, (error, courses)=>{
+                
                 if(err || course == null) 
-                    return res.render("pages/message-page",{courses,message: "Course Not Found"})
+                    return res.render("pages/message-page",
+                    {courses,message: "Course Not Found"})
 
-                return res.render("pages/course-detailsv2",{course, courses})
+                    if(enrollNow == "true"){
+                        return res.render("pages/course-detailsv2",{course, courses, enrollNow})
+                    }
+
+                return res.render("pages/course-detailsv2",{course, courses, enrollNow:""})
             })
     })
 })

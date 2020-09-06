@@ -110,12 +110,13 @@
                                             for(let j = 0; j < filteredCourseDates.length; j++){
                                                 let date = filteredCourseDates[j];
                                                 %>
-                                                    <p><%= date.date.toDateString() %> - <%= date.times %></p>
+                                                    <p><%= date.date.toDateString() %> - <%= date.times %> - 
+                                                      <span style="color: blue"><%= new Date() > date.date ? "Ongoing" : "New" %></span></p>
+                                                      <a href="/courses/<%= course.moniker %>?enrollNowDate=<%= new Date(date.date).toLocaleDateString()%>&enrollNow=true">Enroll Now</a>
                                                 <%
                                             }
                                         %>
                                         </td>
-                                    <td><%- course.otherDetails[0].text %></td>
                                 </tr>
                                 <%
                             } 

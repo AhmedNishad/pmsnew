@@ -87,13 +87,16 @@ app.get('/register', function(req, res) {
 });
 
 app.post('/register', function(req, res) {
+    console.log(req.body.phoneNumber)
     let reservation = new Reservation({
         name: req.body.name,
         email: req.body.email,
         course: req.body.course,
         type: req.body.type,
-        date: req.body.date
-    })
+        date: req.body.date,
+        phoneNumber: req.body.phone
+    });
+    console.log(reservation)
     reservation.save((err)=>{
         Course.find({}, (error, courses)=>{
             if(err){
