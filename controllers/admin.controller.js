@@ -6,6 +6,38 @@ const Reservation = require('../models/reservation.model')
 const Inquiry = require('../models/inquiry.model')
 const Registration = require('../models/registration.model')
 
+router.get('/', (req,res)=>{
+    return res.render('pages/admin-login-pages');
+})
+
+router.post('/login', (req,res)=>{
+    var user = req.body.user;
+    var pass = req.body.pass;
+    if(user == "admin" && pass == "@dm1n"){
+        req.session.user = {user, pass}
+        return res.redirect('courses');
+    }
+
+    
+})
+
+router.use((req, res, next) => {
+    if (req.cookies.user_sid && !req.session.user) {
+        res.clearCookie('user_sid');        
+    }
+    next();
+});
+
+
+router.use((req, res, next) => {
+    if (!(req.session.user && req.cookies.user_sid)) {
+        res.redirect('/admin');
+    } else {
+        next();
+    }    
+});
+
+
 router.get('/courses', (req,res)=>{
     console.log("Admin all courses")
     Course.find({}, (err, courses)=>{
@@ -36,6 +68,7 @@ router.get('/courses/create/new', (req,res)=>{
 router.post("/courses/:moniker/update", (req, res) => {
     console.log("Updating course")
     console.log(req.body)
+    let courseDates = req.body.courseDates == null ? [] : req.body.courseDates;
     let updateBody = {
         title:  req.body.title, // Title at top of 
         type: req.body.type, // Agile, project management etc
@@ -54,7 +87,7 @@ router.post("/courses/:moniker/update", (req, res) => {
         PDUTable: req.body.PDUTable,  // For the tables
         keyTakeaway: req.body.keyTakeaway,
         courseImage: req.body.courseImage,
-        courseDates: req.body.courseDates,
+        courseDates,
         FAQs: req.body.FAQs,
         price: req.body.price
     }

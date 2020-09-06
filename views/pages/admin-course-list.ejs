@@ -31,13 +31,13 @@
   
       <main class="container-fluid">
         <h5>Course List</h5>
-        <a class="btn btn-primary" href="/admin/a6/courses/create/new">Create New</a>
+        <a class="btn btn-primary" href="/admin/courses/create/new">Create New</a>
         <ul class="list-group">
             <%  
             for(let i = 0; i < courses.length; i++){
                 let course = courses[i];
                 %>
-                <li class="list-group-item"> <a href="/admin/a6/courses/<%= course.moniker %>/update"><%= course.title %></a> </li>
+                <li class="list-group-item"> <a href="/admin/courses/<%= course.moniker %>/update"><%= course.title %></a> </li>
                 <%
             }
             %> 

@@ -7,8 +7,11 @@ const Inquiry = require('./models/inquiry.model')
 const Registration = require('./models/registration.model')
 var app = express();
 var bodyParser = require('body-parser')
-
+var cookieParser = require('cookie-parser');
+var session = require('express-session');
 var mongoose = require('mongoose');
+
+
 //mongoose.connect('mongodb+srv://pms-user:9EH95a7zD3fr9NCn@pmscluster.i2oou.azure.mongodb.net/pms-lk?retryWrites=true&w=majority', {useNewUrlParser: true});
 mongoose.connect('mongodb+srv://pmsuser:pmsuser1324@cluster0.a6ybh.gcp.mongodb.net/pms-lk?retryWrites=true&w=majority', {useNewUrlParser: true});
 //mongodb+srv://pmsuser:pmsuser1324@cluster0.a6ybh.gcp.mongodb.net/pms-lk?retryWrites=true&w=majority
@@ -23,6 +26,18 @@ app.use("/public", express.static(__dirname + '/public'))
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+
+app.use(cookieParser());
+
+app.use(session({
+    key: 'user_sid',
+    secret: 'somerandonstuffs',
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        expires: 600000
+    }
+}));
 
 // Send notification for every course on day of course (Cron Job)
 
@@ -299,7 +314,7 @@ app.post('/paynow/:moniker', function(req, res) {
 
 app.use('/courses', courseController)
 app.use('/blog', blogController)
-app.use('/admin/a6', adminController)
+app.use('/admin', adminController)
 
 app.get('/createCourse', (req,res)=>{
     res.render('pages/createCourse')

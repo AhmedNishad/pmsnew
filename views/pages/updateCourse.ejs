@@ -262,7 +262,6 @@
               </div>
               <% } %>
 
-              <% if(course.courseDates){ %>
                 <div class="form-group">
                   <label class="control-label col-sm-4" for="experience">Dates</label>
                   <button class="btn btn-primary add">Add Date</button>
@@ -278,7 +277,7 @@
                                     <input class="form-control" value="" type="text" name="courseDates[0][times]" placeholder="times">
                                     <button class="btn btn-danger remove">Remove</button>
                                 </div> 
-                    <% } %>
+                    <% } else { %> 
                     <%
                         for ( var i = 0; i < course.courseDates.length; i++ )
                         {
@@ -289,9 +288,12 @@
                               let month = (parseInt(now.getMonth()) + 1 ) >= 10 ? (parseInt(now.getMonth()) + 1 ) : "0" + (parseInt(now.getMonth()) + 1 )
                               let day = (parseInt(now.getDate())) >= 10 ? (parseInt(now.getDate()) ) : "0" + (parseInt(now.getDate()))
                               let dateString = now.getFullYear() + "-" + month + "-" + day;
-                              month = (parseInt(date.date.getMonth()) + 1 ) >= 10 ? (parseInt(date.date.getMonth()) + 1 ) : "0" + (parseInt(date.date.getMonth()) + 1 )
-                              day = (parseInt(date.date.getDate())) >= 10 ? (parseInt(date.date.getDate()) ) : "0" + (parseInt(date.date.getDate()))
-                              let courseDateString = date.date.getFullYear() + "-" + month + "-" + day;
+                              let courseDateString  = dateString;
+                              if(date.date != null){
+                                month = (parseInt(date.date.getMonth()) + 1 ) >= 10 ? (parseInt(date.date.getMonth()) + 1 ) : "0" + (parseInt(date.date.getMonth()) + 1 )
+                                day = (parseInt(date.date.getDate())) >= 10 ? (parseInt(date.date.getDate()) ) : "0" + (parseInt(date.date.getDate()))
+                                courseDateString = date.date.getFullYear() + "-" + month + "-" + day;
+                              }
                                 %><div>
                                   <input min="<%= dateString %>" value="<%= courseDateString %>" class="form-control" type="date" name="courseDates[<%= i %>][date]" />
                                     <input class="form-control" value="<%= date.times || "" %>" type="text" name="courseDates[<%= i %>][times]" placeholder="times">
@@ -299,10 +301,10 @@
                                     <button class="btn btn-danger remove">Remove</button>
                                 </div>   <%
                       }
+                    }
                         %>  
                   </div>
               </div>
-              <% } %>
 
                 <div class="form-group">
                     <label  class="control-label col-sm-4" for="experience">Key Takeaway</label>
