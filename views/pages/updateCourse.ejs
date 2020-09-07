@@ -90,12 +90,19 @@
                     <input value="<%= course.courseNumber %>" class="form-control" type="text" placeholder="Course Number" name="courseNumber" />
                   </div>
                 </div>
-                    <div class="form-group">
-                    <label class="control-label col-sm-4" for="telephone">Course Image</label>
-                    <div class="col-sm-8">          
-                        <input value="<%= course.courseImage %>" class="form-control" type="text" placeholder="Course Image (Url)" name="courseImage" />
-                    </div>
-                    </div>
+                <div class="form-group">
+                  <label class="control-label col-sm-4" for="telephone">Course Image</label>
+                  <div class="col-sm-8">          
+                      <input value="<%= course.courseImage %>" class="form-control" type="text" placeholder="Course Image (Url)" name="courseImage" />
+                  </div>
+                </div>
+                    
+                <div class="form-group">
+                  <label class="control-label col-sm-4" for="telephone">Certificate Image</label>
+                  <div class="col-sm-8">          
+                      <input value="<%= course.certificateUrl %>" class="form-control" type="text" placeholder="Certificate Image (Url)" name="certificateUrl" />
+                  </div>
+                </div>
                 <div class="form-group">
                   <label class="control-label col-sm-4" for="mobile">Objectives (List)</label>
                   <button class="btn btn-primary add" type="button" data-element-to-add="addInput('input class='form-control' type='text' placeholder='Objectives' name='objectives[][text]'>')">Add Objective</button>

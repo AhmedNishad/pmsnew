@@ -20,6 +20,7 @@ var courseSchema = new Schema({
   PDUS: [{pdus: String, technical: String, leadership: String, strategy: String}],  // For the tables
   PDUTable: String,
   keyTakeaway: String,
+  certificateUrl: String,
   courseImage: String,
   price: { type: Number, default: 0 },
   nextSession: { type: Date, default: Date.now }, // 
