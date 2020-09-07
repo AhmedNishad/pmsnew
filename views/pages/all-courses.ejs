@@ -81,10 +81,10 @@
   
               <div class="row">
   
-                <div class="col-lg-12 sw-as-center mb-60">
+                <div class="col-lg-12 sw-as-center mb-30">
   
                   <!-- title -->
-                  <h4 class="sw-h sw-h-lvl-4 mb-30">Agile</h4>
+                  <h4 class="sw-h sw-h-lvl-4 mb-30">Agile Project Management</h4>
                   <!-- suptitle -->
 
                 </div>
@@ -149,7 +149,7 @@
   
               <div class="row">
   
-                <div class="col-lg-12 sw-as-center mb-60">
+                <div class="col-lg-12 sw-as-center mb-30">
   
                   <!-- title -->
                   <h4 class="sw-h sw-h-lvl-4 mb-30">Project Management</h4>
@@ -209,7 +209,72 @@
                   </div>
             </div>
             <!-- PM End -->
+      <!--businessManagement Start-->
 
+      <div class="col-lg-12">
+  
+        <div class="row">
+
+          <div class="col-lg-12 sw-as-center mb-30">
+
+            <!-- title -->
+            <h4 class="sw-h sw-h-lvl-4 mb-30">Business Analysis</h4>
+            <!-- suptitle -->
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="col-lg-12">
+
+        <div class="row">
+
+          <% 
+              let bizCourses = courses.filter(c => c.type == "businessManagement")
+              for(let i = 0; i< bizCourses.length; i++){
+              let course = bizCourses[i]
+              %>
+              <!-- Course start-->
+              <div class="col-lg-4">
+
+              <!-- card -->
+              <div class="sw-card">
+                  <!-- img frame -->
+                  <a href="/courses/<%= course.moniker %>" class="sw-img">
+                  <img src="<%= course.courseImage == "" || course.courseImage == null ? "/public/img/business/services/6.png" : course.courseImage %>" alt="thumb">
+                  </a>
+                  <!-- img frame end -->
+                  <!-- description -->
+                  <div class="sw-card-description">
+                  <!-- title -->
+                  <a href="/courses/<%= course.moniker %>" class="mb-15">
+                      <h5><%= course.title %></h5>
+                  </a>
+                  <!-- short description -->
+                  <div> 
+                      <%= course.introduction.body.replace( /(<([^>]+)>)/ig, '').substring(0,100) %>...
+                      </div>
+                  <!-- button -->
+                  <!-- button -->
+                  </div>
+                  <!-- description end -->
+                  <!-- badge -->
+              </div>
+              <!-- card end -->
+
+              </div>
+              <!-- Course end -->
+              
+              <%
+          } %> 
+
+          
+
+            </div>
+      </div>
+      <!-- businessManagement End -->
             <!--communityProjects Start-->
 
             <div class="col-lg-12">
@@ -344,72 +409,7 @@
             </div>
             <!-- softSkills End -->
 
-            <!--businessManagement Start-->
-
-            <div class="col-lg-12">
-  
-              <div class="row">
-  
-                <div class="col-lg-12 sw-as-center mb-60">
-  
-                  <!-- title -->
-                  <h4 class="sw-h sw-h-lvl-4 mb-30">Business Management</h4>
-                  <!-- suptitle -->
-
-                </div>
-  
-              </div>
-  
-            </div>
-  
-            <div class="col-lg-12">
-  
-              <div class="row">
-  
-                <% 
-                    let bizCourses = courses.filter(c => c.type == "businessManagement")
-                    for(let i = 0; i< bizCourses.length; i++){
-                    let course = bizCourses[i]
-                    %>
-                    <!-- Course start-->
-                    <div class="col-lg-4">
-    
-                    <!-- card -->
-                    <div class="sw-card">
-                        <!-- img frame -->
-                        <a href="/courses/<%= course.moniker %>" class="sw-img">
-                        <img src="<%= course.courseImage == "" || course.courseImage == null ? "/public/img/business/services/6.png" : course.courseImage %>" alt="thumb">
-                        </a>
-                        <!-- img frame end -->
-                        <!-- description -->
-                        <div class="sw-card-description">
-                        <!-- title -->
-                        <a href="/courses/<%= course.moniker %>" class="mb-15">
-                            <h5><%= course.title %></h5>
-                        </a>
-                        <!-- short description -->
-                        <div> 
-                            <%= course.introduction.body.replace( /(<([^>]+)>)/ig, '').substring(0,100) %>...
-                            </div>
-                        <!-- button -->
-                        <!-- button -->
-                        </div>
-                        <!-- description end -->
-                        <!-- badge -->
-                    </div>
-                    <!-- card end -->
-    
-                    </div>
-                    <!-- Course end -->
-                    
-                    <%
-                } %> 
-
-                
-    
-                  </div>
-            </div>
-            <!-- businessManagement End -->
+      
         </div>
     </div>
 
