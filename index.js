@@ -38,7 +38,10 @@ app.use(session({
         expires: 600000
     }
 }));
-
+app.use(require('prerender-node').set('prerenderToken', 'MqeP1XhMP4Fot46Xu0kL'));
+const prerender = require('prerender');
+const server = prerender();
+server.start();
 // Send notification for every course on day of course (Cron Job)
 
 app.get('/', function(req, res) {
@@ -69,7 +72,10 @@ app.get('/contact', function(req, res) {
 });
 
 app.post('/contact', (req,res)=>{
-    console.log(req.body)
+    let course = req.query.course;
+    if(course != null){
+        req.body.message = req.body.message + " : from course " + course;
+    }
     let inquiry = new Inquiry({
         name: req.body.name,
         email: req.body.email,
@@ -77,7 +83,7 @@ app.post('/contact', (req,res)=>{
         company: req.body.company,
         query: req.body.message,
         placedOn: new Date()
-    })
+    });
     inquiry.save((err)=>{
         Course.find({}, (error, courses)=>{
             if(err){
@@ -112,7 +118,7 @@ app.post('/register', function(req, res) {
         phoneNumber: req.body.phone,
         placedOn: new Date()
     });
-    console.log(reservation)
+    console.log(reservation);
     reservation.save((err)=>{
         Course.find({}, (error, courses)=>{
             if(err){
@@ -132,8 +138,8 @@ app.get('/paynow/:moniker', function(req, res) {
                     return res.render("pages/message-page",{courses,message: "Course Not Found"})
 
                 return res.render("pages/pay-now",{course, courses})
-            })
-    })
+            });
+    });
 });
 
 app.get('/response', (req,res)=>{
