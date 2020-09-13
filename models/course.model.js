@@ -22,6 +22,8 @@ var courseSchema = new Schema({
   keyTakeaway: String,
   certificateUrl: String,
   courseImage: String,
+  seoKeywords: String,
+  seoDescription: String,
   price: { type: Number, default: 0 },
   nextSession: { type: Date, default: Date.now }, // 
   courseDates: [{date: Date, timeFrom: String, timeTo: String, times: String}]

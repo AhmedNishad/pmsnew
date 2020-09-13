@@ -66,12 +66,14 @@ router.get('/courses/create/new', (req,res)=>{
 
 
 router.post("/courses/:moniker/update", (req, res) => {
-    console.log("Updating course")
-    console.log(req.body)
     let courseDates = req.body.courseDates == null ? [] : req.body.courseDates;
+    console.log(courseDates);
+    let mon = req.params.moniker;
     let updateBody = {
         title:  req.body.title, // Title at top of 
         type: req.body.type, // Agile, project management etc
+        seoKeywords: req.body.seoKeywords,
+        seoDescription: req.body.seoDescription,
         introduction: req.body.introduction, 
         duration:   req.body.duration, // Hours, days
         courseFee:   req.body.courseFee, // USD
@@ -91,6 +93,11 @@ router.post("/courses/:moniker/update", (req, res) => {
         certificateUrl: req.body.certificateUrl,
         FAQs: req.body.FAQs,
         price: req.body.price
+    }
+    if(mon == "project-management-professional"){
+        Course.findOneAndUpdate({moniker:  "certified-associate-in-project-management"}, {courseDates}, function (err, course) {
+        
+        });
     }
     Course.findOneAndUpdate({moniker: req.params.moniker}, updateBody, function (err, course) {
         Course.find({}, (error, courses)=>{
@@ -117,7 +124,8 @@ router.get('/reservations', (req,res)=>{
     Reservation.find({}, (err, reservations)=>{
         if(err) 
             return res.status(404).json({error: "Error"})
-        
+
+            reservations = reservations.sort((a, b) => b.placedOn - a.placedOn)
             return res.render('pages/admin-reservations', {reservations:reservations });
     })
 })
@@ -126,7 +134,8 @@ router.get('/inquiries', (req,res)=>{
     Inquiry.find({}, (err, inquiries)=>{
         if(err) 
             return res.status(404).json({error: "Error!"})
-        
+
+            inquiries = inquiries.sort((a, b) => b.placedOn - a.placedOn)
             return res.render('pages/admin-inquiries', {inquiries });
     })
 })

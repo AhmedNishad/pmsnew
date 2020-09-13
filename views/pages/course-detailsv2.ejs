@@ -4,6 +4,9 @@
 <head>
   <%- include("../partials/head", {title: `${course.title}`}) %>
 
+
+  <meta name="description" content="<%= course.seoDescription %>" >
+  <meta name="keywords" content="<%= course.seoKeywords %>">
 </head>
 
 <body data-enrollNow="<%= enrollNow == undefined ? '' : enrollNow %>" >
@@ -420,26 +423,27 @@
                 <!-- Modal body -->
                 <div class="modal-body">
                     <form id="reserveForm" class="form" method="post" action="../../register">
-                        <div class="form-group">
-                        <label class="control-label col-sm-4" for="name">Select Time Slot</label>
-                        <select required class="form-control" name="date" id="selectSlot">
-                            <% 
-                                for(let i = 0; i< course.courseDates.length; i++){
-                                    let courseDate = course.courseDates[i];
-                                    if(courseDate.date != null){
-                                    %>
-                                    <option value=<%= new Date(courseDate.date).toLocaleDateString() %>> <%= new Date(courseDate.date).toDateString() %></option>
-                                    <%}
-                                }
-                            %>
-                            <% if(course.courseDates.length == 0 || course.courseDates.length == 0){
+                       <% if(course.courseDates.length > 0 && course.courseDates.filter(c => c.date != null).length > 0){ %>
+                            <div class="form-group">
+                            <label class="control-label col-sm-4" for="name">Select Time Slot</label>
+                            <select required class="form-control" name="date" id="selectSlot">
+                                <% 
+                                    for(let i = 0; i< course.courseDates.length; i++){
+                                        let courseDate = course.courseDates[i];
+                                        if(courseDate.date != null){
+                                        %>
+                                        <option value=<%= new Date(courseDate.date).toLocaleDateString() %>> <%= new Date(courseDate.date).toDateString() %></option>
+                                        <%}
+                                    }
                                 %>
-                                <option disabled value="">No dates for this course</option>
-                                <%
-                            } %>
-                        </select>
-                        </div>
-
+                                <% if(course.courseDates.length == 0 || course.courseDates.length == 0){
+                                    %>
+                                    <option disabled value="">No dates for this course</option>
+                                    <%
+                                } %>
+                            </select>
+                            </div>
+                        <% } %>
                         <select hidden  class="form-control" name="course" id="selectSlot">
                             <option value="<%= course.moniker %>"><%= course.title %></option>
                         </select>

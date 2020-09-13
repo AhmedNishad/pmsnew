@@ -7,7 +7,8 @@ var reservationSchema = new Schema({
     phoneNumber: String,
     course: String,
     type: String,
-    date: String
+    date: String,
+    placedOn: Date
 });
 
 module.exports = mongoose.model('Reservation', reservationSchema)

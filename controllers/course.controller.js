@@ -9,6 +9,7 @@ router.get('/:moniker', (req,res) => {
     let enrollNowDate = req.query.enrollNowDate;
     console.log(enrollNow)
     Course.findOne({moniker: mon}, (err, course)=>{
+        
             Course.find({}, (error, courses)=>{
                 
                 if(err || course == null) 
@@ -101,6 +102,7 @@ router.post("/:moniker/update", (req, res) => {
         FAQs: req.body.FAQs,
         price: req.body.price
     }
+    
     Course.findOneAndUpdate({moniker: req.params.moniker}, updateBody, function (err, course) {
         Course.find({}, (error, courses)=>{
             if(err || course == null){

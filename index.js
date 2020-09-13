@@ -109,7 +109,8 @@ app.post('/register', function(req, res) {
         course: req.body.course,
         type: req.body.type,
         date: req.body.date,
-        phoneNumber: req.body.phone
+        phoneNumber: req.body.phone,
+        placedOn: new Date()
     });
     console.log(reservation)
     reservation.save((err)=>{
@@ -326,7 +327,7 @@ app.get('/reservations/:id/delete', (req,res)=>{
         if (err) 
             return  res.status(500).json({error: "Error deleting reservation"})
 
-        return res.redirect("/admin/a6/reservations")
+        return res.redirect("/admin/reservations")
     })
 })
 
@@ -335,7 +336,7 @@ app.get('/inquiry/:id/delete', (req,res)=>{
         if (err) 
             return  res.status(500).json({error: "Error deleting inquiry"})
 
-        return res.redirect("/admin/a6/inquiries")
+        return res.redirect("/admin/inquiries")
     })
 })
 
@@ -345,7 +346,7 @@ app.get('/registration/:id/handle', (req,res)=>{
         if (err) 
             return  res.status(500).json({error: "Error handling registration"})
 
-        return res.redirect("/admin/a6/registrations")
+        return res.redirect("/admin/registrations")
     })
 })
 
