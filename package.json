@@ -19,7 +19,9 @@
     "express-session": "^1.17.1",
     "mongoose": "^5.9.18",
     "nodemailer": "^6.4.10",
-    "nodemailer-mailgun-transport": "^2.0.0"
+    "nodemailer-mailgun-transport": "^2.0.0",
+    "prerender": "^5.8.0",
+    "prerender-node": "^3.2.5"
   },
   "devDependencies": {
     "nodemon": "^2.0.4"
