@@ -39,9 +39,9 @@ app.use(session({
     }
 }));
 app.use(require('prerender-node').set('prerenderToken', 'MqeP1XhMP4Fot46Xu0kL'));
-const prerender = require('prerender');
-const server = prerender();
-server.start();
+// const prerender = require('prerender');
+// const server = prerender();
+// server.start();
 // Send notification for every course on day of course (Cron Job)
 
 app.get('/', function(req, res) {
