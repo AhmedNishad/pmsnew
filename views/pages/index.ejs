@@ -9,29 +9,7 @@
   </head>
 
   <body>
-    <!-- Load Facebook SDK for JavaScript -->
-    <div id="fb-root"></div>
-    <script>
-      window.fbAsyncInit = function () {
-        FB.init({
-          xfbml: true,
-          version: 'v7.0'
-        });
-      };
-
-      (function (d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-        js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
-        fjs.parentNode.insertBefore(js, fjs);
-      }(document, 'script', 'facebook-jssdk'));</script>
-
-    <!-- Your Chat Plugin code -->
-    <div class="fb-customerchat" attribution=setup_tool page_id="288298102741"
-      logged_in_greeting="Hi! How can we help you?" logged_out_greeting="Hi! How can we help you?">
-    </div>
-
+   
     <!-- preloader -->
     <svg class="sw-loading" style="position: fixed;top: calc(50% - 30px);left: calc(50% - 30px);" width="35" height="35"
       viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" version="1.1">
@@ -107,7 +85,7 @@
         <div class="row justify-content-center sw-over-frame sw-up">
 
           <!-- introductory word -->
-          <div class="col-lg-8 col-md-6 col-sm-12 introductory-word text-left p-60-60">
+          <div class="col-lg-12 col-md-6 col-sm-12 introductory-word text-left p-60-60">
             <div class="container">
               <!-- avatar -->
               <!-- <img src="img/business/faces/face-1.jpg" alt="Viktoria Freeman" class="sw-iw-avatar mb-60"> -->
@@ -137,22 +115,7 @@
             </div>
           </div>
           <!-- introductory word end -->
-          <div id="facebook-col" class="col-lg-4 col-md-6 col-sm-12 p-60-60">
-            <div class="mydeco">
-              <div class="fb-page fb_iframe_widget"
-                data-href="https://www.facebook.com/Project-Management-Solutions-288298102741/" data-tabs="timeline"
-                data-width="" data-height="400px" data-small-header="false" data-adapt-container-width="true"
-                data-hide-cover="false" data-show-facepile="true" fb-xfbml-state="rendered"
-                fb-iframe-plugin-query="adapt_container_width=true&amp;app_id=&amp;container_width=360&amp;height=400&amp;hide_cover=false&amp;href=https%3A%2F%2Fwww.facebook.com%2FProject-Management-Solutions-288298102741%2F&amp;locale=en_GB&amp;sdk=joey&amp;show_facepile=true&amp;small_header=false&amp;tabs=timeline&amp;width=">
-                <span style="vertical-align: bottom; width: 100%; height: 400px;"><iframe name="f31e4d6d84b86ec"
-                    width="1000px" height="400px" data-testid="fb:page Facebook Social Plugin"
-                    title="fb:page Facebook Social Plugin" frameborder="0" allowtransparency="true"
-                    allowfullscreen="true" scrolling="no" allow="encrypted-media"
-                    src="https://web.facebook.com/v4.0/plugins/page.php?adapt_container_width=true&amp;app_id=&amp;channel=https%3A%2F%2Fstaticxx.facebook.com%2Fx%2Fconnect%2Fxd_arbiter%2F%3Fversion%3D46%23cb%3Df39bf5b044e801%26domain%3Dwww.pms.lk%26origin%3Dhttps%253A%252F%252Fwww.pms.lk%252Ff2a02e5b589d788%26relation%3Dparent.parent&amp;container_width=360&amp;height=400&amp;hide_cover=false&amp;href=https%3A%2F%2Fwww.facebook.com%2FProject-Management-Solutions-288298102741%2F&amp;locale=en_GB&amp;sdk=joey&amp;show_facepile=true&amp;small_header=false&amp;tabs=timeline&amp;width="
-                    style="border: none; visibility: visible; width: 100%; height: 400px;" class=""></iframe></span>
-              </div>
-            </div>
-          </div>
+        
         </div>
 
         <div class="container">
@@ -237,6 +200,32 @@
                     <!-- card -->
                     <div class="sw-card">
                       <!-- img frame -->
+                      <a href="/courses/agile-certified-practitioner" class="sw-img">
+                        <img src="https://firebasestorage.googleapis.com/v0/b/repairit-58896.appspot.com/o/PMP.png?alt=media&token=e7633acc-07c2-45a5-b7d4-e9d89028213f" alt="agile certified practitioner">
+                      </a>
+                      <!-- img frame end -->
+                      <!-- description -->
+                      <div class="sw-card-description">
+                        <!-- title -->
+                        <a href="/courses/agile-certified-practitioner" class="mb-10">
+                          <h5>Agile Certified Practitioner PMI-ACP®</h5>
+                        </a>
+                        <!-- short description -->
+                        <div>25 Hours</div>
+                        <!-- button -->
+                        <a href="/courses/agile-certified-practitioner"
+                          class="sw-btn sw-md-btn sw-solid-btn sw-round-btn sw-color-1-btn">More information</a>
+                      </div>
+                      <!-- description end -->
+                    </div>
+                    <!-- card end -->
+
+                  </div>
+                  <div class="swiper-slide">
+
+                    <!-- card -->
+                    <div class="sw-card">
+                      <!-- img frame -->
                       <a href="/courses/competent-scrum-master" class="sw-img">
                         <img src="https://firebasestorage.googleapis.com/v0/b/repairit-58896.appspot.com/o/5.png?alt=media&token=95ab3603-6623-40d1-b89b-7d2a42063852" alt="competent scrum master">
                       </a>
@@ -258,7 +247,7 @@
                     <!-- card end -->
 
                   </div>
-
+    
                   <div class="swiper-slide">
 
                     <!-- card -->
@@ -313,32 +302,7 @@
                     <!-- card end -->
 
                   </div>
-                  <!-- <div class="swiper-slide">-->
-
-                    <!-- card -->
-                  <!--  <div class="sw-card">-->
-                      <!-- img frame -->
-                  <!--    <a href="/courses/prince-2" class="sw-img">-->
-                  <!--      <img src="/public/img/business/services/4.png" alt="thumb">-->
-                  <!--    </a>-->
-                      <!-- img frame end -->
-                      <!-- description -->
-                  <!--    <div class="sw-card-description">-->
-                        <!-- title -->
-                  <!--      <a href="/courses/prince-2" class="mb-10">-->
-                  <!--        <h5>Prince2®</h5>-->
-                  <!--      </a>-->
-                        <!-- short description -->
-                  <!--      <div></div>-->
-                        <!-- button -->
-                  <!--      <a href="/courses/prince-2"-->
-                  <!--        class="sw-btn sw-md-btn sw-solid-btn sw-round-btn sw-color-1-btn">More information</a>-->
-                  <!--    </div>-->
-                      <!-- description end -->
-                  <!--  </div>-->
-                    <!-- card end -->
-
-                  <!--</div> -->
+       
 
                   
                 </div>
