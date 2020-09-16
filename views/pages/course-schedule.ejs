@@ -117,7 +117,7 @@
                                                       <h5 class="card-title"><%= date.date.toDateString() %></h5>
                                                       <h6 class="card-subtitle mb-2 text-muted"><span style="color: lightcoral"><%= new Date() > date.date ? "Ongoing" : "New" %></span></h6>
                                                       <p class="card-text"></p>
-                                                      <a href="/courses/<%= course.moniker %>?enrollNowDate=<%= new Date(date.date).toLocaleDateString()%>&enrollNow=true" class="card-link btn btn-link" style="color: orange;">Enroll Now</a>
+                                                      <a href="/courses/<%= course.moniker %>?enrollNowDate=<%= new Date(date.date).toLocaleDateString()%>&enrollNow=true" rel="nofollow" class="card-link btn btn-link" style="color: orange;">Enroll Now</a>
                                                     </div>
                                                   </div>
                                               </td>
@@ -149,7 +149,7 @@
                                                       <h5 class="card-title"><a class="btn btn-link" href="/courses/<%= course.moniker %>"><%= course.title %></a> <br> <%= date.date.toDateString() %></h5>
                                                       <h6 class="card-subtitle mb-2 text-muted"><span style="color: lightcoral"><%= new Date() > date.date ? "Ongoing" : "New" %></span></h6>
                                                       <p class="card-text"><%- course.otherDetails[0].text %> <br> <strong><%= date.times %></strong></p>
-                                                      <a href="/courses/<%= course.moniker %>?enrollNowDate=<%= new Date(date.date).toLocaleDateString()%>&enrollNow=true" class="card-link btn btn-link" style="color: orange;">Enroll Now</a>
+                                                      <a href="/courses/<%= course.moniker %>?enrollNowDate=<%= new Date(date.date).toLocaleDateString()%>&enrollNow=true" rel="nofollow" class="card-link btn btn-link" style="color: orange;">Enroll Now</a>
                                                     </div>
                                   </div>
                                                 <%
