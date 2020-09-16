@@ -38,7 +38,7 @@ app.use(session({
         expires: 600000
     }
 }));
-app.use(require('prerender-node').set('prerenderToken', 'MqeP1XhMP4Fot46Xu0kL'));
+// app.use(require('prerender-node').set('prerenderToken', 'MqeP1XhMP4Fot46Xu0kL'));
 // const prerender = require('prerender');
 // const server = prerender();
 // server.start();
