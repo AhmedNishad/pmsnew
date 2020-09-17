@@ -470,7 +470,7 @@
                             </div>
                         <div class="form-group">        
                         <div class="col-sm-offset-2 col-sm-10">
-                            <button onsubmit="gtag_report_conversion()" type="submit" id="submit" class="btn btn-default offset-md-2">Submit</button>
+                            <button type="submit" id="submit" class="btn btn-default offset-md-2">Submit</button>
                         </div>
                         </div>
                     </form>
@@ -644,18 +644,18 @@
     }
 
 
-function gtag_report_conversion(url) {
-  var callback = function () {
-    if (typeof(url) != 'undefined') {
-      window.location = url;
-    }
-  };
-  gtag('event', 'conversion', {
-      'send_to': 'AW-746721206/QXlHCJ3Vjt8BELafiOQC',
-      'event_callback': callback
-  });
-  return false;
-}
+// function gtag_report_conversion(url) {
+//   var callback = function () {
+//     if (typeof(url) != 'undefined') {
+//       window.location = url;
+//     }
+//   };
+//   gtag('event', 'conversion', {
+//       'send_to': 'AW-746721206/QXlHCJ3Vjt8BELafiOQC',
+//       'event_callback': callback
+//   });
+//   return false;
+// }
 
 
     
