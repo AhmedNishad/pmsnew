@@ -655,7 +655,7 @@ form input:focus {
 }
 
 .bg-color-p-1 {
-  background-color: #919191;
+  background-color:rgba(79,23,168,0.75) ;
 }
 
 .bg-color-p-2 {
@@ -1158,8 +1158,8 @@ Banner
   background: linear-gradient(106deg, rgba(51, 51, 107, 0.7) 7%, rgba(83, 83, 150,0) 78%);
 }
 .sw-banner .sw-overlay.sw-overlay-left-1-cs {
-  /* background: #271066; */
-  background:  linear-gradient(90deg, #271066, #8a78bd);
+  background: #4f17a8;
+  /* background:  linear-gradient(90deg, #271066, #8a78bd); */
 }
 .sw-banner .sw-overlay .container {
   height: 100%;
@@ -1751,7 +1751,7 @@ button.sw-solid-btn.sw-color-1-btn {
 }
 .sw-btn.sw-solid-btn.sw-color-1-btn:hover,
 button.sw-solid-btn.sw-color-1-btn:hover {
-  background-color: rgb(240, 138, 84);
+  background-color: rgb(207, 80, 11);
 }
 .sw-btn.sw-solid-btn.sw-color-2-btn,
 button.sw-solid-btn.sw-color-2-btn {
@@ -1759,7 +1759,7 @@ button.sw-solid-btn.sw-color-2-btn {
 }
 .sw-btn.sw-solid-btn.sw-color-2-btn:hover,
 button.sw-solid-btn.sw-color-2-btn:hover {
-  background-color: rgb(240, 138, 84);
+  background-color: rgb(207, 80, 11);
 }
 .sw-btn.sw-solid-btn.sw-white-btn,
 button.sw-solid-btn.sw-white-btn {
@@ -1898,7 +1898,7 @@ button.swiper-button-disabled {
 }
 .sw-btn.swiper-button-disabled:after,
 button.swiper-button-disabled:after {
-  background-color: rgb(255, 88, 0);
+  background-color: rgb(207, 80, 11);
   position: absolute;
   top: 0;
   font-size: 9px;
