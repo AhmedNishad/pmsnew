@@ -48,7 +48,7 @@
              <tbody>
                 <%  
             for(let i = 0; i < reservations.length; i++){
-                let reservation = reservations[i];
+                let reservation = reservations.sort((a,b) => a < b)[i];
                 %>
                 <tr>
                     <td><%= reservation.name %></td> 

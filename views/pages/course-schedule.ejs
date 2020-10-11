@@ -108,6 +108,8 @@
                           <%
 
                             let filtered = courses.filter(c => {
+                              if(c.moniker == "certified-associate-in-project-management")
+                                return false;
                               if(c.courseDates == null){
                                 return false;
                               } 
@@ -123,6 +125,26 @@
                                 let filteredCourseDates = course.courseDates
                                 for(let j = 0; j < filteredCourseDates.length; j++){
                                   let date = filteredCourseDates[j];
+                                  if(course.moniker == "project-management-professional"){
+                                    %>
+                                    <tr style="font-size: 1.0rem;">
+                                          <td scope="row"><a class="btn btn-link" href="/courses/<%= course.moniker %>"><%= course.title %></a> <span style="text-align: center; font-size: 1.5rem; display: block;">/</span>
+                                            <a class="btn btn-link" href="/courses/certified-associate-in-project-management">Certified Associate In Project Management</a></td>
+                                          <td style="width: 35%;">
+                                                <div class="card" style="width: 100%;">
+                                                    <div class="card-body">
+                                                      <h5 class="card-title"><%= date.date.toDateString() %></h5>
+                                                      <h6 class="card-subtitle mb-2 text-muted"><span  <%- new Date() < date.date ? "style='color: lightcoral'" : "style='color: rgb(38, 13, 109)'" %>''><%= new Date() > date.date ? "Ongoing" : "New" %></span></h6>
+                                                      <p class="card-text"></p>
+                                                      <a href="/courses/<%= course.moniker %>?enrollNowDate=<%= new Date(date.date).toLocaleDateString()%>&enrollNow=true" rel="nofollow" class="card-link btn btn-link" style="color: orange;">Enroll PMP</a>
+                                                      <a href="/courses/certified-associate-in-project-management?enrollNow=true" rel="nofollow" class="card-link btn btn-link" style="color: orange;">Enroll CAPM</a>
+                                                    </div>
+                                                  </div>
+                                              </td>
+                                              <td><%- course.otherDetails[0].text %> <br> <strong><%= date.times %></strong> </td>
+                                              </tr>
+                                    <%
+                                  }else{
                                   %>
                                       <tr style="font-size: 1.0rem;">
                                           <td scope="row"><a class="btn btn-link" href="/courses/<%= course.moniker %>"><%= course.title %></a></td>
@@ -130,7 +152,7 @@
                                                 <div class="card" style="width: 100%;">
                                                     <div class="card-body">
                                                       <h5 class="card-title"><%= date.date.toDateString() %></h5>
-                                                      <h6 class="card-subtitle mb-2 text-muted"><span style="color: lightcoral"><%= new Date() > date.date ? "Ongoing" : "New" %></span></h6>
+                                                      <h6 class="card-subtitle mb-2 text-muted"><span  <%- new Date() < date.date ? "style='color: lightcoral'" : "style='color: rgb(38, 13, 109)'" %>''><%= new Date() > date.date ? "Ongoing" : "New" %></span></h6>
                                                       <p class="card-text"></p>
                                                       <a href="/courses/<%= course.moniker %>?enrollNowDate=<%= new Date(date.date).toLocaleDateString()%>&enrollNow=true" rel="nofollow" class="card-link btn btn-link" style="color: orange;">Enroll Now</a>
                                                     </div>
@@ -139,7 +161,7 @@
                                               <td><%- course.otherDetails[0].text %> <br> <strong><%= date.times %></strong> </td>
                                               </tr>
                                                 <%
-                                              }
+                                }}
                                               %>
                                 <%
                             } 
