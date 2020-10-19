@@ -72,7 +72,7 @@
                       let course = courses[i];
                       if(course.courseDates != null){
                           %>
-                          <option data-slots="<%= JSON.stringify(course.courseDates.filter(d => d.date > new Date().setHours(0,0,0,0))) %>" value="<%= course.moniker %>"><%= course.title %></option> 
+                          <option data-slots="<%= JSON.stringify(course.courseDates) %>" value="<%= course.moniker %>"><%= course.title %></option> 
                       <%}
                   }
                 
