@@ -35,28 +35,34 @@
         <table class="table">
             <thead>
                 <tr>
+                    <th>Type</th>
                     <th>Name</th>
                     <th>Email</th>
                     <th>Course</th>
                     <th>Mobile</th>
-                    <th>Paid Amount</th>
+                    <th>Amount</th>
+                    <th>Settled</th>
                     <th>Address</th>
-                    <th>Date</th>
+                    <th>Start Date</th>
+                    <th>Date Placed</th>
                     <th>Actions</th>
                 </tr>
             </thead>
              <tbody>
                 <%  
             for(let i = 0; i < registrations.filter(r => r.handled == false).length; i++){
-                let registration = registrations.filter(r => r.handled == false).sort((a, b) => (a.placedOn < b.placedOn) ? 1 : -1)[i];
+                let registration = registrations.filter(r => r.handled == false).sort((a, b) => new Date(b.placedOn) - new Date(a.placedOn))[i];
                 %>
                 <tr>
+                  <td><%= registration.type %></td> 
                     <td><%= registration.name %></td> 
                     <td><%= registration.email %></td> 
                     <td><%= registration.courseName %></td> 
                     <td><%= registration.mobile %></td>    
                     <td><%= registration.fee %></td> 
+                    <td><%=  registration.paymentComplete ? "Yes" : "No" %></td>
                     <td><%= registration.address %></td> 
+                    <td><%= registration.startDate %></td> 
                     <td><%= new Date(registration.placedOn).toLocaleDateString() %></td> 
                     <td><a class="btn btn-primary" href="/registration/<%= registration._id %>/handle" >Handle</a></td>
                 </tr>

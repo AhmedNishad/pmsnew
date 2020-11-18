@@ -1,10 +1,9 @@
 var nodemailer = require('nodemailer');
 
 module.exports = async (toAddress) => {
-    let testAccount = await nodemailer.createTestAccount()
-    console.log(testAccount)
+    let testAccount = await nodemailer.createTestAccount();
     
-    var transporter = nodemailer.createTransport({
+    /* var transporter = nodemailer.createTransport({
       host: 'smtp.ethereal.email',
       port: 587,
        secure: false,
@@ -12,10 +11,21 @@ module.exports = async (toAddress) => {
         user: testAccount.user,
         pass: testAccount.pass
       }
+    }); */
+
+    var transporter = nodemailer.createTransport({
+      host: 'mail.pms.lk',
+      port: 587,
+      secure: false,
+      auth: {
+        user: 'info@pms.lk',
+        pass: 'pmsinfo@13245'
+      }
     });
+    
     let text = `Your payment was successfully recieved`;
     var mailOptions = {
-        from: 'ahmednishad3@gmail.com',
+        from: 'info@pms.lk',
         to: toAddress,
         subject: 'Payment Successful | PMS',
         text

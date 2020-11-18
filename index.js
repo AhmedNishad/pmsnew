@@ -5,12 +5,14 @@ const Course = require('./models/course.model')
 const Reservation = require('./models/reservation.model')
 const Inquiry = require('./models/inquiry.model')
 const Registration = require('./models/registration.model')
+const Payment = require('./models/payment.model')
 var app = express();
 var bodyParser = require('body-parser')
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var mongoose = require('mongoose');
-
+const sendMail = require('./sendgrid');
+const consts = require('./consts')
 
 //mongoose.connect('mongodb+srv://pms-user:9EH95a7zD3fr9NCn@pmscluster.i2oou.azure.mongodb.net/pms-lk?retryWrites=true&w=majority', {useNewUrlParser: true});
 mongoose.connect('mongodb+srv://pmsuser:pmsuser1324@cluster0.a6ybh.gcp.mongodb.net/pms-lk?retryWrites=true&w=majority', {useNewUrlParser: true});
@@ -125,20 +127,37 @@ app.post('/register', function(req, res) {
                 console.log(err)
                 return res.render("pages/message-page",{courses,message: "Failed to Register. Please try again soon or contact hotline"})
             }
-            return res.render("pages/message-page",{courses,message: "Your Reservation has been received. Our team will respond shortly"})
+            let payment = new Payment({
+                registrationId: reservation._id,
+                fee: courses[0].courseFee,
+                placedOn: new Date(),
+                isSettled: false,
+                receiptNumber: String
+            })
+            console.log(payment);
+            payment.save((errr)=>{
+                if(errr){
+                    console.log(errr)
+                }
+                return res.render("pages/message-page",{courses,message: "Your Reservation has been received. Our team will respond shortly"})
+
+            })
         }) 
     })
 });
 
-app.get('/paynow/:moniker', function(req, res) {
-    let mon = req.params.moniker
-    Course.findOne({moniker: mon}, (err, course)=>{
-            Course.find({}, (error, courses)=>{
-                if(err || course == null) 
-                    return res.render("pages/message-page",{courses,message: "Course Not Found"})
+app.get('/paynow/:paymentId', function(req, res) {
+    let paymentId = req.params.paymentId
+    Payment.findOne({_id: paymentId, isSettled: false}, (err, payment)=>{
+        Registration.findOne({_id: payment.registrationId}, (err2, registration)=> {
 
-                return res.render("pages/pay-now",{course, courses})
+            Course.find({}, (error, courses)=>{
+                if(err || payment == null) 
+                    return res.render("pages/message-page",{courses,message: "Payment Not Found"})
+
+                return res.render("pages/pay-now",{payment,registration, courses})
             });
+        });
     });
 });
 
@@ -190,14 +209,18 @@ app.get('/response', (req,res)=>{
    }
 
    // Handle Card Declined Error
-   if(pgErrorCode == "13004"){
-    Course.find({}, (error, courses)=>{
-        if(error || course == null){
-            console.log(error)
-            return res.render("pages/message-page",{courses,message: "Course Not Found"})
-        } 
-        return res.render("pages/message-page",{courses,message: "Card Issuer Declined Payment"})
-    })
+   try{
+       if(pgErrorCode == "13004"){
+        Course.find({}, (error, courses)=>{
+            if(error || course == null){
+                console.log(error)
+                return res.render("pages/message-page",{courses,message: "Course Not Found"})
+            } 
+            return res.render("pages/message-page",{courses,message: "Card Issuer Declined Payment"})
+        })
+       }
+   }catch(e){
+       console.log(e);
    }
 
    //Success 
@@ -209,19 +232,30 @@ app.get('/response', (req,res)=>{
        let sendConfirmation = require('./mail');
 
        Registration.findOneAndUpdate({_id: merchantReferenceNo}, updateBody, function (err, registration) {
-        Course.find({}, (error, courses)=>{
-            if(err || registration == null){
-                console.log(err);
-                return res.render("pages/message-page",{courses,message: "Registration Not Found"});
-            } 
-            sendConfirmation(registration.email);
-            return res.render("pages/message-page",{courses,message: "Payment Successful!"});
+           // Update Payment as Well
+           Payment.findOneAndUpdate({registrationId: merchantReferenceNo},{isSettled: true, settledOn: new Date()},
+        function(err1, payment){
+            if(err1){
+                console.log(err1);
+            }
+            
+            Course.find({}, (error, courses)=>{
+                if(err || registration == null){
+                    console.log(err);
+                    return res.render("pages/message-page",{courses,message: "Registration Not Found"});
+                } 
+                sendMail(registration.email, "Payment Successful!", "Registration has been successfully completed",
+                "<p>Registration has been successfully <strong>completed</strong></p> ")
+                return res.render("pages/message-page",{courses,message: "Payment Successful!"});
+            });
         });
+
     });
    }else{
         Registration.findOneAndRemove({_id: merchantReferenceNo}, function (err) {
             if (err) 
             return  res.status(500).json({error: "Error deleting Registration"})
+            // Delete payment
             Course.find({}, (error, courses)=>{
                 if(error || courses == null){
                     console.log(error)
@@ -234,26 +268,70 @@ app.get('/response', (req,res)=>{
    }
 })
 
-app.post('/paynow/:moniker', function(req, res) {
-    Course.findOne({ moniker: req.params.moniker}, (err, course)=>{
-        if(err || course == null){
-            return res.render("pages/message-page",{courses,message: "Coure Not Found"})
-        }
-        let registration = new Registration({
-            name: req.body.name,
-            email: req.body.email,
-            courseName: course.title,
-            address: req.body.address,
-            mobile: req.body.mobile,
-            fee: course.price,
-            placedOn: new Date(),
-            paymentComplete: false
+app.post('/registerNew/:moniker',(req,res) => {
+   Course.find({}, (err2, courses)=>{
+
+        Course.findOne({ moniker: req.params.moniker}, (err, course)=>{
+            if(err || course == null){
+                return res.render("pages/message-page",{courses,message: "Coure Not Found"})
+            }
+            let registration = new Registration({
+                name: req.body.name,
+                email: req.body.email,
+                courseName: course.title,
+                address: req.body.address,
+                mobile: req.body.phone,
+                fee: course.price,
+                startDate: req.body.date,
+                type: req.body.type,
+                placedOn: new Date(),
+                paymentComplete: false
+            })
+            console.log(registration);
+            registration.save((errr, reg)=>{
+                if(errr)
+                    console.log(errr);
+
+                    let payment = new Payment({
+                        registrationId: registration._id,
+                        fee: course.price,
+                        placedOn: new Date(),
+                        receiptNumber: "",
+                        isSettled: false,
+                    })
+                    payment.save((errr)=>{
+                        if(errr){
+                            console.log(errr)
+                        }
+                        let html = `<a href='${consts.baseUrl}/paynow/${payment._id}'>Complete</a> ${payment._id}`
+                        sendMail(req.body.email, "Please Pay to Complete Registration", 'Complete payment',html)
+                        return res.render("pages/message-page",{courses,message: "Your Reservation has been received. Our team will respond shortly"})
+        
+                    })
+                console.log(payment._id)
+            })
         })
 
-        registration.save((errr, reg)=>{
-            if(errr)
-                console.log(errr);
-                let pgdomain="www.paystage.com";
+    })
+})
+
+app.post('/paynow/:paymentId', function(req, res) {
+    let paymentId = req.params.paymentId;
+    Course.find({}, (err2, courses) => {
+            Payment.findOne({ _id: paymentId}, (err, payment)=>{
+                if(err || payment == null){
+                return res.render("pages/message-page",{courses,message: "Payment Not Found"})
+            }
+                    
+                completePayment(res, payment.fee, payment.registrationId);
+        })
+    })
+});
+
+
+
+function completePayment(res, amount, registrationId){
+    let pgdomain="www.paystage.com";
                 let pgInstanceId="73787690";
                 let merchantId="73797374";
                 let hashKey="EB1BDE02A037BF65";
@@ -263,11 +341,10 @@ app.post('/paynow/:moniker', function(req, res) {
              
                 let perform='initiatePaymentCapture#sale';
                 let currencyCode='144';
-                let amount= course.price * 100;
-                let merchantReferenceNo = reg._id; // Needs to be the created registrations mongoId
+                let merchantReferenceNo = registrationId; // Needs to be the created registrations mongoId
                 let orderDesc = 'PMS Online Payment';
              
-                let messageHash = `${pgInstanceId}|${merchantId}|${perform}|${currencyCode}|${amount}|${merchantReferenceNo}|${hashKey}|` 
+                let messageHash = `${pgInstanceId}|${merchantId}|${perform}|${currencyCode}|${amount*100}|${merchantReferenceNo}|${hashKey}|` 
                 let sha1EncryptedHash = crypto.createHash('sha1')
                 sha1EncryptedHash.update(messageHash)
                 
@@ -315,9 +392,7 @@ app.post('/paynow/:moniker', function(req, res) {
 
             let html = header + body;
             return res.send(html); 
-        })
-    })
-});
+}
 
 app.use('/courses', courseController)
 app.use('/blog', blogController)

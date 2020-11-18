@@ -7,9 +7,10 @@ var registrationSchema = new Schema({
     name: String,
     address: String,
     email: String,
-    phoneNumber: String,
     mobile: String,
     placedOn: String,
+    startDate: String,
+    type: String,
     paymentComplete: {type: Boolean, default: false},
     handled: {type: Boolean, default: false}
 });
