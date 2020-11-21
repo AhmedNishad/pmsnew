@@ -7,6 +7,7 @@ const Inquiry = require('./models/inquiry.model')
 const Registration = require('./models/registration.model')
 const Payment = require('./models/payment.model')
 var app = express();
+require('dotenv').config()
 var bodyParser = require('body-parser')
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
@@ -273,7 +274,7 @@ app.post('/registerNew/:moniker',(req,res) => {
 
         Course.findOne({ moniker: req.params.moniker}, (err, course)=>{
             if(err || course == null){
-                return res.render("pages/message-page",{courses,message: "Coure Not Found"})
+                return res.render("pages/message-page",{courses,message: "Course Not Found"})
             }
             let registration = new Registration({
                 name: req.body.name,
@@ -303,10 +304,22 @@ app.post('/registerNew/:moniker',(req,res) => {
                         if(errr){
                             console.log(errr)
                         }
-                        let html = `<a href='${consts.baseUrl}/paynow/${payment._id}'>Complete</a> ${payment._id}`
-                        sendMail(req.body.email, "Please Pay to Complete Registration", 'Complete payment',html)
-                        return res.render("pages/message-page",{courses,message: "Your Reservation has been received. Our team will respond shortly"})
-        
+                        const courseName = registration.courseName;
+                        
+                        let payUrl = `<a href='${consts.baseUrl}/paynow/${payment._id}'>Pay Online Here</a>`;
+                        let registrationHtml = `<p>Dear&nbsp;Professional,</p>
+                        <p>Thank you very much for your interest with ${courseName} program.</p>
+                        <p>Payment can be made online or by cash via a bank transfer to the following bank account and Whatsapp the receipt to 0778551711.</p>
+                        <p>Online: ${payUrl}</p>
+                        <p>OR</p>
+                        <p>Bank&nbsp;:&nbsp;Seylan&nbsp;Bank&nbsp;Nugegoda&nbsp;Branch<br />Account&nbsp;:&nbsp;012033550400001<br />Account&nbsp;Name&nbsp;:&nbsp;Project&nbsp;Management&nbsp;Solutions&nbsp;(pvt)&nbsp;Ltd<br /><br />If you had been sponsored officially please make sure the HR has got in touch with us and sent your nomination officially regarding your participation.<br /><br />Please, do contact us if you have additional queries..<br />We are very much determined to provide the best customer service during your stay with us.<br /><br /><br />Best&nbsp;Regards,</p>
+                        <p>Malintha&nbsp;Perera<br />Manager&nbsp;Training<br />0772511711<br />PMS<br /></p>`;
+                        //let studentDetails = 
+                        //sendMail("register@pms.lk", "New Student Registration", 'Student Registration',html)
+                        sendMail(req.body.email, `${courseName}`, 'Register',registrationHtml)
+
+                        return res.render("pages/message-page",{courses,message: "Your registration has been received. Our team will respond shortly"})
+
                     })
                 console.log(payment._id)
             })

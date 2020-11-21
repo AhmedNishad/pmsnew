@@ -4,8 +4,11 @@ sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 const sendMail = (to, subject, text, html)=>{
 
     const msg = {
-        to , 
-        from: 'info@pms.lk',
+        to ,
+        from: {
+          email: 'info@pms.lk',
+          name: 'Project Management Solutions'
+      },
         subject,
         text,
         html,
