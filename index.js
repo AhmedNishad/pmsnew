@@ -142,7 +142,7 @@ app.get('/paynow/:moniker', function(req, res) {
     });
 });
 
-app.get('/response', (req,res)=>{
+app.post('/response', (req,res)=>{
    
    let pgInstanceId = "73787690";
    let merchantId = "73797374";
