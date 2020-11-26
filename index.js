@@ -191,7 +191,7 @@ app.post('/response', (req,res)=>{
    let messageHash = req.body["message_hash"];
 
    let messageHashBuf = `${pgInstanceId}|${merchantId}|${transactionTypeCode}|${installments}|${transactionId}|${amount}|${exponent}|${currencyCode}|${merchantReferenceNo}|${status}|${eci}|${pgErrorCode}|${hashKey}|`
-
+    console.log(messageHashBuf);
    let sha1EncryptedHash = crypto.createHash('sha1');
    sha1EncryptedHash.update(messageHashBuf);
 
@@ -199,7 +199,7 @@ app.post('/response', (req,res)=>{
    let base64String = bufferObj.toString("base64");
 
    let messageHashClient = "13:" + base64String;
-
+    console.log(messageHashClient);
    let hashMatch = false;
 
    if (messageHash==messageHashClient){
