@@ -306,7 +306,7 @@ app.post('/registerNew/:moniker',(req,res) => {
                         }
                         const courseName = registration.courseName;
                         
-                        let payUrl = `<a href='${consts.baseUrl}/paynow/${payment._id}'>Pay Online Here</a>`;
+                        let payUrl = `<a href='${process.env.BASE_URL}/paynow/${payment._id}'>Pay Online Here</a>`;
                         let registrationHtml = `<p>Dear&nbsp;Professional,</p>
                         <p>Thank you very much for your interest with ${courseName} program.</p>
                         <p>Payment can be made online or by cash via a bank transfer to the following bank account and Whatsapp the receipt to 0778551711.</p>
@@ -318,7 +318,8 @@ app.post('/registerNew/:moniker',(req,res) => {
                         //sendMail("register@pms.lk", "New Student Registration", 'Student Registration',html)
                         sendMail(req.body.email, `${courseName}`, 'Register',registrationHtml)
 
-                        return res.render("pages/message-page",{courses,message: "Your registration has been received. Our team will respond shortly"})
+                        res.redirect(`/paynow/${payment._id}`);
+                       // return res.render("pages/message-page",{courses,message: "Your registration has been received. Our team will respond shortly"})
 
                     })
                 console.log(payment._id)
