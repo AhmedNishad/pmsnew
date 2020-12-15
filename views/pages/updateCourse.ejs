@@ -288,7 +288,7 @@
                     
                     if(course.courseDates == null || course.courseDates.length == 0){ %>
                               <div>
-                                    <input min="<%= dateString %>" class="form-control" type="date" name="courseDates[0][date]" />
+                                    <input class="form-control" type="date" name="courseDates[0][date]" />
                                     <input class="form-control" value="" type="text" name="courseDates[0][times]" placeholder="times">
                                     <button class="btn btn-danger remove">Remove</button>
                                 </div> 
@@ -310,7 +310,7 @@
                                 courseDateString = date.date.getFullYear() + "-" + month + "-" + day;
                               }
                                 %><div>
-                                  <input min="<%= dateString %>" value="<%= courseDateString %>" class="form-control" type="date" name="courseDates[<%= i %>][date]" />
+                                  <input  value="<%= courseDateString %>" class="form-control" type="date" name="courseDates[<%= i %>][date]" />
                                     <input class="form-control" value="<%= date.times || "" %>" type="text" name="courseDates[<%= i %>][times]" placeholder="times">
                                 
                                     <button class="btn btn-danger remove">Remove</button>
