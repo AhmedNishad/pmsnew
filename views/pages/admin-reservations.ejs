@@ -46,9 +46,14 @@
                 </tr>
             </thead>
              <tbody>
-                <%  
+                <%
+               let reservationSorted = reservations.sort(function compare(a, b) {
+                  return new Date(b.date) - new Date (a.date);
+                });
+
+ 
             for(let i = 0; i < reservations.length; i++){
-                let reservation = reservations.sort((a,b) => a < b)[i];
+              let reservation = reservationSorted[i];
                 %>
                 <tr>
                     <td><%= reservation.name %></td> 
