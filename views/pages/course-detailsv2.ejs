@@ -188,9 +188,45 @@
                     %>
                     </ul>
                 </div>
-            </div>
+                <%
+                if (course.title.includes("PMP")) {
+
+                %>
+               <br>
+                <div class="mb-60">
+                    <!-- card -->
+                    <div class="sw-card sw-card-2">
+                      <!-- img frame -->
+                      <a href="/blog/pmp-exam-changes-2021" class="sw-img">
+                        <img src="https://images.youracclaim.com/images/260e36dc-d100-45c3-852f-9d8063fa71e6/linkedin_thumb_pmp-600px.png" alt="thumb">
+                      </a>
+                      <!-- img frame end -->
+                      <!-- description -->
+                      <div class="sw-card-description">
+                        <!-- title -->
+                        <a href="/blog/pmp-exam-changes-2021" class="mb-10">
+                          <h5>PMP New Exam Changes 2021</h5>
+                        </a>
+                        <!-- short description -->
+                        <div class="mb-10">This article will breifly describe the new PMP exam changes has occured for 2021</div>
+                        <!-- author -->
+                        <a class="sw-btn sw-md-btn sw-solid-btn sw-round-btn sw-color-1-btn"  href="/blog/pmp-exam-changes-2021">Learn More</a>
+  
+                      </div>
+  
+                      <!-- description end -->
+                      <!-- badge -->
+                    </div>
+                    <!-- card end -->
+    
+                  </div>
+                  <%
+                }
+                %>
+           </div>
               </div>
               </div>
+              
         </div>
               
         <div class="container">
@@ -248,9 +284,10 @@
                         <img style="padding-top: 20px;" src="<%= !course.certificateUrl ? 'https://firebasestorage.googleapis.com/v0/b/repairit-58896.appspot.com/o/certificate.png?alt=media&token=f1f687ad-f50a-40dc-a6f4-c932e389f65f' : course.certificateUrl %>" width="90%">
     
                     </div>
+
                    
-              
-              
+
+                    
 
         </div>
 

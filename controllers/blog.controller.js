@@ -46,4 +46,13 @@ router.get('/benifits-agile', (req,res)=>{
     })
 })
 
+router.get('/pmp-exam-changes-2021', (req,res)=>{
+    Course.find({}, (err, courses)=>{
+        if(err || courses == null) 
+            return res.status(404).json({error: "No Courses Found"})
+        
+            return res.render('blog/pmp-exam-changes-2021', {courses:courses });
+    })
+})
+
 module.exports = router
