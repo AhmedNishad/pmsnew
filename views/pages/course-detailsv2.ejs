@@ -58,7 +58,7 @@
                       </ul>
                 </div>
                 <div class="col p-30-30">
-                    <a id="course-btn"style="color: white; background: rgb(255, 88, 0);" class="btn" style="position: relative;" href="#sw-content">Enroll Now</a>
+                    <a id="course-btn"style="color: white; background: rgb(255, 88, 0);" class="btn" style="position: relative;" href="#sw-content">Register Now</a>
                 </div>
               <!-- breadcrumbs end -->
               
@@ -66,17 +66,67 @@
 
           </div>
         </div>
-
+        <div class="mb-60">
+            <!-- title -->
+        </div>
+<% 
+        if(course.title.includes("PMP")){
+%>
         <div class="container">
-            <div class="col-lg-12">
-    
                 <div class="mb-60">
                   <!-- title -->
-                  
-                </div>
-    
-              </div>
+                  <h3>Pass the New PMP® Exam in 2021</h3>
+                    <div class="mb-30"></div>
+                            <div class="row justify-content-between align-items-center">
+                                <div class="col-lg-8">
+                                    <p class="mb-30" style="font-size: 25px; color: rgb(255, 88, 0);">Learn the most current Project Management methods and ehance your versatility.</p>
+                                    <!-- <p class="mb-30" style="font-size: 25px; color: #494953;">PMI expect 22 million new jobs in project management around the world by 2027.</p>
+                                    <p class="mb-30" style="font-size: 25px; color: #494953;">This is a 33% growth.</p> -->
+                                    
+                                    <ul class="sw-list">
+                                        <li>
+                                            <div class="sw-list-mark">
+                                                <i style="color: rgb(255, 88, 0);" class="fa fa-check" aria-hidden="true"></i>
+                                            </div>
+                                            62.5 hrs of blended training: 52.5 hrs Instructor led live virtual/in person learning contact hours and 10 hrs of on demand video training on Agile Practice Guide which allows you to learn at your own pace
+                                        </li>
+                                        <li>
+                                            <div class="sw-list-mark">
+                                                <i style="color: rgb(255, 88, 0);" class="fa fa-check" aria-hidden="true"></i>
+                                            </div>
+                                            Free access to PMS 52 hrs on-demand PMP workshop lecture video on conclusion of the course which allows you to learn at your own pace
+                                        </li>
+                                        <li>
+                                            <div class="sw-list-mark">
+                                                <i style="color: rgb(255, 88, 0);" class="fa fa-check" aria-hidden="true"></i>
+                                            </div>
+                                            2000+ Practice Questions based on new exam format
+                                        </li>
+                                        <li>
+                                            <div class="sw-list-mark">
+                                                <i style="color: rgb(255, 88, 0);" class="fa fa-check" aria-hidden="true"></i>
+                                            </div>
+                                            Digital PMI-PMP exam prep materials on PMBOK Guide 6th edition, Agile Practice Guide and other recommended text books for the PMP exam
+                                        </li>
+                                        <li>
+                                            <div class="sw-list-mark">
+                                                <i style="color: rgb(255, 88, 0);" class="fa fa-check" aria-hidden="true"></i>
+                                            </div>
+                                            Workshop facilitated by a well-seasoned trainer with over 20 years industry experience, has been training PMP candidates since 2007 and produced over 700 PMPs.
+                                        </li>
+                                    </ul>    
+                                </div>
+                                <div class="col-lg-4">
+                                    <img width="95%" style="border-radius: 8px;" src="/public/img/pmppage.png">
+                                </div>
+                            </div>      
+                    </div>
+                            
         </div>
+    <%    
+    }
+    %>
+    
         
         <div class="container">
             <div class="row">
@@ -104,7 +154,7 @@
                                 var objective = course.objectives[i]
                                 if(objective.text != ""){
                                     %><li>
-                                    <div class="sw-list-mark"><%= i + 1%></div> <%= objective.text %>
+                                    <div class="sw-list-mark" style="color: rgb(255, 88, 0);"><%= i + 1%></div> <%= objective.text %>
                                     </li>   <%
                                 }
                             }
@@ -155,11 +205,11 @@
                 <div >
                   <!-- suptitle -->
                   <div class="col-lg-12">
-                    <div class="mb-60">
+                    <!-- <div class="mb-60"> -->
                         <!-- title -->
-                        <h5 class="mb-30">Fee</h5>
+                        <!-- <h5 class="mb-30">Fee</h5>
                         <div class="sw-section-suptitle"><%= course.courseFee %></div>
-                    </div>
+                    </div> -->
                 </div>
 
                 <div class="col-lg-12">
@@ -232,7 +282,13 @@
         <div class="container">
             <div class="row mb-30">
                 <div style="font-size: 1.0rem;" class="col-lg-7">
-                    <h5>&nbsp;  Course Contents</h5>
+                    <h5>Course Contents</h5>
+                    <p>&nbsp;</p>
+                    <p>In this course, you will learn to build a high performing team and lead them to
+                        plan, execute, and complete a project using Predictive, Agile and Hybrid
+                        project management methodologies according to the needs of the contextual
+                        circumstances.</p>
+                    <p>&nbsp;</p>
                     <ul id="courseContents" class="list-group">
                         <%
                             until = course.courseContent.length > 10 ? 10 : course.courseContent.length
@@ -285,10 +341,6 @@
     
                     </div>
 
-                   
-
-                    
-
         </div>
 
         <div id="sw-content" class="container" onload="onLoad()">
@@ -330,7 +382,7 @@
                         <div class="card-footer">
                             <!-- Redirect to Pay Now-->
                             <!-- <a href="/paynow/<%= course.moniker %>" class="btn btn-warning">ENROLL NOW</a> -->
-                            <button data-toggle="modal" data-target="#class" class="btn btn-warning">Enroll Now</button>
+                            <button data-toggle="modal" data-target="#class" class="btn btn-warning">Register Now</button>
 
                         </div>
                     </div>
@@ -353,7 +405,7 @@
                             </div>
                         </div>
                         <div class="card-footer">
-                            <button data-toggle="modal" data-target="#class" class="btn btn-warning">Enroll Now</button>
+                            <button data-toggle="modal" data-target="#class" class="btn btn-warning">Register Now</button>
                             
                         </div>
                     </div>
@@ -371,7 +423,7 @@
                 </div>   
             </div>  
         </div>
-
+   
         <section class="cta-area cta3 py-5">
             <div class="container">
               <div class="row align-items-center justify-content-between">
@@ -631,7 +683,8 @@
         </div>
         <% } %>
         <div class="container">
-<!-- LightWidget WIDGET --><script src="https://cdn.lightwidget.com/widgets/lightwidget.js"></script><iframe src="https://cdn.lightwidget.com/widgets/05777223b2d551558dcaf5c70e999923.html" scrolling="no" allowtransparency="true" class="lightwidget-widget" style="width:100%;border:0;overflow:hidden;"></iframe>
+<!-- LightWidget WIDGET --><script src="https://cdn.lightwidget.com/widgets/lightwidget.js"></script><iframe src="https://cdn.lightwidget.com/widgets/05777223b2d551558dcaf5c70e999923.html" scrolling="no" allowtransparency="true" class="lightwidget-widget" style="width:100%;border:0;overflow:hidden;"></iframe>        </div>
+
       <!-- footer -->
       <footer class="sw-footer sw-footer-type-1">
         <%- include("../partials/footer") %>
@@ -697,6 +750,7 @@
     
     
     </script>
+
 </body>
 
 </html>
