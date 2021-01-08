@@ -61,9 +61,9 @@
                         <%
                         for ( var i = 0; i < course.introduction.highlights.length; i++ )
                         {
-                            var highlight = course.introduction.highlights[i]
+                            var highlight = course.introduction.highlights[i];
                                 %><div>
-                                <textarea class="form-control" name="introduction[highlights][]" cols="30" rows="10"><%= highlight %></textarea>
+                                <textarea class="form-control" name="introduction[highlights][]" cols="30" rows="4"><%= highlight %></textarea>
                                 <button class="btn btn-danger remove">Remove</button>
                                 </div><%
                         }
@@ -72,6 +72,19 @@
                     </div>
                     <hr>
                   </div>
+                  <div class="form-group">
+                    <label class="control-label col-sm-4" for="course">Introduction Heading</label>
+                    <div class="col-sm-8">          
+                        <input value="<%= course.introduction.heading %>" class="form-control" type="text" placeholder="Introduction Heading" name="introduction[heading]" />
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="control-label col-sm-4" for="course">Introduction Subheading</label>
+                    <div class="col-sm-8">          
+                        <input value="<%= course.introduction.subHeading %>" class="form-control" type="text" placeholder="Introduction Subheading" name="introduction[subHeading]" />
+                    </div>
+                  </div>  
         
                 <div class="form-group">
                   <label class="control-label col-sm-4" for="org">Duration</label>

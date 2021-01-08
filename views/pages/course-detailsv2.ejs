@@ -68,57 +68,78 @@
         </div>
         <div class="mb-60">
             <!-- title -->
+            
         </div>
 <% 
-        if(course.title.includes("PMP")){
+        if(course.introduction.highlights.length > 1){
+            let heading = course.introduction.heading;
+            let subHeading = course.introduction.subHeading;
+            console.log(subHeading);
 %>
         <div class="container">
                 <div class="mb-60">
                   <!-- title -->
-                  <h3>Pass the New PMP® Exam in 2021</h3>
+                  <h3><%= heading %></h3>
                     <div class="mb-30"></div>
                             <div class="row justify-content-between align-items-center">
                                 <div class="col-lg-8">
-                                    <p class="mb-30" style="font-size: 25px; color: rgb(255, 88, 0);">Learn the most current Project Management methods and ehance your versatility.</p>
+                                    <p class="mb-30" style="font-size: 25px; color: rgb(255, 88, 0);"><%= subHeading %></p>
                                     <!-- <p class="mb-30" style="font-size: 25px; color: #494953;">PMI expect 22 million new jobs in project management around the world by 2027.</p>
                                     <p class="mb-30" style="font-size: 25px; color: #494953;">This is a 33% growth.</p> -->
-                                    
+                                 
                                     <ul class="sw-list">
+                                        <% 
+                                        let hLength = course.introduction.highlights.length;
+                                        for(var i=0; i < hLength; i++){
+                                            let highlight = course.introduction.highlights[i];
+                                        %>
                                         <li>
                                             <div class="sw-list-mark">
                                                 <i style="color: rgb(255, 88, 0);" class="fa fa-check" aria-hidden="true"></i>
                                             </div>
-                                            62.5 hrs of blended training: 52.5 hrs Instructor led live virtual/in person learning contact hours and 10 hrs of on demand video training on Agile Practice Guide which allows you to learn at your own pace
+                                            <span><%= highlight %></span> 
                                         </li>
-                                        <li>
-                                            <div class="sw-list-mark">
-                                                <i style="color: rgb(255, 88, 0);" class="fa fa-check" aria-hidden="true"></i>
-                                            </div>
-                                            Free access to PMS 52 hrs on-demand PMP workshop lecture video on conclusion of the course which allows you to learn at your own pace
-                                        </li>
-                                        <li>
-                                            <div class="sw-list-mark">
-                                                <i style="color: rgb(255, 88, 0);" class="fa fa-check" aria-hidden="true"></i>
-                                            </div>
-                                            2000+ Practice Questions based on new exam format
-                                        </li>
-                                        <li>
-                                            <div class="sw-list-mark">
-                                                <i style="color: rgb(255, 88, 0);" class="fa fa-check" aria-hidden="true"></i>
-                                            </div>
-                                            Digital PMI-PMP exam prep materials on PMBOK Guide 6th edition, Agile Practice Guide and other recommended text books for the PMP exam
-                                        </li>
-                                        <li>
-                                            <div class="sw-list-mark">
-                                                <i style="color: rgb(255, 88, 0);" class="fa fa-check" aria-hidden="true"></i>
-                                            </div>
-                                            Workshop facilitated by a well-seasoned trainer with over 20 years industry experience, has been training PMP candidates since 2007 and produced over 700 PMPs.
-                                        </li>
+                                        <%
+                                        }
+                                        %>
                                     </ul>    
                                 </div>
+                                <% 
+                                if(course.title.includes("PMP")){
+                                %>
                                 <div class="col-lg-4">
                                     <img width="95%" style="border-radius: 8px;" src="/public/img/pmppage.png">
                                 </div>
+                                <%
+                                }
+                                %>
+                                <% 
+                                if(course.title.includes("Dip")){
+                                %>
+                                <div class="col-lg-4">
+                                    <img  width="130%" style="border-radius: 8px;" src="/public/img/dip.png">
+                                </div>
+                                <%
+                                }
+                                %>
+                                <% 
+                                if(course.title.includes("ACP")){
+                                %>
+                                <div class="col-lg-4">
+                                    <img height="50%" width="95%" style="border-radius: 8px;" src="/public/img/agilepage.png">
+                                </div>
+                                <%
+                                }
+                                %>
+                                <% 
+                                if(course.title.includes("PBA")){
+                                %>
+                                <div class="col-lg-4">
+                                    <img height="50%" width="95%" style="border-radius: 8px;" src="/public/img/pbapage.png">
+                                </div>
+                                <%
+                                }
+                                %>
                             </div>      
                     </div>
                             
@@ -205,11 +226,11 @@
                 <div >
                   <!-- suptitle -->
                   <div class="col-lg-12">
-                    <!-- <div class="mb-60"> -->
+                    <div class="mb-60">
                         <!-- title -->
-                        <!-- <h5 class="mb-30">Fee</h5>
+                        <h5 class="mb-30">Fee</h5>
                         <div class="sw-section-suptitle"><%= course.courseFee %></div>
-                    </div> -->
+                    </div>
                 </div>
 
                 <div class="col-lg-12">
