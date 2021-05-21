@@ -33,8 +33,7 @@
             <!-- main title frame -->
             <div class="sw-main-title sw-main-title-left sw-animation-opas sw-top-header-fix">
               <!-- title -->
-              <h1 class="sw-white text-capitalize"><%= course.title %></h1>
-
+              <h2 class="sw-white text-capitalize"><%= course.title %></h2>
             </div>
             <!-- main title frame end -->
           </div>
@@ -43,7 +42,7 @@
       </div>
       <!-- banner end -->
   
-      <main >
+      <main>
   
         <div class="sw-over-frame sw-up">
   
@@ -376,9 +375,15 @@
                     <h5 style="color: #494953;">Live Virtual Classroom</h5>
                     <p>Our online training course maintains the same high quality instructor delivery standards, better learning impact, pass guarantee as the in person class room course with the flexibility and convenience to attend from your home or office.</p>             
                     <br>
+                    <% 
+                if(!course.title.includes("Dip")){
+                    %> 
                     <h5 style="color: #494953;">In Person Class Room</h5>
                     <p>Instructor-led courses are held at quality training facilities and hosted by one of our certified instructors with more than 15 years of learning management experience. Our live classroom opton comes with the flexibility to convert to a virtual course or another date if your plans changes.</p>
                     <br>
+                    <%
+                }
+                                %> 
                 </div>
 
                 <div class="col-md-4">
@@ -407,7 +412,10 @@
 
                         </div>
                     </div>
-                </div>   
+                </div> 
+                <% 
+                if(!course.title.includes("Dip")){
+                    %> 
                 <div class="col-md-4">
                     <div class="card">
                         <div class="card-header">Register for In Person Classes
@@ -430,7 +438,10 @@
                             
                         </div>
                     </div>
-                </div>  
+                </div> 
+                <%
+            }
+                            %> 
                 <div class="col-md-4">
                     <div class="card">
                         <div class="card-header">For Organisational Training</div>

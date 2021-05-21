@@ -16,9 +16,7 @@ router.post('/login', (req,res)=>{
     if(user == "admin" && pass == "@dm1n"){
         req.session.user = {user, pass}
         return res.redirect('courses');
-    }
-
-    
+    }    
 })
 
 router.use((req, res, next) => {
