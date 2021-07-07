@@ -55,4 +55,13 @@ router.get('/pmp-exam-changes-2021', (req,res)=>{
     })
 })
 
+router.get('/pmbok-guide-7th-edition', (req,res)=>{
+    Course.find({}, (err, courses)=>{
+        if(err || courses == null) 
+            return res.status(404).json({error: "No Courses Found"})
+        
+            return res.render('blog/pmbok-guide-7th-edition', {courses:courses });
+    })
+})
+
 module.exports = router
